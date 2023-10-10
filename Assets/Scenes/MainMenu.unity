@@ -14866,7 +14866,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 1116838079}
-  fadeGo: {fileID: 1247961548}
+  fadeGo: {fileID: 961382361}
   fadeExit: {fileID: 1090694452}
 --- !u!114 &1411602353
 MonoBehaviour:
@@ -23246,7 +23246,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 1116838079}
-  fadeGo: {fileID: 192691194}
+  fadeGo: {fileID: 1086258266}
   fadeExit: {fileID: 1090694452}
 --- !u!1 &2044919287 stripped
 GameObject:

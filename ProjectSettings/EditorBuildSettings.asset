@@ -21,7 +21,7 @@ EditorBuildSettings:
     path: Assets/Scenes/TCPServer.unity
     guid: 2cfc93ccf5f14c14387ae9457ea44f35
   - enabled: 1
-    path: Assets/Scenes/CreateGame.unity
+    path: Assets/Scenes/UDPServer.unity
     guid: f585bda465d7e7c40bab35682ed66cb3
   - enabled: 1
     path: Assets/Scenes/ClientScene.unity
