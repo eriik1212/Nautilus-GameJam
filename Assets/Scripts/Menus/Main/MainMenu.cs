@@ -29,6 +29,11 @@ public class MainMenu : MonoBehaviour
         fadeGo.SetActive(true);
     }
 
+    public void OpenPlayMenu()
+    {
+        manager.OpenMenu(ACTIVE_MENU.PLAYMENU);
+    }
+
     public void Settings()
     {
         manager.OpenMenu(ACTIVE_MENU.SETTINGS);
