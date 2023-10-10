@@ -7,16 +7,19 @@ public enum ACTIVE_MENU
 {
     MAIN,
     SETTINGS,
-    CREDITS
+    CREDITS,
+    PLAYMENU
 }
 
 public class InitialScreenManager : MonoBehaviour
 {
     public GameObject mainMenu;
     public GameObject settingsMenu;
+    public GameObject playMenu;
     public GameObject creditsMenu;
     public GameObject mainMenuFirstButton;
     public GameObject settingsMenuFirstButton;
+    public GameObject playMenuFirstButton;
 
     GameObject lastSelect;
 
@@ -25,6 +28,7 @@ public class InitialScreenManager : MonoBehaviour
     {
         mainMenu.SetActive(true);
         creditsMenu.SetActive(false);
+        playMenu.SetActive(false);
     }
 
     // Update is called once per frame
@@ -37,18 +41,26 @@ public class InitialScreenManager : MonoBehaviour
     public void OpenMenu(ACTIVE_MENU menuToOpen)
     {
         CloseAllMenus();
+
         switch (menuToOpen)
         {
             case ACTIVE_MENU.MAIN:
+                //CloseAllMenus();
                 mainMenu.SetActive(true);
                 EventSystem.current.SetSelectedGameObject(mainMenuFirstButton);
                 break;
             case ACTIVE_MENU.SETTINGS:
+                //CloseAllMenus();
                 settingsMenu.SetActive(true);
                 EventSystem.current.SetSelectedGameObject(settingsMenuFirstButton);
                 break;
             case ACTIVE_MENU.CREDITS:
+                //CloseAllMenus();
                 creditsMenu.SetActive(true);
+                break;
+            case ACTIVE_MENU.PLAYMENU:
+                playMenu.SetActive(true);
+                EventSystem.current.SetSelectedGameObject(playMenuFirstButton);
                 break;
             default:
                 break;
@@ -60,5 +72,6 @@ public class InitialScreenManager : MonoBehaviour
         mainMenu.SetActive(false);
         settingsMenu.SetActive(false);
         creditsMenu.SetActive(false);
+        playMenu.SetActive(false);
     }
 }
