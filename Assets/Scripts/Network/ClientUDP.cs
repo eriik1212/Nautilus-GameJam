@@ -1,52 +1,67 @@
-using UnityEngine;
+/*using UnityEngine;
 using System;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
-using UnityEngine.UI;
+using UnityEngine.UI;*/
+
+//public class UDPClient : MonoBehaviour
+
+// -------------------------------------------------- FIRST TRY
+//private UdpClient client;
+//private IPEndPoint serverEndPoint;
+
+//static public InputField ipInputField;
+//static public InputField usernameInputField;
+
+//private string serverIP;
+//private string playerName;
+
+
+//private void Start()
+//{
+//    client = new UdpClient();
+//    //serverEndPoint = new IPEndPoint(IPAddress.Parse(serverIP), serverPort);
+//}
+
+//public void SetIP(string inputIP)
+//{
+//    serverIP = inputIP;
+//    Debug.Log(inputIP);
+//}
+
+//public void SetPlayerName(string inputName)
+//{
+//    playerName = inputName;
+//}
+
+//public void ConnectToServer()
+//{
+
+//    string message = "CONNECT|" + playerName;
+//    byte[] data = Encoding.UTF8.GetBytes(message);
+//    Debug.Log("Trying connection");
+//    Debug.Log(serverIP);
+//    Debug.Log(playerName);
+//    //client.Send(data, data.Length, serverEndPoint);
+//}
+
+
+using System;
+using System.Net;
+using System.Net.Sockets;
+using System.Text;
+using System.Threading.Tasks;
+using UnityEngine;
 
 public class UDPClient : MonoBehaviour
 {
-    // -------------------------------------------------- FIRST TRY
-    //private UdpClient client;
-    //private IPEndPoint serverEndPoint;
+    void Start()
+    {
+        Task.Run(() => StartClient());
+    }
 
-    //static public InputField ipInputField;
-    //static public InputField usernameInputField;
-
-    //private string serverIP;
-    //private string playerName;
-
-
-    //private void Start()
-    //{
-    //    client = new UdpClient();
-    //    //serverEndPoint = new IPEndPoint(IPAddress.Parse(serverIP), serverPort);
-    //}
-
-    //public void SetIP(string inputIP)
-    //{
-    //    serverIP = inputIP;
-    //    Debug.Log(inputIP);
-    //}
-
-    //public void SetPlayerName(string inputName)
-    //{
-    //    playerName = inputName;
-    //}
-
-    //public void ConnectToServer()
-    //{
-
-    //    string message = "CONNECT|" + playerName;
-    //    byte[] data = Encoding.UTF8.GetBytes(message);
-    //    Debug.Log("Trying connection");
-    //    Debug.Log(serverIP);
-    //    Debug.Log(playerName);
-    //    //client.Send(data, data.Length, serverEndPoint);
-    //}
-
-    public static void Main()
+    private void StartClient()
     {
         byte[] data = new byte[1024];
         string input, stringData;
@@ -55,7 +70,6 @@ public class UDPClient : MonoBehaviour
 
         Socket server = new Socket(AddressFamily.InterNetwork,
                        SocketType.Dgram, ProtocolType.Udp);
-
 
         string welcome = "Hello, are you there?";
         data = Encoding.ASCII.GetBytes(welcome);
@@ -88,10 +102,9 @@ public class UDPClient : MonoBehaviour
                 stringData = Encoding.ASCII.GetString(data, 0, recv);
                 Console.WriteLine(stringData);
             }
-            //server.SendTo(Encoding.ASCII.GetBytes(input), Remote);
-            
         }
         Console.WriteLine("Stopping client");
         server.Close();
     }
 }
+
