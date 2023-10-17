@@ -63,28 +63,32 @@ using UnityEngine;
 
 public class UDPReceiver : MonoBehaviour
 {
+
+    int recv;
+    IPEndPoint ipep;
+    Socket newsock;
+    byte[] data;
     void Start()
     {
         Task.Run(() => StartReceiving());
     }
 
 
-    void Main()
+    public void Main()
     {
-        int recv;
-        byte[] data = new byte[1024];
-        IPEndPoint ipep = new IPEndPoint(IPAddress.Any, 9050);
+         data = new byte[1024];
+         ipep = new IPEndPoint(IPAddress.Any, 9050);
 
-        Socket newsock = new Socket(AddressFamily.InterNetwork,
+         newsock = new Socket(AddressFamily.InterNetwork,
                         SocketType.Dgram, ProtocolType.Udp);
 
         newsock.Bind(ipep);
         Console.WriteLine("Waiting for a client...");
     }
-    private void StartReceiving()
+    public void StartReceiving()
     {
         
-
+            
         //////////
         IPEndPoint sender = new IPEndPoint(IPAddress.Any, 0);
         EndPoint Remote = (EndPoint)(sender);
