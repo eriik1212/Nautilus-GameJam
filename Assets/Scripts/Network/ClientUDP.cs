@@ -78,14 +78,18 @@ public class UDPClient : MonoBehaviour
         while (true)
         {
             input = Console.ReadLine();
-            if (input == "exit")
-                break;
+            if (!string.IsNullOrEmpty(input))
+            {
+                if (input == "exit")
+                    break;
+                server.SendTo(Encoding.ASCII.GetBytes(input), ipep);
+                data = new byte[1024];
+                recv = server.ReceiveFrom(data, ref Remote);
+                stringData = Encoding.ASCII.GetString(data, 0, recv);
+                Console.WriteLine(stringData);
+            }
             //server.SendTo(Encoding.ASCII.GetBytes(input), Remote);
-            server.SendTo(Encoding.ASCII.GetBytes(input), ipep);
-            data = new byte[1024];
-            recv = server.ReceiveFrom(data, ref Remote);
-            stringData = Encoding.ASCII.GetString(data, 0, recv);
-            Console.WriteLine(stringData);
+            
         }
         Console.WriteLine("Stopping client");
         server.Close();
