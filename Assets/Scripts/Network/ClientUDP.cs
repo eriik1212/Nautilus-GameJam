@@ -56,25 +56,36 @@ using UnityEngine;
 
 public class UDPClient : MonoBehaviour
 {
+    byte[] data;
+    string input, stringData;
+    IPEndPoint ipep;
+    Socket server;
+
     void Start()
     {
         Task.Run(() => StartClient());
     }
 
-    private void StartClient()
+    public void Main()
     {
-        byte[] data = new byte[1024];
-        string input, stringData;
-        IPEndPoint ipep = new IPEndPoint(
+         data = new byte[1024];
+        
+         ipep = new IPEndPoint(
                         IPAddress.Parse("10.0.103.47"), 9050);
 
-        Socket server = new Socket(AddressFamily.InterNetwork,
+        server = new Socket(AddressFamily.InterNetwork,
                        SocketType.Dgram, ProtocolType.Udp);
 
         string welcome = "Hello, are you there?";
         data = Encoding.ASCII.GetBytes(welcome);
         server.SendTo(data, data.Length, SocketFlags.None, ipep);
 
+    }
+    private void StartClient()
+    {
+        
+
+        ////////////////////
         IPEndPoint sender = new IPEndPoint(IPAddress.Any, 0);
         EndPoint Remote = (EndPoint)sender;
 
