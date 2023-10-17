@@ -83,12 +83,7 @@ public class UDPReceiver : MonoBehaviour
         IPEndPoint sender = new IPEndPoint(IPAddress.Any, 0);
         EndPoint Remote = (EndPoint)(sender);
 
-        IPAddress ipAddress = IPAddress.Parse("0.0.0.0");
-        int port = 0; // puedes cambiar esto al número de puerto que desees
-        IPEndPoint endPoint = new IPEndPoint(ipAddress, port);
-
-        if (Remote != endPoint)
-        {
+        
             recv = newsock.ReceiveFrom(data, ref Remote);
 
             Console.WriteLine("Message received from {0}:", Remote.ToString());
@@ -97,19 +92,15 @@ public class UDPReceiver : MonoBehaviour
             string welcome = "Welcome to my test server";
             data = Encoding.ASCII.GetBytes(welcome);
             newsock.SendTo(data, data.Length, SocketFlags.None, Remote);
-            while (true)
+            /*while (true)
             {
                 data = new byte[1024];
                 recv = newsock.ReceiveFrom(data, ref Remote);
 
                 Console.WriteLine(Encoding.ASCII.GetString(data, 0, recv));
                 newsock.SendTo(data, recv, SocketFlags.None, Remote);
-            }
-        }
-        else
-        {
-            Debug.Log("Sin jugadores");
-        }
+            }*/
+       
     }
 }
 

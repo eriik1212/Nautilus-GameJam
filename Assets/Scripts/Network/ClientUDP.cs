@@ -79,6 +79,7 @@ public class UDPClient : MonoBehaviour
         EndPoint Remote = (EndPoint)sender;
 
         data = new byte[1024];
+
         int recv = server.ReceiveFrom(data, ref Remote);
 
         if (recv > 0)
@@ -89,7 +90,7 @@ public class UDPClient : MonoBehaviour
         else
             Debug.Log("No message received");
 
-        while (true)
+        /*while (true)
         {
             input = Console.ReadLine();
             if (!string.IsNullOrEmpty(input))
@@ -102,7 +103,7 @@ public class UDPClient : MonoBehaviour
                 stringData = Encoding.ASCII.GetString(data, 0, recv);
                 Console.WriteLine(stringData);
             }
-        }
+        }*/
         Console.WriteLine("Stopping client");
         server.Close();
     }
