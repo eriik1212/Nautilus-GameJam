@@ -71,8 +71,14 @@ public class UDPServer : MonoBehaviour
 
         recv = newsock.ReceiveFrom(data, ref Remote);
 
-        Console.WriteLine("Message received from {0}:", Remote.ToString());
-        Console.WriteLine(Encoding.ASCII.GetString(data, 0, recv));
+        if (recv > 0)
+        {
+            Console.WriteLine("Message received from {0}:", Remote.ToString());
+            Console.WriteLine(Encoding.ASCII.GetString(data, 0, recv));
+        }
+        else
+            Debug.Log("No message received");
+
 
         string welcome = "Welcome to my test server";
         data = Encoding.ASCII.GetBytes(welcome);

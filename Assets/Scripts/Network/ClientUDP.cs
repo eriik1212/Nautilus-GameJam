@@ -67,15 +67,21 @@ public class UDPClient : MonoBehaviour
         data = new byte[1024];
         int recv = server.ReceiveFrom(data, ref Remote);
 
-        Console.WriteLine("Message received from {0}:", Remote.ToString());
-        Console.WriteLine(Encoding.ASCII.GetString(data, 0, recv));
+        if (recv > 0)
+        {
+            Console.WriteLine("Message received from {0}:", Remote.ToString());
+            Console.WriteLine(Encoding.ASCII.GetString(data, 0, recv));
+        }
+        else
+            Debug.Log("No message received");
 
         while (true)
         {
             input = Console.ReadLine();
             if (input == "exit")
                 break;
-            server.SendTo(Encoding.ASCII.GetBytes(input), Remote);
+            //server.SendTo(Encoding.ASCII.GetBytes(input), Remote);
+            server.SendTo(Encoding.ASCII.GetBytes(input), ipep);
             data = new byte[1024];
             recv = server.ReceiveFrom(data, ref Remote);
             stringData = Encoding.ASCII.GetString(data, 0, recv);
