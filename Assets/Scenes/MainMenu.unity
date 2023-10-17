@@ -14830,7 +14830,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1411602351
 RectTransform:
   m_ObjectHideFlags: 0
@@ -18716,7 +18716,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Join Room (UDP)
+  m_text: Join Room
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 311ac80b46b96d54d96e13032cd6f1db, type: 2}
   m_sharedMaterial: {fileID: 1275994302906849055, guid: 311ac80b46b96d54d96e13032cd6f1db, type: 2}
@@ -19470,7 +19470,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Join Room (UDP)
+  m_text: Join Room
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 311ac80b46b96d54d96e13032cd6f1db, type: 2}
   m_sharedMaterial: {fileID: 1275994302906849055, guid: 311ac80b46b96d54d96e13032cd6f1db, type: 2}
