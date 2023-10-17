@@ -1957,8 +1957,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1221471269}
-        m_TargetAssemblyTypeName: UDPClient, Assembly-CSharp
+      - m_Target: {fileID: 189825659}
+        m_TargetAssemblyTypeName: ClientTCP, Assembly-CSharp
         m_MethodName: Main
         m_Mode: 1
         m_Arguments:
