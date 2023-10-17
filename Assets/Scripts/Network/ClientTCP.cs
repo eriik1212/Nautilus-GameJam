@@ -13,7 +13,7 @@ public class ClientTCP : MonoBehaviour
         byte[] data = new byte[1024];
         string input, stringData;
         IPEndPoint ipep = new IPEndPoint(
-                        IPAddress.Parse("127.0.0.1"), 9050);
+                        IPAddress.Parse("10.0.103.47"), 9050);
 
         Socket server = new Socket(AddressFamily.InterNetwork,
                        SocketType.Stream, ProtocolType.Tcp);
