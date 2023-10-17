@@ -68,7 +68,8 @@ public class UDPReceiver : MonoBehaviour
         Task.Run(() => StartReceiving());
     }
 
-    private void StartReceiving()
+
+    void Main()
     {
         int recv;
         byte[] data = new byte[1024];
@@ -79,7 +80,12 @@ public class UDPReceiver : MonoBehaviour
 
         newsock.Bind(ipep);
         Console.WriteLine("Waiting for a client...");
+    }
+    private void StartReceiving()
+    {
+        
 
+        //////////
         IPEndPoint sender = new IPEndPoint(IPAddress.Any, 0);
         EndPoint Remote = (EndPoint)(sender);
 
