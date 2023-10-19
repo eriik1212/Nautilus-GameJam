@@ -68,17 +68,6 @@ public class ClientConnection : MonoBehaviour
          ipepUDP = new IPEndPoint(
                IPAddress.Parse(ipAdress), 9050);
 
-        //byte[] data = new byte[1024];
-        //string welcome = "Hello, are you there? I am connected through UDP!";
-        //data = Encoding.ASCII.GetBytes(welcome);
-        //socketUDP.SendTo(data, data.Length, SocketFlags.None, ipepUDP);
-
-        //IPEndPoint sender = new IPEndPoint(IPAddress.Any, 0);
-        //EndPoint Remote = (EndPoint)sender;
-
-        //data = new byte[1024];
-        //int recv = socketUDP.ReceiveFrom(data, ref Remote);
-
         StartCoroutine(JoinRoom_UDP());
     }
 
@@ -93,8 +82,8 @@ public class ClientConnection : MonoBehaviour
             Debug.Log("Room Joined!");
 
             byte[] data = new byte[1024];
-            string welcome = "Hello, are you there? I am connected through UDP!";
-            data = Encoding.ASCII.GetBytes(welcome);
+            string clientUsername = UpdatedText.ClientUsernameString;
+            data = Encoding.ASCII.GetBytes(clientUsername);
             socketUDP.SendTo(data, data.Length, SocketFlags.None, ipepUDP);
 
             IPEndPoint sender = new IPEndPoint(IPAddress.Any, 0);
@@ -103,9 +92,8 @@ public class ClientConnection : MonoBehaviour
             data = new byte[1024];
             int recv = socketUDP.ReceiveFrom(data, ref Remote);
 
-            Debug.Log("You have connected to IP: " + Remote.ToString() + "IMPORTANT MESSAGE: " + Encoding.ASCII.GetString(data, 0, recv));
+            Debug.Log("You have connected to IP: " + Remote.ToString() + "HOST USERNAME: " + Encoding.ASCII.GetString(data, 0, recv));
 
-            //socketUDP.Send(Encoding.ASCII.GetBytes(welcome));
         }
         else
         {

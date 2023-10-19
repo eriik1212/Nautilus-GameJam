@@ -103,11 +103,10 @@ public class ServerConnection : MonoBehaviour
     {
         byte[] data = new byte[2048];
         int recv = newsockUDP.ReceiveFrom(data, ref remote);
-        Debug.Log("Message received from {0}:");
-        Debug.Log(Encoding.ASCII.GetString(data, 0, recv));
+        Debug.Log("CLIENT USERNAME: " + Encoding.ASCII.GetString(data, 0, recv));
 
-        string message = "You are connected to server!";
-        data = Encoding.ASCII.GetBytes(message);
+        string serverName = UpdatedText.roomNameString;
+        data = Encoding.ASCII.GetBytes(serverName);
         newsockUDP.SendTo(data, data.Length, SocketFlags.None, remote);
 
 
