@@ -5,7 +5,6 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
-using TMPro;
 using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.Windows;
@@ -24,23 +23,6 @@ public class ClientConnection : MonoBehaviour
     // --------------------- IP
     static public string ipAdress = "";
 
-    // --------------------- COMMON MESSAGES
-    public TMP_Text clientUsernameText;
-
-    private static ClientConnection instance;
-
-    private void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
 
     public void ClientConnectionTCP()
     {
@@ -69,7 +51,7 @@ public class ClientConnection : MonoBehaviour
         socketUDP = new Socket(AddressFamily.InterNetwork,
                        SocketType.Dgram, ProtocolType.Udp);
 
-        ipepUDP = new IPEndPoint(
+         ipepUDP = new IPEndPoint(
                IPAddress.Parse(ipAdress), 9050);
 
         //byte[] data = new byte[1024];
@@ -109,11 +91,7 @@ public class ClientConnection : MonoBehaviour
 
             Debug.Log("You have connected to IP: " + Remote.ToString() + "IMPORTANT MESSAGE: " + Encoding.ASCII.GetString(data, 0, recv));
 
-            // SEND CLIENT USERNAME
-            byte[] usernameBytes = new byte[1024];
-            string usernameString = UpdatedText.ClientUsernameString;
-            usernameBytes = Encoding.ASCII.GetBytes(usernameString);
-            socketUDP.SendTo(usernameBytes, usernameBytes.Length, SocketFlags.None, ipepUDP);
+            //socketUDP.Send(Encoding.ASCII.GetBytes(welcome));
         }
         else
         {
