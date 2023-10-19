@@ -52,7 +52,7 @@ public class ClientConnection : MonoBehaviour
     }
     private void JoinRoom_TCP()
     {
-        byte[] data = new byte[1024];
+        byte[] data = new byte[2048];
         socketTCP.Connect(ipepTCP);
 
         // ------------------------------------------------------------------ SEND
@@ -64,7 +64,6 @@ public class ClientConnection : MonoBehaviour
         Debug.Log("Socket conectado a: " +
             socketTCP.RemoteEndPoint.ToString());
 
-        data = new byte[2048];
         int bytesRec = socketTCP.Receive(data);
         string message = Encoding.ASCII.GetString(data, 0, bytesRec);
 
