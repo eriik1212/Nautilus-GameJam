@@ -20,8 +20,8 @@ public class ClientConnection : MonoBehaviour
     Socket socketUDP;
     IPEndPoint ipepUDP;
 
-    // --------------------- BOTH
-    //byte[] data;
+    // --------------------- IP
+    static public string ipAdress;
 
 
     public void ClientConnectionTCP()
@@ -30,7 +30,7 @@ public class ClientConnection : MonoBehaviour
                        SocketType.Stream, ProtocolType.Tcp);
 
         ipepTCP = new IPEndPoint(
-                        IPAddress.Parse("10.0.53.17"), 9050); //IP del servidor
+                        IPAddress.Parse(ipAdress), 9050); //IP del servidor
 
         Thread TCP_Thread = new Thread(JoinRoom_TCP);
         TCP_Thread.Start();
@@ -52,7 +52,7 @@ public class ClientConnection : MonoBehaviour
                        SocketType.Dgram, ProtocolType.Udp);
 
         ipepUDP = new IPEndPoint(
-               IPAddress.Parse("10.0.53.17"), 9050);
+               IPAddress.Parse(ipAdress), 9050);
 
         //byte[] data = new byte[1024];
         //string welcome = "Hello, are you there? I am connected through UDP!";
