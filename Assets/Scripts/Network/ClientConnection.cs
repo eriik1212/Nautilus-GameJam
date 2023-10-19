@@ -52,6 +52,7 @@ public class ClientConnection : MonoBehaviour
     }
     private void JoinRoom_TCP()
     {
+        byte[] data = new byte[1024];
         socketTCP.Connect(ipepTCP);
 
         // ------------------------------------------------------------------ SEND
@@ -59,14 +60,24 @@ public class ClientConnection : MonoBehaviour
         socketTCP.Send(Encoding.ASCII.GetBytes(clientUsername));
 
         // ------------------------------------------------------------------ RECEIVE
-        IPEndPoint sender = new IPEndPoint(IPAddress.Any, 0);
-        EndPoint Remote = (EndPoint)sender;
+        try
+        {
 
-        byte[] data = new byte[1024];
-        data = new byte[1024];
-        int recv = socketTCP.ReceiveFrom(data, ref Remote);
+            Debug.Log("Socket conectado a {0}" + 
+                socketTCP.RemoteEndPoint.ToString());
 
-        Debug.Log("You have connected to IP: " + Remote.ToString() + " SERVER NAME: " + Encoding.ASCII.GetString(data, 0, recv));
+            data = new byte[1024];
+            int bytesRec = socketTCP.Receive(data);
+            Debug.Log("Mensaje recibido: {0}" +
+                Encoding.ASCII.GetString(data, 0, bytesRec));
+
+            socketTCP.Shutdown(SocketShutdown.Both);
+            socketTCP.Close();
+        }
+        catch (Exception e)
+        {
+            Debug.Log("Excepción: {0}" + e.ToString());
+        }
     }
 
     public void ClientConnectionUDP()

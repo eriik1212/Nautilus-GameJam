@@ -78,11 +78,12 @@ public class ServerConnection : MonoBehaviour
 
         Debug.Log("CLIENT USERNAME: " + clientUsername);
 
+
         // ------------------------------------------------------------------ SEND
-        byte[] data = new byte[2048];
-        string serverName = UpdatedText.roomNameString;
-        data = Encoding.ASCII.GetBytes(serverName);
-        newsockTCP.SendTo(data, data.Length, SocketFlags.None, remote);
+        byte[] data = new byte[1024];
+        Socket handler = newsockTCP.Accept();
+        data = Encoding.ASCII.GetBytes(UpdatedText.roomNameString);
+        handler.Send(data);
 
     }
 
