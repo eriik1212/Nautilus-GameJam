@@ -21,7 +21,7 @@ public class ClientConnection : MonoBehaviour
     IPEndPoint ipepUDP;
 
     // --------------------- IP
-    static public string ipAdress;
+    static public string ipAdress = "";
 
 
     public void ClientConnectionTCP()

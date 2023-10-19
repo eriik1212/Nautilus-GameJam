@@ -21,23 +21,22 @@ public class MessageManager : MonoBehaviour
     public void SaveUsernameHost()
     {
         UpdatedText.HostUsernameString = usernameText.text;
-        Debug.Log("Nombre de usuario: " + usernameInput.text);
+        Debug.Log("Nombre del host: " + usernameInput.text);
     }
     public void SaveUsernameClient()
     {
         UpdatedText.ClientUsernameString = usernameText.text;
-        Debug.Log("Nombre de usuario: " + usernameInput.text);
+        Debug.Log("Nombre del cliente: " + usernameInput.text);
     }
 
     public void SaveIP()
     {
         ClientConnection.ipAdress = ipInput.text;
-
-        Debug.Log("Nombre de usuario: " + ipInput.text);
+        Debug.Log("IP: " + ipInput.text);
     }
     public void SaveRoomName()
     {
         UpdatedText.roomNameString = roomInput.text;
-        Debug.Log("Nombre de usuario: " + roomInput.text);
+        Debug.Log("Nombre de la sala: " + roomInput.text);
     }
 }
