@@ -81,9 +81,8 @@ public class ServerConnection : MonoBehaviour
 
         // ------------------------------------------------------------------ SEND
         byte[] data = new byte[1024];
-        Socket handler = newsockTCP.Accept();
         data = Encoding.ASCII.GetBytes(UpdatedText.roomNameString);
-        handler.Send(data);
+        newsockTCP.Send(data);
 
     }
 
