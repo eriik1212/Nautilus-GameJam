@@ -23,6 +23,20 @@ public class ClientConnection : MonoBehaviour
     // --------------------- IP
     static public string ipAdress = "";
 
+    private static ClientConnection instance;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     public void ClientConnectionTCP()
     {
