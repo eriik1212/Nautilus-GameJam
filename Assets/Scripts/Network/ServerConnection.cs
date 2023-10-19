@@ -82,7 +82,7 @@ public class ServerConnection : MonoBehaviour
         IPEndPoint sender = new IPEndPoint(IPAddress.Any, 0);
         remote = (EndPoint)(sender);
 
-        Debug.Log("Waiting for user");
+        Debug.Log("Waiting for user...");
 
         Thread threadServerUDP = new Thread(ReceiveClientUDP);
         threadServerUDP.Start();
@@ -95,10 +95,10 @@ public class ServerConnection : MonoBehaviour
     {
         byte[] data = new byte[2048];
         int recv = newsockUDP.ReceiveFrom(data, ref remote);
-        Console.WriteLine("Message received from {0}:");
-        Console.WriteLine(Encoding.ASCII.GetString(data, 0, recv));
+        Debug.Log("Message received from {0}:");
+        Debug.Log(Encoding.ASCII.GetString(data, 0, recv));
 
-        string message = "You are connected to server!";
+        string message = "You are connected to server! Subnormal";
         data = Encoding.ASCII.GetBytes(message);
         newsockUDP.SendTo(data, data.Length, SocketFlags.None, remote);
 
