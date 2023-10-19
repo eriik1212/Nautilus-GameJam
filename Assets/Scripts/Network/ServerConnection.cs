@@ -82,6 +82,8 @@ public class ServerConnection : MonoBehaviour
         IPEndPoint sender = new IPEndPoint(IPAddress.Any, 0);
         remote = (EndPoint)(sender);
 
+        Debug.Log("Waiting for user");
+
         Thread threadServerUDP = new Thread(ReceiveClientUDP);
         threadServerUDP.Start();
 
