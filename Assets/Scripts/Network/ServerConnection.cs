@@ -57,27 +57,20 @@ public class ServerConnection : MonoBehaviour
     void ReceiveClientTCP()
     {
 
-        if (joinAble)
-        {
-            con = newsock.Accept();
-            Debug.Log("Connected!");
 
-            byte[] recibirInfo = new byte[1024];
-            string data = "";
-            int arraySize = 0;
+        con = newsock.Accept();
+        Debug.Log("Connected!");
 
-            arraySize = con.Receive(recibirInfo, 0, recibirInfo.Length, 0);
-            Array.Resize(ref recibirInfo, arraySize);
-            data = Encoding.Default.GetString(recibirInfo);
+        byte[] recibirInfo = new byte[1024];
+        string data = "";
+        int arraySize = 0;
 
-            Debug.Log(data);
-        }
+        arraySize = con.Receive(recibirInfo, 0, recibirInfo.Length, 0);
+        Array.Resize(ref recibirInfo, arraySize);
+        data = Encoding.Default.GetString(recibirInfo);
 
-        else
-        {
-            con.Shutdown(SocketShutdown.Both);
-            Debug.Log("Not able to connect.");
-        }
-            
+        Debug.Log(data);
+
+
     }
 }
