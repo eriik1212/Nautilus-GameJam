@@ -82,7 +82,7 @@ public class ServerConnection : MonoBehaviour
         // ------------------------------------------------------------------ SEND
         byte[] data = new byte[1024];
         data = Encoding.ASCII.GetBytes(UpdatedText.roomNameString);
-        newsockTCP.Send(data);
+        con.Send(data);
 
     }
 
