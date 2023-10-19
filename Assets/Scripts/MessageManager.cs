@@ -18,8 +18,14 @@ public class MessageManager : MonoBehaviour
     public TMP_Text roomText;
     public TMP_InputField roomInput;
 
-    public void SaveUsername()
+    public void SaveUsernameHost()
     {
+        UpdatedText.HostUsernameString = usernameText.text;
+        Debug.Log("Nombre de usuario: " + usernameInput.text);
+    }
+    public void SaveUsernameClient()
+    {
+        UpdatedText.ClientUsernameString = usernameText.text;
         Debug.Log("Nombre de usuario: " + usernameInput.text);
     }
 
@@ -31,7 +37,7 @@ public class MessageManager : MonoBehaviour
     }
     public void SaveRoomName()
     {
-
+        UpdatedText.roomNameString = roomInput.text;
         Debug.Log("Nombre de usuario: " + roomInput.text);
     }
 }
