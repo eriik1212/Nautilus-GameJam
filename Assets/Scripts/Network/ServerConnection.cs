@@ -61,7 +61,16 @@ public class ServerConnection : MonoBehaviour
         {
             con = newsock.Accept();
             Debug.Log("Connected!");
-            joinAble = false;
+
+            byte[] recibirInfo = new byte[1024];
+            string data = "";
+            int arraySize = 0;
+
+            arraySize = con.Receive(recibirInfo, 0, recibirInfo.Length, 0);
+            Array.Resize(ref recibirInfo, arraySize);
+            data = Encoding.Default.GetString(recibirInfo);
+
+            Debug.Log(data);
         }
 
         else
