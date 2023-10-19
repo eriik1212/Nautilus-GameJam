@@ -2229,7 +2229,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mat: {fileID: 2100000, guid: 84374a5437233c44f9f3beb30953de48, type: 2}
   disolveSpeed: 1
-  goToScene: 5
+  goToScene: 6
 --- !u!114 &192691197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7112,7 +7112,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Create Room (UDP)
+  m_text: Create Room
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 311ac80b46b96d54d96e13032cd6f1db, type: 2}
   m_sharedMaterial: {fileID: 1275994302906849055, guid: 311ac80b46b96d54d96e13032cd6f1db, type: 2}
@@ -9301,7 +9301,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Create Room (UDP)
+  m_text: Create Room
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 311ac80b46b96d54d96e13032cd6f1db, type: 2}
   m_sharedMaterial: {fileID: 1275994302906849055, guid: 311ac80b46b96d54d96e13032cd6f1db, type: 2}
@@ -23156,7 +23156,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2040177362
 RectTransform:
   m_ObjectHideFlags: 0
