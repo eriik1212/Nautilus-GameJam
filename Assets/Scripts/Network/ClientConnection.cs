@@ -60,7 +60,7 @@ public class ClientConnection : MonoBehaviour
         socketTCP.Send(Encoding.ASCII.GetBytes(clientUsername));
 
         // ------------------------------------------------------------------ RECEIVE
-        try
+        //try
         {
 
             Debug.Log("Socket conectado a {0}" + 
@@ -68,15 +68,16 @@ public class ClientConnection : MonoBehaviour
 
             data = new byte[1024];
             int bytesRec = socketTCP.Receive(data);
+
             Debug.Log("Mensaje recibido: {0}" +
                 Encoding.ASCII.GetString(data, 0, bytesRec));
 
-            socketTCP.Shutdown(SocketShutdown.Both);
-            socketTCP.Close();
+            //socketTCP.Shutdown(SocketShutdown.Both);
+            //socketTCP.Close();
         }
-        catch (Exception e)
+        //catch (Exception e)
         {
-            Debug.Log("Excepción: {0}" + e.ToString());
+           //Debug.Log("Excepción: {0}" + e.ToString());
         }
     }
 
