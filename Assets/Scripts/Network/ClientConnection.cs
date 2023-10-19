@@ -70,6 +70,8 @@ public class ClientConnection : MonoBehaviour
 
     IEnumerator JoinRoom_UDP()
     {
+        socketUDP.Connect(ipepUDP);
+
         yield return new WaitForSeconds(0.3f);
 
         if (socketUDP.Connected)
