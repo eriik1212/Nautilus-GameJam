@@ -27,6 +27,20 @@ public class ClientConnection : MonoBehaviour
     // --------------------- COMMON MESSAGES
     public TMP_Text clientUsernameText;
 
+    private static ClientConnection instance;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     public void ClientConnectionTCP()
     {

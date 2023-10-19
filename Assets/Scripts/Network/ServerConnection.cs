@@ -26,18 +26,26 @@ public class ServerConnection : MonoBehaviour
     IPEndPoint ipep;
     EndPoint remote;
 
+    private static ServerConnection instance;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         bool joinAble = true;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void CreateServerTCP()
     {
 
