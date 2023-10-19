@@ -98,7 +98,7 @@ public class ServerConnection : MonoBehaviour
         Debug.Log("Message received from {0}:");
         Debug.Log(Encoding.ASCII.GetString(data, 0, recv));
 
-        string message = "You are connected to server! Subnormal";
+        string message = "You are connected to server!";
         data = Encoding.ASCII.GetBytes(message);
         newsockUDP.SendTo(data, data.Length, SocketFlags.None, remote);
 
