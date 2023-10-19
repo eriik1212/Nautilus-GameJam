@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading;
 using UnityEditor.VersionControl;
 using UnityEngine;
+using UnityEngine.tvOS;
 using UnityEngine.Windows;
 using static UnityEngine.InputSystem.InputRemoting;
 
@@ -53,11 +54,19 @@ public class ClientConnection : MonoBehaviour
     {
         socketTCP.Connect(ipepTCP);
 
-        string message = "I am connected through TCP!";
+        // ------------------------------------------------------------------ SEND
+        string clientUsername = UpdatedText.ClientUsernameString;
+        socketTCP.Send(Encoding.ASCII.GetBytes(clientUsername));
 
-        socketTCP.Send(Encoding.ASCII.GetBytes(message));
-        //Debug.Log(message);
+        // ------------------------------------------------------------------ RECEIVE
+        IPEndPoint sender = new IPEndPoint(IPAddress.Any, 0);
+        EndPoint Remote = (EndPoint)sender;
 
+        byte[] data = new byte[1024];
+        data = new byte[1024];
+        int recv = socketTCP.ReceiveFrom(data, ref Remote);
+
+        Debug.Log("You have connected to IP: " + Remote.ToString() + " SERVER NAME: " + Encoding.ASCII.GetString(data, 0, recv));
     }
 
     public void ClientConnectionUDP()
@@ -87,10 +96,11 @@ public class ClientConnection : MonoBehaviour
             data = Encoding.ASCII.GetBytes(clientUsername);
             socketUDP.SendTo(data, data.Length, SocketFlags.None, ipepUDP);
 
+
+            // ------------------------------------------------------------------ RECEIVE
             IPEndPoint sender = new IPEndPoint(IPAddress.Any, 0);
             EndPoint Remote = (EndPoint)sender;
 
-            // ------------------------------------------------------------------ RECEIVE
             data = new byte[1024];
             int recv = socketUDP.ReceiveFrom(data, ref Remote);
 

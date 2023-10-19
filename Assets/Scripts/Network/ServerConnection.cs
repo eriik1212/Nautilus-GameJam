@@ -17,8 +17,6 @@ using UnityEditor.PackageManager;
 public class ServerConnection : MonoBehaviour
 {
 
-    bool joinAble;
-
     Socket newsockTCP;
     Socket con;
 
@@ -70,14 +68,21 @@ public class ServerConnection : MonoBehaviour
         Debug.Log("Connected!");
 
         byte[] clientMessage = new byte[1024];
-        string data = "";
+        string clientUsername = "";
         int arraySize = 0;
 
+        // ------------------------------------------------------------------ RECEIVE
         arraySize = con.Receive(clientMessage, 0, clientMessage.Length, 0);
         Array.Resize(ref clientMessage, arraySize);
-        data = Encoding.Default.GetString(clientMessage);
+        clientUsername = Encoding.Default.GetString(clientMessage);
 
-        Debug.Log(data);
+        Debug.Log("CLIENT USERNAME: " + clientUsername);
+
+        // ------------------------------------------------------------------ SEND
+        byte[] data = new byte[2048];
+        string serverName = UpdatedText.roomNameString;
+        data = Encoding.ASCII.GetBytes(serverName);
+        newsockTCP.SendTo(data, data.Length, SocketFlags.None, remote);
 
     }
 
@@ -107,7 +112,7 @@ public class ServerConnection : MonoBehaviour
         Debug.Log("CLIENT USERNAME: " + Encoding.ASCII.GetString(data, 0, recv));
 
         // ------------------------------------------------------------------ SEND
-        string serverName = UpdatedText.HostUsernameString;
+        string serverName = UpdatedText.roomNameString;
         data = Encoding.ASCII.GetBytes(serverName);
         newsockUDP.SendTo(data, data.Length, SocketFlags.None, remote);
 
