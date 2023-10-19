@@ -101,14 +101,16 @@ public class ServerConnection : MonoBehaviour
 
     void ReceiveClientUDP()
     {
-        byte[] data = new byte[2048];
-        int recv = newsockUDP.ReceiveFrom(data, ref remote);
-        Debug.Log("CLIENT USERNAME: " + Encoding.ASCII.GetString(data, 0, recv));
-
+        // ------------------------------------------------------------------ SEND
+        byte[] dataSent = new byte[2048];
         string serverName = UpdatedText.roomNameString;
-        data = Encoding.ASCII.GetBytes(serverName);
-        newsockUDP.SendTo(data, data.Length, SocketFlags.None, remote);
+        dataSent = Encoding.ASCII.GetBytes(serverName);
+        newsockUDP.SendTo(dataSent, dataSent.Length, SocketFlags.None, remote);
 
+        // ------------------------------------------------------------------ RECEIVE
+        byte[] dataReceived = new byte[2048];
+        int recv = newsockUDP.ReceiveFrom(dataReceived, ref remote);
+        Debug.Log("CLIENT USERNAME: " + Encoding.ASCII.GetString(dataReceived, 0, recv));
 
     }
 }

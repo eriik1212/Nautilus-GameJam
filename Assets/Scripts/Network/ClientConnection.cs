@@ -81,6 +81,7 @@ public class ClientConnection : MonoBehaviour
         {
             Debug.Log("Room Joined!");
 
+            // ------------------------------------------------------------------ SEND
             byte[] data = new byte[1024];
             string clientUsername = UpdatedText.ClientUsernameString;
             data = Encoding.ASCII.GetBytes(clientUsername);
@@ -89,6 +90,7 @@ public class ClientConnection : MonoBehaviour
             IPEndPoint sender = new IPEndPoint(IPAddress.Any, 0);
             EndPoint Remote = (EndPoint)sender;
 
+            // ------------------------------------------------------------------ RECEIVE
             data = new byte[1024];
             int recv = socketUDP.ReceiveFrom(data, ref Remote);
 
