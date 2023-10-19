@@ -60,25 +60,19 @@ public class ClientConnection : MonoBehaviour
         socketTCP.Send(Encoding.ASCII.GetBytes(clientUsername));
 
         // ------------------------------------------------------------------ RECEIVE
-        //try
-        {
 
-            Debug.Log("Socket conectado a: " + 
-                socketTCP.RemoteEndPoint.ToString());
+        Debug.Log("Socket conectado a: " +
+            socketTCP.RemoteEndPoint.ToString());
 
-            data = new byte[1024];
-            int bytesRec = socketTCP.Receive(data);
-            string message = Encoding.ASCII.GetString(data, 0, bytesRec);
+        data = new byte[2048];
+        int bytesRec = socketTCP.Receive(data);
+        string message = Encoding.ASCII.GetString(data, 0, bytesRec);
 
-            Debug.Log("Mensaje recibido: " + message);
+        Debug.Log("Mensaje recibido: " + message);
 
-            //socketTCP.Shutdown(SocketShutdown.Both);
-            //socketTCP.Close();
-        }
-        //catch (Exception e)
-        {
-           //Debug.Log("Excepción: {0}" + e.ToString());
-        }
+        //socketTCP.Shutdown(SocketShutdown.Both);
+        //socketTCP.Close();
+
     }
 
     public void ClientConnectionUDP()
@@ -86,8 +80,8 @@ public class ClientConnection : MonoBehaviour
         socketUDP = new Socket(AddressFamily.InterNetwork,
                        SocketType.Dgram, ProtocolType.Udp);
 
-         ipepUDP = new IPEndPoint(
-               IPAddress.Parse(ipAdress), 9050);
+        ipepUDP = new IPEndPoint(
+              IPAddress.Parse(ipAdress), 9050);
 
         StartCoroutine(JoinRoom_UDP());
     }
