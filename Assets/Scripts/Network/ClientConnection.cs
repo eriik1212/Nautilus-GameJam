@@ -40,7 +40,7 @@ public class ClientConnection : MonoBehaviour
         string message = "I am connected!";
 
         socketTCP.Send(Encoding.ASCII.GetBytes(message));
-        Debug.Log(message);
+        //Debug.Log(message);
 
     }
 
