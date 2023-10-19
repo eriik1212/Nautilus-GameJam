@@ -94,7 +94,7 @@ public class ClientConnection : MonoBehaviour
             data = new byte[1024];
             int recv = socketUDP.ReceiveFrom(data, ref Remote);
 
-            Debug.Log("You have connected to IP: " + Remote.ToString() + " SERVER NAME: " + Encoding.ASCII.GetString(data, 0, recv));
+            Debug.Log("You have connected to IP: " + Remote.ToString() + "HOST USERNAME: " + Encoding.ASCII.GetString(data, 0, recv));
 
         }
         else
