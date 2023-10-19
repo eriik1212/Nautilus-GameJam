@@ -89,7 +89,7 @@ public class ClientConnection : MonoBehaviour
             data = new byte[1024];
             int recv = socketUDP.ReceiveFrom(data, ref Remote);
 
-            Debug.Log("You have connected to IP: " + Remote.ToString() + Encoding.ASCII.GetString(data, 0, recv));
+            Debug.Log("You have connected to IP: " + Remote.ToString() + "IMPORTANT MESSAGE: " + Encoding.ASCII.GetString(data, 0, recv));
 
             //socketUDP.Send(Encoding.ASCII.GetBytes(welcome));
         }
