@@ -10,16 +10,21 @@ using UnityEngine.SceneManagement;
 using UnityEngine;
 using System.Threading;
 using UnityEngine.tvOS;
-
+using UnityEngine.UIElements;
+using System.Net.WebSockets;
+using UnityEditor.PackageManager;
 
 public class ServerConnection : MonoBehaviour
 {
 
     bool joinAble;
 
-    Socket newsock;
+    Socket newsockTCP;
     Socket con;
 
+    Socket newsockUDP;
+    IPEndPoint ipep;
+    EndPoint remote;
 
     // Start is called before the first frame update
     void Start()
@@ -36,40 +41,64 @@ public class ServerConnection : MonoBehaviour
     public void CreateServerTCP()
     {
 
-        newsock = new
+        newsockTCP = new
            Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
         IPEndPoint ipep = new IPEndPoint(IPAddress.Any, 9050);
 
-        newsock.Bind(ipep);
-        newsock.Listen(10);
+        newsockTCP.Bind(ipep);
+        newsockTCP.Listen(10);
 
         Debug.Log("Waiting for a client...");
 
         Thread threadServerTCP = new Thread(ReceiveClientTCP);
         threadServerTCP.Start();
 
+    }
+
+    void ReceiveClientTCP()
+    {
+        con = newsockTCP.Accept();
+        Debug.Log("Connected!");
+
+        byte[] clientMessage = new byte[1024];
+        string data = "";
+        int arraySize = 0;
+
+        arraySize = con.Receive(clientMessage, 0, clientMessage.Length, 0);
+        Array.Resize(ref clientMessage, arraySize);
+        data = Encoding.Default.GetString(clientMessage);
+
+        Debug.Log(data);
+
+    }
+
+    public void CreateServerUDP()
+    {
+        newsockUDP = new Socket(AddressFamily.InterNetwork,SocketType.Dgram, ProtocolType.Udp);
+        ipep = new IPEndPoint(IPAddress.Any, 9050);
+        newsockUDP.Bind(ipep);
+
+        IPEndPoint sender = new IPEndPoint(IPAddress.Any, 0);
+        remote = (EndPoint)(sender);
+
+        Thread threadServerUDP = new Thread(ReceiveClientUDP);
+        threadServerUDP.Start();
 
 
 
     }
 
-    void ReceiveClientTCP()
+    void ReceiveClientUDP()
     {
+        byte[] data = new byte[2048];
+        int recv = newsockUDP.ReceiveFrom(data, ref remote);
+        Console.WriteLine("Message received from {0}:");
+        Console.WriteLine(Encoding.ASCII.GetString(data, 0, recv));
 
-
-        con = newsock.Accept();
-        Debug.Log("Connected!");
-
-        byte[] recibirInfo = new byte[1024];
-        string data = "";
-        int arraySize = 0;
-
-        arraySize = con.Receive(recibirInfo, 0, recibirInfo.Length, 0);
-        Array.Resize(ref recibirInfo, arraySize);
-        data = Encoding.Default.GetString(recibirInfo);
-
-        Debug.Log(data);
+        string message = "You are connected to server!";
+        data = Encoding.ASCII.GetBytes(message);
+        newsockUDP.SendTo(data, data.Length, SocketFlags.None, remote);
 
 
     }
