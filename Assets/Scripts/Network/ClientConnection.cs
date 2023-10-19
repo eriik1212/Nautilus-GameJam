@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net;
@@ -7,6 +8,7 @@ using System.Threading;
 using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.Windows;
+using static UnityEngine.InputSystem.InputRemoting;
 
 public class ClientConnection : MonoBehaviour
 {
@@ -37,7 +39,7 @@ public class ClientConnection : MonoBehaviour
     {
         socketTCP.Connect(ipepTCP);
 
-        string message = "I am connected!";
+        string message = "I am connected through TCP!";
 
         socketTCP.Send(Encoding.ASCII.GetBytes(message));
         //Debug.Log(message);
@@ -52,18 +54,46 @@ public class ClientConnection : MonoBehaviour
         ipepUDP = new IPEndPoint(
                IPAddress.Parse("10.0.53.17"), 9050);
 
-        byte[] data = new byte[1024];
-        string welcome = "Hello, are you there?";
-        data = Encoding.ASCII.GetBytes(welcome);
-        socketUDP.SendTo(data, data.Length, SocketFlags.None, ipepUDP);
+        //byte[] data = new byte[1024];
+        //string welcome = "Hello, are you there? I am connected through UDP!";
+        //data = Encoding.ASCII.GetBytes(welcome);
+        //socketUDP.SendTo(data, data.Length, SocketFlags.None, ipepUDP);
 
-        IPEndPoint sender = new IPEndPoint(IPAddress.Any, 0);
-        EndPoint Remote = (EndPoint)sender;
+        //IPEndPoint sender = new IPEndPoint(IPAddress.Any, 0);
+        //EndPoint Remote = (EndPoint)sender;
 
-        data = new byte[1024];
-        int recv = socketUDP.ReceiveFrom(data, ref Remote);
+        //data = new byte[1024];
+        //int recv = socketUDP.ReceiveFrom(data, ref Remote);
 
+        StartCoroutine(JoinRoom_UDP());
     }
 
+    IEnumerator JoinRoom_UDP()
+    {
+        yield return new WaitForSeconds(0.3f);
 
+        if (socketUDP.Connected)
+        {
+            Debug.Log("Room Joined!");
+
+            byte[] data = new byte[1024];
+            string welcome = "Hello, are you there? I am connected through UDP!";
+            data = Encoding.ASCII.GetBytes(welcome);
+            socketUDP.SendTo(data, data.Length, SocketFlags.None, ipepUDP);
+
+            IPEndPoint sender = new IPEndPoint(IPAddress.Any, 0);
+            EndPoint Remote = (EndPoint)sender;
+
+            data = new byte[1024];
+            int recv = socketUDP.ReceiveFrom(data, ref Remote);
+
+            Debug.Log(Remote.ToString() + Encoding.ASCII.GetString(data, 0, recv));
+
+            //socketUDP.Send(Encoding.ASCII.GetBytes(welcome));
+        }
+        else
+        {
+            Debug.Log("Imposible to join.");
+        }
+    }
 }
