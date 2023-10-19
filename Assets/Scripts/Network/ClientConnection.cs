@@ -63,14 +63,14 @@ public class ClientConnection : MonoBehaviour
         //try
         {
 
-            Debug.Log("Socket conectado a {0}" + 
+            Debug.Log("Socket conectado a: " + 
                 socketTCP.RemoteEndPoint.ToString());
 
-            /*data = new byte[1024];
-            int bytesRec = socketTCP.Receive(data);*/
+            data = new byte[1024];
+            int bytesRec = socketTCP.Receive(data);
+            string message = Encoding.ASCII.GetString(data, 0, bytesRec);
 
-            Debug.Log("Mensaje recibido: {0}"/* +
-                Encoding.ASCII.GetString(data, 0, bytesRec)*/);
+            Debug.Log("Mensaje recibido: " + message);
 
             //socketTCP.Shutdown(SocketShutdown.Both);
             //socketTCP.Close();
