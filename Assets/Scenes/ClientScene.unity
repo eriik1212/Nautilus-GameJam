@@ -1625,9 +1625,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UDPClient, Assembly-CSharp
-        m_MethodName: Main
+      - m_Target: {fileID: 1221471269}
+        m_TargetAssemblyTypeName: ClientConnection, Assembly-CSharp
+        m_MethodName: ClientConnectionUDP
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
