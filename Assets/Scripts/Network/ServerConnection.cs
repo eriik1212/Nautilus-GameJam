@@ -55,14 +55,13 @@ public class ServerConnection : MonoBehaviour
 
         Debug.Log("Waiting for a client...");
 
-        Thread threadServerTCP = new Thread(ReceiveClientTCP);
-        threadServerTCP.Start();
+        StartCoroutine(ReceiveClientTCP());
 
         isTCP = true;
 
     }
 
-    void ReceiveClientTCP()
+    IEnumerator ReceiveClientTCP()
     {
         con = newsockTCP.Accept();
         Debug.Log("Connected!");
@@ -84,6 +83,9 @@ public class ServerConnection : MonoBehaviour
         data = Encoding.ASCII.GetBytes(UpdatedText.roomNameString);
         con.Send(data);
 
+        yield return new WaitForSeconds(0.3f);
+
+
     }
 
     public void CreateServerUDP()
@@ -97,14 +99,13 @@ public class ServerConnection : MonoBehaviour
 
         Debug.Log("Waiting for user...");
 
-        Thread threadServerUDP = new Thread(ReceiveClientUDP);
-        threadServerUDP.Start();
+        StartCoroutine(ReceiveClientUDP());
 
         isUDP = true;
 
     }
 
-    void ReceiveClientUDP()
+    IEnumerator ReceiveClientUDP()
     {
         // ------------------------------------------------------------------ RECEIVE
         byte[] data = new byte[2048];
@@ -115,6 +116,8 @@ public class ServerConnection : MonoBehaviour
         string serverName = UpdatedText.roomNameString;
         data = Encoding.ASCII.GetBytes(serverName);
         newsockUDP.SendTo(data, data.Length, SocketFlags.None, remote);
+
+        yield return new WaitForSeconds(0.3f);
 
     }
 
