@@ -4,15 +4,7 @@ using System.Net.Sockets;
 using System.Net;
 using System;
 using System.Text;
-using System.Linq;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 using UnityEngine;
-using System.Threading;
-using UnityEngine.tvOS;
-using UnityEngine.UIElements;
-using System.Net.WebSockets;
-using UnityEditor.PackageManager;
 
 public class ServerConnection : MonoBehaviour
 {

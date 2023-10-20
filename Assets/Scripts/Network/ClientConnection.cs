@@ -1,15 +1,9 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
-using System.Threading;
-using UnityEditor.VersionControl;
 using UnityEngine;
-using UnityEngine.tvOS;
-using UnityEngine.Windows;
-using static UnityEngine.InputSystem.InputRemoting;
 
 public class ClientConnection : MonoBehaviour
 {
