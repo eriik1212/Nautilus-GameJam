@@ -1,14 +1,19 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class TextLogs : MonoBehaviour
 {
-    private Text logText;
+    public TMP_Text logText;
 
-    private void Start()
+    void OnEnable()
     {
-        logText = GetComponent<Text>();
         Application.logMessageReceived += HandleLog;
+    }
+
+    void OnDisable()
+    {
+        Application.logMessageReceived -= HandleLog;
     }
 
     private void HandleLog(string logText, string stackTrace, LogType type)
