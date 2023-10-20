@@ -17,7 +17,7 @@ public class UpdatedText : MonoBehaviour
     public TMP_Text ClientUsernameText;
     static public string ClientUsernameString;
 
-    private void Start()
+    private void OnEnable()
     {
         UpdateText();
     }

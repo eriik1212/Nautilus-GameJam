@@ -1198,6 +1198,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4528633ec15dd6c4c9e8fa3be950d9b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTCP: 0
+  isUDP: 0
 --- !u!4 &1233276352
 Transform:
   m_ObjectHideFlags: 0
@@ -1310,8 +1312,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1233276351}
-        m_TargetAssemblyTypeName: ServerConnection, Assembly-CSharp
+      - m_Target: {fileID: 1879304382}
+        m_TargetAssemblyTypeName: HandlesBetweenScenes, Assembly-CSharp
         m_MethodName: KillSocketTCP
         m_Mode: 1
         m_Arguments:
@@ -1322,9 +1324,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1233276351}
-        m_TargetAssemblyTypeName: ServerConnection, Assembly-CSharp
-        m_MethodName: CreateServerUDP
+      - m_Target: {fileID: 1879304382}
+        m_TargetAssemblyTypeName: HandlesBetweenScenes, Assembly-CSharp
+        m_MethodName: KillSocketUDP
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1738,6 +1740,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1713623538}
   m_CullTransparentMesh: 1
+--- !u!1 &1879304381
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1879304383}
+  - component: {fileID: 1879304382}
+  m_Layer: 0
+  m_Name: DoNotDestroyOnLoadHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1879304382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1879304381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62eaab30db3139d48b0fa4158ef877ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1879304383
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1879304381}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 417.01218, y: 195.16647, z: -12.332916}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1972270816
 GameObject:
   m_ObjectHideFlags: 0

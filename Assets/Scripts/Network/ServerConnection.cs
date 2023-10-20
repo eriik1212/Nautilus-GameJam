@@ -17,17 +17,17 @@ using UnityEditor.PackageManager;
 public class ServerConnection : MonoBehaviour
 {
 
-    Socket newsockTCP;
-    Socket con;
+    public Socket newsockTCP;
+    public Socket con;
 
-    Socket newsockUDP;
-    IPEndPoint ipep;
-    EndPoint remote;
+    public Socket newsockUDP;
+    public IPEndPoint ipep;
+    public EndPoint remote;
 
     private static ServerConnection instance;
 
-    private bool isTCP = false;
-    private bool isUDP = false;
+    public bool isTCP = false;
+    public bool isUDP = false;
 
     private void Awake()
     {
@@ -42,11 +42,6 @@ public class ServerConnection : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        bool joinAble = true;
-    }
     public void CreateServerTCP()
     {
 
@@ -63,13 +58,14 @@ public class ServerConnection : MonoBehaviour
         Thread threadServerTCP = new Thread(ReceiveClientTCP);
         threadServerTCP.Start();
 
+        isTCP = true;
+
     }
 
     void ReceiveClientTCP()
     {
         con = newsockTCP.Accept();
         Debug.Log("Connected!");
-        isTCP = true;
 
         byte[] clientMessage = new byte[1024];
         string clientUsername = "";
@@ -122,24 +118,4 @@ public class ServerConnection : MonoBehaviour
 
     }
 
-
-    public void KillSocketTCP()
-    {
-        if (isTCP)
-        {
-            newsockTCP.Close(); // Cierra el socket
-            con.Close();
-            isTCP = false;
-        }
-        
-        
-    }
-    public void KillSocketUDP()
-    {
-        if(isUDP)
-        {
-            newsockUDP.Close();
-            isUDP = false;
-        }
-    }
 }
