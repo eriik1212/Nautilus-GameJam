@@ -26,6 +26,9 @@ public class ServerConnection : MonoBehaviour
 
     private static ServerConnection instance;
 
+    private bool isTCP = false;
+    private bool isUDP = false;
+
     private void Awake()
     {
         if (instance == null)
@@ -66,6 +69,7 @@ public class ServerConnection : MonoBehaviour
     {
         con = newsockTCP.Accept();
         Debug.Log("Connected!");
+        isTCP = true;
 
         byte[] clientMessage = new byte[1024];
         string clientUsername = "";
@@ -100,7 +104,7 @@ public class ServerConnection : MonoBehaviour
         Thread threadServerUDP = new Thread(ReceiveClientUDP);
         threadServerUDP.Start();
 
-
+        isUDP = true;
 
     }
 
@@ -116,6 +120,26 @@ public class ServerConnection : MonoBehaviour
         data = Encoding.ASCII.GetBytes(serverName);
         newsockUDP.SendTo(data, data.Length, SocketFlags.None, remote);
 
+    }
 
+
+    public void KillSocketTCP()
+    {
+        if (isTCP)
+        {
+            newsockTCP.Close(); // Cierra el socket
+            con.Close();
+            isTCP = false;
+        }
+        
+        
+    }
+    public void KillSocketUDP()
+    {
+        if(isUDP)
+        {
+            newsockUDP.Close();
+            isUDP = false;
+        }
     }
 }

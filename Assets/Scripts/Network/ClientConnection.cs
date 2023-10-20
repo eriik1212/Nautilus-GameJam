@@ -116,4 +116,5 @@ public class ClientConnection : MonoBehaviour
             Debug.Log("Imposible to join.");
         }
     }
+
 }
