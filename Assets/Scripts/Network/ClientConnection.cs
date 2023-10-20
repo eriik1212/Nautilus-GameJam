@@ -47,13 +47,14 @@ public class ClientConnection : MonoBehaviour
         ipepTCP = new IPEndPoint(
                         IPAddress.Parse(ipAdress), 9050); //IP del servidor
 
-        Thread TCP_Thread = new Thread(JoinRoom_TCP);
-        TCP_Thread.Start();
+        StartCoroutine(JoinRoom_TCP());
     }
-    private void JoinRoom_TCP()
+    IEnumerator JoinRoom_TCP()
     {
         byte[] data = new byte[2048];
         socketTCP.Connect(ipepTCP);
+
+        yield return new WaitForSeconds(0.3f);
 
         // ------------------------------------------------------------------ SEND
         string clientUsername = UpdatedText.ClientUsernameString;
