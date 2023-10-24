@@ -43,12 +43,14 @@ public class ClientConnection : MonoBehaviour
 
     private void Start()
     {
-        
         connectUDPButton = GameObject.Find("UDPButton").GetComponent<Button>();
 
-        connectUDPButton.onClick.AddListener(ClientConnectionUDP);
+    }
 
-
+    private void Update()
+    {
+        if(connectUDPButton != null)
+            connectUDPButton.onClick.AddListener(ClientConnectionUDP);
 
     }
 
