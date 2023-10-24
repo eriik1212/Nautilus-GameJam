@@ -7,36 +7,54 @@ using UnityEngine.UI;
 public class MessageManager : MonoBehaviour
 {
     // ----------------------------------- Username
-    public TMP_Text usernameText;
-    public TMP_InputField usernameInput;
+    //private TMP_Text usernameText;
+    //public TMP_InputField usernameInput;
 
     // ----------------------------------- IP
-    public TMP_Text ipText;
-    public TMP_InputField ipInput;
+    //private TMP_Text ipText;
+    //public TMP_InputField ipInput;
 
     // ----------------------------------- ROOM NAME
-    public TMP_Text roomText;
-    public TMP_InputField roomInput;
+    //private TMP_Text roomText;
+    //public TMP_InputField roomInput;
+
+    private Button createButtonUDP;
+
+    private void Start()
+    {
+        createButtonUDP = GameObject.Find("UDPButton").GetComponent<Button>();
+    }
+
+    private void Update()
+    {
+        if(createButtonUDP != null)
+        {
+            createButtonUDP.onClick.AddListener(SaveUsernameHost);
+            createButtonUDP.onClick.AddListener(SaveUsernameClient);
+            createButtonUDP.onClick.AddListener(SaveRoomName);
+            createButtonUDP.onClick.AddListener(SaveIP);
+        }
+    }
 
     public void SaveUsernameHost()
     {
-        UpdatedText.HostUsernameString = usernameText.text;
+        UpdatedText.HostUsernameString = GameObject.Find("UsernameHostText").GetComponent<TMP_Text>().text;
         //Debug.Log("Nombre del host: " + usernameInput.text);
     }
     public void SaveUsernameClient()
     {
-        UpdatedText.ClientUsernameString = usernameText.text;
+        UpdatedText.ClientUsernameString = GameObject.Find("UsernameClientText").GetComponent<TMP_Text>().text;
         //Debug.Log("Nombre del cliente: " + usernameInput.text);
     }
 
     public void SaveIP()
     {
-        ClientConnection.ipAdress = ipInput.text;
+        ClientConnection.ipAdress = GameObject.Find("ipText").GetComponent<TMP_Text>().text;
         //Debug.Log("IP: " + ipInput.text);
     }
     public void SaveRoomName()
     {
-        UpdatedText.roomNameString = roomInput.text;
+        UpdatedText.roomNameString = GameObject.Find("RoomNameText").GetComponent<TMP_Text>().text;
         //Debug.Log("Nombre de la sala: " + roomInput.text);
     }
 }

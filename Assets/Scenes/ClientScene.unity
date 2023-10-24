@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44402242, g: 0.49316543, b: 0.5722324, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.574817, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1087,7 +1087,7 @@ GameObject:
   - component: {fileID: 896049446}
   - component: {fileID: 896049445}
   m_Layer: 5
-  m_Name: Text
+  m_Name: ipText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1916,12 +1916,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98b7767cf7c7fde4d9cc7eb589ca40de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  usernameText: {fileID: 2003184549}
-  usernameInput: {fileID: 1014006255}
-  ipText: {fileID: 896049445}
-  ipInput: {fileID: 366874630}
-  roomText: {fileID: 0}
-  roomInput: {fileID: 0}
 --- !u!1 &1394700688
 GameObject:
   m_ObjectHideFlags: 0
@@ -2597,7 +2591,7 @@ GameObject:
   - component: {fileID: 2003184548}
   - component: {fileID: 2003184549}
   m_Layer: 5
-  m_Name: Text
+  m_Name: UsernameClientText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
