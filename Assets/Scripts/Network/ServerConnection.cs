@@ -46,15 +46,11 @@ public class ServerConnection : MonoBehaviour
     {
         createRoomButton = GameObject.Find("UDPButtonServer").GetComponent<Button>();
 
-    }
-
-    private void Update()
-    {
-        if(createRoomButton != null)
+        if (createRoomButton != null)
             createRoomButton.onClick.AddListener(CreateServerUDP);
-
     }
-    public void CreateServerTCP()
+
+    public void CreateServerTCP()   
     {
 
         newsockTCP = new
