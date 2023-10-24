@@ -26,12 +26,25 @@ public class MessageManager : MonoBehaviour
 
     private void Start()
     {
-        usernameHostText = GameObject.Find("UsernameHostText").GetComponent<TMP_Text>();
-        usernameClientText = GameObject.Find("UsernameClientText").GetComponent<TMP_Text>();
-        ipText = GameObject.Find("ipText").GetComponent<TMP_Text>();
-        roomText = GameObject.Find("RoomNameText").GetComponent<TMP_Text>();
+        GameObject usernameHostObject = GameObject.Find("UsernameHostText");
+        if (usernameHostObject != null)
+            usernameHostText = usernameHostObject.GetComponent<TMP_Text>();
 
-        createButtonUDP = GameObject.Find("UDPButton").GetComponent<Button>();
+        GameObject usernameClientObject = GameObject.Find("UsernameClientText");
+        if (usernameClientObject != null)
+            usernameClientText = usernameClientObject.GetComponent<TMP_Text>();
+
+        GameObject ipObject = GameObject.Find("ipText");
+        if (ipObject != null)
+            ipText = ipObject.GetComponent<TMP_Text>();
+
+        GameObject roomObject = GameObject.Find("RoomNameText");
+        if (roomObject != null)
+            roomText = roomObject.GetComponent<TMP_Text>();
+
+        GameObject udpButtonObject = GameObject.Find("UDPButton");
+        if (udpButtonObject != null)
+            createButtonUDP = udpButtonObject.GetComponent<Button>();
     }
 
     private void Update()
