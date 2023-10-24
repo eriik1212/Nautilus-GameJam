@@ -76,7 +76,7 @@ public class ServerConnection : MonoBehaviour
 
         Debug.Log("CLIENT USERNAME: " + clientUsername);
 
-        SceneManager.LoadScene("NombreDeTuEscena");
+        SceneManager.LoadScene("IntroScene");
 
         // ------------------------------------------------------------------ SEND
         byte[] data = new byte[1024];
@@ -98,7 +98,7 @@ public class ServerConnection : MonoBehaviour
         Thread threadServerUDP = new Thread(ReceiveClientUDP);
         threadServerUDP.Start();
 
-        SceneManager.LoadScene("NombreDeTuEscena");
+        SceneManager.LoadScene("IntroScene");
 
         isUDP = true;
     }
