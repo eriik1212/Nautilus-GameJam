@@ -9,7 +9,6 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using System.Threading;
-using UnityEngine.UIElements;
 using System.Net.WebSockets;
 
 public class ServerConnection : MonoBehaviour
@@ -27,6 +26,9 @@ public class ServerConnection : MonoBehaviour
     public bool isTCP = false;
     public bool isUDP = false;
 
+    // --------------- Buttons
+    private Button createRoomButton;
+
     private void Awake()
     {
         if (instance == null)
@@ -38,6 +40,13 @@ public class ServerConnection : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    private void Start()
+    {
+        createRoomButton = GameObject.Find("UDPButtonServer").GetComponent<Button>();
+
+        createRoomButton.onClick.AddListener(CreateServerUDP);
     }
 
     public void CreateServerTCP()
