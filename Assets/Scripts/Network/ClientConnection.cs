@@ -6,6 +6,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Windows;
 using static UnityEngine.InputSystem.InputRemoting;
 public class ClientConnection : MonoBehaviour
@@ -17,6 +18,10 @@ public class ClientConnection : MonoBehaviour
     // --------------------- UDP
     Socket socketUDP;
     IPEndPoint ipepUDP;
+
+    // --------------------- BUTTONS
+    private Button connectUDPButton;
+
 
     // --------------------- IP
     static public string ipAdress = "";
@@ -36,6 +41,17 @@ public class ClientConnection : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        
+        connectUDPButton = GameObject.Find("UDPButton").GetComponent<Button>();
+
+        connectUDPButton.onClick.AddListener(ClientConnectionUDP);
+
+
+
+    }
+
     public void ClientConnectionTCP()
     {
         socketTCP = new Socket(AddressFamily.InterNetwork,
@@ -43,6 +59,8 @@ public class ClientConnection : MonoBehaviour
 
         ipepTCP = new IPEndPoint(
                         IPAddress.Parse(ipAdress), 9050); //IP del servidor
+
+        
 
         StartCoroutine(JoinRoom_TCP());
     }
