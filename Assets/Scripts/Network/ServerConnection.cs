@@ -90,8 +90,6 @@ public class ServerConnection : MonoBehaviour
 
         Debug.Log("CLIENT USERNAME: " + clientUsername);
 
-        SceneManager.LoadScene("IntroScene");
-
         // ------------------------------------------------------------------ SEND
         byte[] data = new byte[1024];
         data = Encoding.ASCII.GetBytes(UpdatedText.roomNameString);
@@ -111,9 +109,6 @@ public class ServerConnection : MonoBehaviour
 
         Thread threadServerUDP = new Thread(ReceiveClientUDP);
         threadServerUDP.Start();
-
-        SceneManager.LoadScene("IntroScene");
-
         isUDP = true;
     }
 
