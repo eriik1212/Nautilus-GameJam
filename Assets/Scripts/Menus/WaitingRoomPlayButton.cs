@@ -11,10 +11,10 @@ public class WaitingRoomPlayButton : MonoBehaviour
     {
         if (Input.GetButtonDown("Cancel"))
         {
-            /*if (serverScript.isClientConnected)
+            if (serverScript.isClientConnected)
             {
                 SceneManager.LoadScene("IntroScene");
-            }*/
+            }
         }
     }
 }
