@@ -38,8 +38,8 @@ public class serilizer : MonoBehaviour
     }
 
    
-
-    void serializeXML()
+    ///Cambiar lo que mandas. quitar hp e introducir las dadas dentro de serializeXML()
+    public byte[] serializeXML()
     {
         var t = new testClass();
         t.hp = 40;
@@ -48,7 +48,8 @@ public class serilizer : MonoBehaviour
         stream = new MemoryStream();
         serializer.Serialize(stream, t);
         bytes = stream.ToArray();
-
+        return bytes;
+        //Aqui conectar a un pointer de bytes en la clase data sender
     }
     void deserializeXML()
     {
