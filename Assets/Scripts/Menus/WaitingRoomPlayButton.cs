@@ -5,7 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class WaitingRoomPlayButton : MonoBehaviour
 {
-    public ServerConnection serverScript;
+    private ServerConnection serverScript;
+
+    private void Start()
+    {
+        serverScript = GameObject.Find("NetworkManager").GetComponent<ServerConnection>();
+    }
 
     private void Update()
     {

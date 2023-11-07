@@ -14,29 +14,29 @@ public class HandlesBetweenScenes : MonoBehaviour
        serverScript = GameObject.Find("NetworkManager").GetComponent<ServerConnection>();
 
     }
-    public void KillSocketTCP()
-    {
-        if (serverScript.isTCP)
-        {
-            try
-            {
-                serverScript.newsockTCP.Shutdown(SocketShutdown.Both);
-                //serverScript.con.Close();
-                serverScript.newsockTCP.Close(); // Cierra el socket
-                serverScript.isTCP = false;
+    //public void KillSocketTCP()
+    //{
+    //    if (serverScript.isTCP)
+    //    {
+    //        try
+    //        {
+    //            serverScript.newsockTCP.Shutdown(SocketShutdown.Both);
+    //            //serverScript.con.Close();
+    //            serverScript.newsockTCP.Close(); // Cierra el socket
+    //            serverScript.isTCP = false;
 
-                Debug.Log("TCP Socket Killed");
-            }
-            catch (Exception e)
-            {
-                // Manejar cualquier excepción relacionada con el cierre del socket
-                Debug.Log("Error al cerrar el socket: " + e.ToString());
-            }
+    //            Debug.Log("TCP Socket Killed");
+    //        }
+    //        catch (Exception e)
+    //        {
+    //            // Manejar cualquier excepción relacionada con el cierre del socket
+    //            Debug.Log("Error al cerrar el socket: " + e.ToString());
+    //        }
             
-        }
+    //    }
 
 
-    }
+    //}
     //public void KillSocketUDP()
     //{
     //    if (serverScript.isUDP)
