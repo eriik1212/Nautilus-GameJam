@@ -1745,6 +1745,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98b7767cf7c7fde4d9cc7eb589ca40de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  usernameHostInput: {fileID: 0}
+  usernameClientInput: {fileID: 1014006255}
+  ipInput: {fileID: 366874630}
+  roomInput: {fileID: 0}
 --- !u!1 &1394700688
 GameObject:
   m_ObjectHideFlags: 0

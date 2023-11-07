@@ -70,26 +70,30 @@ public class MessageManager : MonoBehaviour
 
     public void SaveUsernameHost()
     {
-        UpdatedText.HostUsernameString = usernameHostInput.text;
+        if(usernameHostInput != null)
+            UpdatedText.HostUsernameString = usernameHostInput.text;
         //UpdatedText.HostUsernameString = usernameHostText.text;
         //Debug.Log("Nombre del host: " + usernameInput.text);
     }
     public void SaveUsernameClient()
     {
-        UpdatedText.ClientUsernameString = usernameClientInput.text;
+        if (usernameClientInput != null)
+            UpdatedText.ClientUsernameString = usernameClientInput.text;
         //UpdatedText.ClientUsernameString = usernameClientText.text;
         //Debug.Log("Nombre del cliente: " + usernameInput.text);
     }
 
     public void SaveIP()
     {
-        ClientConnection.ipAdress = ipInput.text;
+        if (ipInput != null)
+            ClientConnection.ipAdress = ipInput.text;
         //ClientConnection.ipAdress = ipText.text;
         //Debug.Log("IP: " + ipInput.text);
     }
     public void SaveRoomName()
     {
-        UpdatedText.roomNameString = roomInput.text;
+        if (roomInput != null)
+            UpdatedText.roomNameString = roomInput.text;
         //UpdatedText.roomNameString = roomText.text;
         //Debug.Log("Nombre de la sala: " + roomInput.text);
     }

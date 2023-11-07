@@ -2362,6 +2362,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4528633ec15dd6c4c9e8fa3be950d9b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isClientConnected: 0
   isTCP: 0
   isUDP: 1
 --- !u!1 &3915563695159087157
@@ -2394,6 +2395,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98b7767cf7c7fde4d9cc7eb589ca40de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  usernameHostInput: {fileID: 1014006255}
+  usernameClientInput: {fileID: 0}
+  ipInput: {fileID: 0}
+  roomInput: {fileID: 366874630}
 --- !u!1 &7209130249115010008
 GameObject:
   m_ObjectHideFlags: 0
