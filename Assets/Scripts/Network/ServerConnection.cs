@@ -120,11 +120,26 @@ public class ServerConnection : MonoBehaviour
         int recv = newsockUDP.ReceiveFrom(data, ref remote);
         Debug.Log("CLIENT USERNAME: " + Encoding.ASCII.GetString(data, 0, recv));
 
-        // ------------------------------------------------------------------ SEND
-        string serverName = UpdatedText.roomNameString;
+        
+
+            // ------------------------------------------------------------------ SEND
+            string serverName = UpdatedText.roomNameString;
         data = Encoding.ASCII.GetBytes(serverName);
         newsockUDP.SendTo(data, data.Length, SocketFlags.None, remote);
 
+
+        while (true)
+        {
+            byte[] dataX = new byte[2048];
+            int recvX = newsockUDP.ReceiveFrom(data, ref remote);
+            //Debug.Log("CLIENT USERNAME: " + Encoding.ASCII.GetString(dataX, 0, recvX));
+            //Test
+            serilizer sr = null;
+            sr.deserializeXML(data);
+        }
+
     }
+
+
 
 }

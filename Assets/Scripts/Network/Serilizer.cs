@@ -26,7 +26,7 @@ public class serilizer : MonoBehaviour
         {
     
             serializeXML();
-            deserializeXML();
+            //deserializeXML();
             a = false;
         }
     }
@@ -51,7 +51,7 @@ public class serilizer : MonoBehaviour
         return bytes;
         //Aqui conectar a un pointer de bytes en la clase data sender
     }
-    void deserializeXML()
+    public void deserializeXML(byte[] bytes)
     {
         XmlSerializer serializer = new XmlSerializer(typeof(testClass));
         var t = new testClass();
