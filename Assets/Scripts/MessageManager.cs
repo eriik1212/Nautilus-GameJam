@@ -1,26 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Windows;
 
 public class MessageManager : MonoBehaviour
 {
     // ----------------------------------- Username HOST
     private TMP_Text usernameHostText;
-    //public TMP_InputField usernameInput;
+    public TMP_InputField usernameHostInput;
 
     // ----------------------------------- Username CLIENT
     private TMP_Text usernameClientText;
-    //public TMP_InputField usernameInput;
+    public TMP_InputField usernameClientInput;
 
     // ----------------------------------- IP
     private TMP_Text ipText;
-    //public TMP_InputField ipInput;
+    public TMP_InputField ipInput;
 
     // ----------------------------------- ROOM NAME
     private TMP_Text roomText;
-    //public TMP_InputField roomInput;
+    public TMP_InputField roomInput;
 
     private Button createButtonUDP;
 
@@ -49,41 +51,46 @@ public class MessageManager : MonoBehaviour
 
     private void Update()
     {
-        if(createButtonUDP != null)
+        if (createButtonUDP != null)
         {
-            if(usernameHostText != null)
+            if (usernameHostText != null)
                 createButtonUDP.onClick.AddListener(SaveUsernameHost);
 
-            if(usernameClientText != null)
+            if (usernameClientText != null)
                 createButtonUDP.onClick.AddListener(SaveUsernameClient);
 
-            if(ipText != null)
+            if (ipText != null)
                 createButtonUDP.onClick.AddListener(SaveRoomName);
 
-            if(roomText != null)
+            if (roomText != null)
                 createButtonUDP.onClick.AddListener(SaveIP);
         }
+
     }
 
     public void SaveUsernameHost()
     {
-        UpdatedText.HostUsernameString = usernameHostText.text;
+        UpdatedText.HostUsernameString = usernameHostInput.text;
+        //UpdatedText.HostUsernameString = usernameHostText.text;
         //Debug.Log("Nombre del host: " + usernameInput.text);
     }
     public void SaveUsernameClient()
     {
-        UpdatedText.ClientUsernameString = usernameClientText.text;
+        UpdatedText.ClientUsernameString = usernameClientInput.text;
+        //UpdatedText.ClientUsernameString = usernameClientText.text;
         //Debug.Log("Nombre del cliente: " + usernameInput.text);
     }
 
     public void SaveIP()
     {
-        ClientConnection.ipAdress = ipText.text;
+        ClientConnection.ipAdress = ipInput.text;
+        //ClientConnection.ipAdress = ipText.text;
         //Debug.Log("IP: " + ipInput.text);
     }
     public void SaveRoomName()
     {
-        UpdatedText.roomNameString = roomText.text;
+        UpdatedText.roomNameString = roomInput.text;
+        //UpdatedText.roomNameString = roomText.text;
         //Debug.Log("Nombre de la sala: " + roomInput.text);
     }
 }

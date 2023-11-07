@@ -37,24 +37,24 @@ public class HandlesBetweenScenes : MonoBehaviour
 
 
     }
-    public void KillSocketUDP()
-    {
-        if (serverScript.isUDP)
-        {
-            try
-            {
-                serverScript.newsockUDP.Shutdown(SocketShutdown.Both);
-                serverScript.newsockUDP.Close();
-                serverScript.isUDP = false;
+    //public void KillSocketUDP()
+    //{
+    //    if (serverScript.isUDP)
+    //    {
+    //        try
+    //        {
+    //            serverScript.newsockUDP.Shutdown(SocketShutdown.Both);
+    //            serverScript.newsockUDP.Close();
+    //            serverScript.isUDP = false;
 
-                Debug.Log("UDP Socket Killed");
-            }
-            catch (Exception e)
-            {
-                // Manejar cualquier excepción relacionada con el cierre del socket
-                Debug.Log("Error al cerrar el socket: " + e.ToString());
-            }
+    //            Debug.Log("UDP Socket Killed");
+    //        }
+    //        catch (Exception e)
+    //        {
+    //            // Manejar cualquier excepción relacionada con el cierre del socket
+    //            Debug.Log("Error al cerrar el socket: " + e.ToString());
+    //        }
 
-        }
-    }
+    //    }
+    //}
 }
