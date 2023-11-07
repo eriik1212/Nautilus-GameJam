@@ -111,7 +111,7 @@ public class ClientConnection : MonoBehaviour
             // ------------------------------------------------------------------ SEND
             byte[] data = new byte[1024];
             string clientUsername = UpdatedText.ClientUsernameString;
-            data = Encoding.ASCII.GetBytes(clientUsername);
+            data = Encoding.ASCII.GetBytes(clientUsername);//What we send
             socketUDP.SendTo(data, data.Length, SocketFlags.None, ipepUDP);
 
 
