@@ -11,7 +11,7 @@ public class WaitingRoomPlayButton : MonoBehaviour
 
     private void Start()
     {
-        serverScript = GameObject.Find("NetworkManager").GetComponent<ServerConnection>();
+        serverScript = GameObject.Find("NetworkManagerServer").GetComponent<ServerConnection>();
         playButton = gameObject;
     }
 
