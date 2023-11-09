@@ -79,6 +79,7 @@ public class ServerConnection : MonoBehaviour
     {
         con = newsockTCP.Accept();
         Debug.Log("Connected!");
+        isClientConnected = true;
 
         byte[] clientMessage = new byte[1024];
         string clientUsername = "";
@@ -134,8 +135,8 @@ public class ServerConnection : MonoBehaviour
             int recvX = newsockUDP.ReceiveFrom(data, ref remote);
             //Debug.Log("CLIENT USERNAME: " + Encoding.ASCII.GetString(dataX, 0, recvX));
             //Test
-            serilizer sr = null;
-            sr.deserializeXML(data);
+            Serializer sr = null;
+            //sr.DeserializeXML(data);
         }
 
     }

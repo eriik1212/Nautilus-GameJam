@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class WaitingRoomPlayButton : MonoBehaviour
 {
     private ServerConnection serverScript;
-    private GameObject playButton;
+    public GameObject playButton;
 
     private void Start()
     {
@@ -17,12 +17,9 @@ public class WaitingRoomPlayButton : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown("Cancel"))
+        if (serverScript.isClientConnected)
         {
-            if (serverScript.isClientConnected)
-            {
-                playButton.SetActive(true);
-            }
+            playButton.SetActive(true);
         }
     }
 }
