@@ -28,7 +28,7 @@ public class ClientDataSender : MonoBehaviour
             // Insert your code to get the serialized bytes here.
             byte[] data = new byte[1024];
             Serializer sr = null;
-            //data = sr.SerializeXML();
+            data = sr.SerializeXML();
             SendSerializedData(data);
 
             // Wait for 1 second before the next send.
