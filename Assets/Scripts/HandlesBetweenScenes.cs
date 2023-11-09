@@ -11,7 +11,7 @@ public class HandlesBetweenScenes : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       serverScript = GameObject.Find("NetworkManager").GetComponent<ServerConnection>();
+       serverScript = GameObject.Find("NetworkManagerServer").GetComponent<ServerConnection>();
 
     }
     //public void KillSocketTCP()
