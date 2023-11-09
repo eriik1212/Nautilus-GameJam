@@ -9,7 +9,7 @@ public class FindSerializerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        serScript = GameObject.Find("NetworkManager").GetComponent<Serializer>();
+        serScript = GameObject.Find("NetworkManagerWaitingRoom").GetComponent<Serializer>();
     }
 
     public void SerializeObject()

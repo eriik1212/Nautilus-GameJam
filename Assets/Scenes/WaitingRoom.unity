@@ -1359,7 +1359,7 @@ GameObject:
   - component: {fileID: 1233276352}
   - component: {fileID: 1233276353}
   m_Layer: 0
-  m_Name: NetworkManageraitingRoom
+  m_Name: NetworkManagerWaitingRoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
