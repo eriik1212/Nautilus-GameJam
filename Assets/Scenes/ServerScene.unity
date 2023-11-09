@@ -2588,7 +2588,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4528633ec15dd6c4c9e8fa3be950d9b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isClientConnected: 0
   isTCP: 0
   isUDP: 1
 --- !u!1 &3915563695159087157
@@ -2637,7 +2636,7 @@ GameObject:
   - component: {fileID: 4312218166611549977}
   - component: {fileID: 3542586176985851049}
   m_Layer: 0
-  m_Name: NetworkManager
+  m_Name: NetworkManagerServer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
