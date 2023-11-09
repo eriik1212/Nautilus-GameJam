@@ -6,17 +6,16 @@ using UnityEngine.UI;
 
 public class WaitingRoomPlayButton : MonoBehaviour
 {
-    private ServerConnection serverScript;
     public GameObject playButton;
 
     private void Start()
     {
-        serverScript = GameObject.Find("NetworkManager").GetComponent<ServerConnection>();
+        
     }
 
     private void Update()
     {
-        if (serverScript.isClientConnected)
+        if (ServerConnection.isClientConnected)
         {
             playButton.SetActive(true);
         }

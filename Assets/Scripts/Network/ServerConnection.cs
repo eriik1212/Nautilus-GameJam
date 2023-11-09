@@ -14,7 +14,7 @@ using System.Net.WebSockets;
 public class ServerConnection : MonoBehaviour
 {
 
-    public bool isClientConnected = false;
+    static public bool isClientConnected = false;
 
     public Socket newsockTCP;
     public Socket con;
