@@ -79,7 +79,6 @@ public class ServerConnection : MonoBehaviour
     {
         con = newsockTCP.Accept();
         Debug.Log("Connected!");
-        isClientConnected = true;
 
         byte[] clientMessage = new byte[1024];
         string clientUsername = "";
@@ -120,11 +119,12 @@ public class ServerConnection : MonoBehaviour
         byte[] data = new byte[2048];
         int recv = newsockUDP.ReceiveFrom(data, ref remote);
         Debug.Log("CLIENT USERNAME: " + Encoding.ASCII.GetString(data, 0, recv));
+        isClientConnected = true;
 
-        
 
-            // ------------------------------------------------------------------ SEND
-            string serverName = UpdatedText.roomNameString;
+
+        // ------------------------------------------------------------------ SEND
+        string serverName = UpdatedText.roomNameString;
         data = Encoding.ASCII.GetBytes(serverName);
         newsockUDP.SendTo(data, data.Length, SocketFlags.None, remote);
 
