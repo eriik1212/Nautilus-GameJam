@@ -19,9 +19,13 @@ public class ClientDataSender : MonoBehaviour
     {
         this.socketUDP = socketUDP;
         this.ipepUDP = ipepUDP;
-        StartCoroutine(SendDataPeriodically());
+        //StartCoroutine(SendDataPeriodically());
     }
+    private void Start()
+    {
+        StartCoroutine(SendDataPeriodically());
 
+    }
     public void SetInfo()
     {
 
