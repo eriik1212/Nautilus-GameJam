@@ -86,7 +86,14 @@ public class ClientConnection : MonoBehaviour
         //socketTCP.Close();
 
     }
-
+    public Socket socketInfo()
+    {
+        return socketUDP;
+    } 
+    public IPEndPoint ipInfo()
+    {
+        return ipepUDP;
+    }
     public void ClientConnectionUDP()
     {
         socketUDP = new Socket(AddressFamily.InterNetwork,
@@ -123,6 +130,9 @@ public class ClientConnection : MonoBehaviour
             int recv = socketUDP.ReceiveFrom(data, ref Remote);
 
             Debug.Log("You have connected to IP: " + Remote.ToString() + " SERVER NAME: " + Encoding.ASCII.GetString(data, 0, recv));
+
+            ClientDataSender cds = null;
+            cds.SetInfo();
 
         }
         else
