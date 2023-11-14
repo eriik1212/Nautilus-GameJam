@@ -31,6 +31,8 @@ public class ServerConnection : MonoBehaviour
     // --------------- Buttons
     private Button createRoomButton;
 
+    public Serializer serializer;
+
     private void Awake()
     {
         if (instance == null)
@@ -53,6 +55,10 @@ public class ServerConnection : MonoBehaviour
 
         if (createRoomButton != null)
             createRoomButton.onClick.AddListener(CreateServerUDP);
+
+        GameObject serializerObject = GameObject.Find("NetworkManagerWaitingRoom");
+        if (serializerObject != null)
+            serializer = serializerObject.GetComponent<Serializer>();
     }
 
     public void CreateServerTCP()   
@@ -135,9 +141,8 @@ public class ServerConnection : MonoBehaviour
             int recvX = newsockUDP.ReceiveFrom(data, ref remote);
             //Debug.Log("CLIENT USERNAME: " + Encoding.ASCII.GetString(dataX, 0, recvX));
             //Test
-            Serializer sr = null;
             Debug.Log("Data recibida en sevidor");
-            sr.DeserializeXML(data);
+            serializer.DeserializeXML(data);
         }
 
     }
