@@ -39,7 +39,7 @@ public class ClientDataSender : MonoBehaviour
         {
             // Insert your code to get the serialized bytes here.
             byte[] data = new byte[1024];
-            Serializer sr = null;
+            Serializer sr = new Serializer();
             data = sr.SerializeXML();
             SendSerializedData(data);
 
