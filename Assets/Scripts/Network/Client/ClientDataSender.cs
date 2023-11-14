@@ -15,6 +15,8 @@ public class ClientDataSender : MonoBehaviour
     private Socket socketUDP;
     private EndPoint ipepUDP;
 
+    public Serializer serializer;
+
     public ClientDataSender(Socket socketUDP, EndPoint ipepUDP)
     {
         this.socketUDP = socketUDP;
@@ -23,9 +25,10 @@ public class ClientDataSender : MonoBehaviour
     }
     private void Start()
     {
-        StartCoroutine(SendDataPeriodically());
+        StartCoroutine(SendDataPeriodically(serializer));
 
     }
+
     public void SetInfo()
     {
 
@@ -33,13 +36,12 @@ public class ClientDataSender : MonoBehaviour
         socketUDP =clientConnection.socketInfo();
         ipepUDP = clientConnection.ipInfo();
     }
-    private IEnumerator SendDataPeriodically()
+    private IEnumerator SendDataPeriodically(Serializer sr)
     {
         while (true)
         {
             // Insert your code to get the serialized bytes here.
             byte[] data = new byte[1024];
-            Serializer sr = new Serializer();
             data = sr.SerializeXML();
             SendSerializedData(data);
 
