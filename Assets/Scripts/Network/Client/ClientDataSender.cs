@@ -25,7 +25,6 @@ public class ClientDataSender : MonoBehaviour
     }
     private void Start()
     {
-        StartCoroutine(SendDataPeriodically(serializer));
 
     }
 
@@ -33,6 +32,13 @@ public class ClientDataSender : MonoBehaviour
     {
         this.socketUDP = socketUDP;
         this.ipepUDP = ipepUDP;
+
+    }
+
+    public void SendInfo()
+    {
+        StartCoroutine(SendDataPeriodically(serializer));
+
     }
     private IEnumerator SendDataPeriodically(Serializer sr)
     {

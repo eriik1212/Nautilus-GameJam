@@ -133,7 +133,7 @@ public class ClientConnection : MonoBehaviour
 
             ClientDataSender cds = new ClientDataSender(socketUDP, ipepUDP);
             cds.SetInfo(socketUDP, ipepUDP);
-
+            cds.SendInfo();
         }
         else
         {
