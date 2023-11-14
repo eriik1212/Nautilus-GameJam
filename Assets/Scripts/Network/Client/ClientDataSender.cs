@@ -17,15 +17,11 @@ public class ClientDataSender : MonoBehaviour
 
     public Serializer serializer;
 
-    public ClientDataSender(Socket socketUDP, EndPoint ipepUDP)
+    public ClientDataSender()
     {
-        this.socketUDP = socketUDP;
-        this.ipepUDP = ipepUDP;
+        //this.socketUDP = socketUDP;
+        //this.ipepUDP = ipepUDP;
         //StartCoroutine(SendDataPeriodically());
-    }
-    private void Start()
-    {
-
     }
 
     public void SetInfo(Socket socketUDP, EndPoint ipepUDP)

@@ -50,42 +50,42 @@ public class ClientConnection : MonoBehaviour
     }
 
 
-    public void ClientConnectionTCP()
-    {
-        socketTCP = new Socket(AddressFamily.InterNetwork,
-                       SocketType.Stream, ProtocolType.Tcp);
+    //public void ClientConnectionTCP()
+    //{
+    //    socketTCP = new Socket(AddressFamily.InterNetwork,
+    //                   SocketType.Stream, ProtocolType.Tcp);
 
-        ipepTCP = new IPEndPoint(
-                        IPAddress.Parse(ipAdress), 9050); //IP del servidor
+    //    ipepTCP = new IPEndPoint(
+    //                    IPAddress.Parse(ipAdress), 9050); //IP del servidor
 
         
 
-        StartCoroutine(JoinRoom_TCP());
-    }
-    IEnumerator JoinRoom_TCP()
-    {
-        byte[] data = new byte[2048];
-        socketTCP.Connect(ipepTCP);
+    //    StartCoroutine(JoinRoom_TCP());
+    //}
+    //IEnumerator JoinRoom_TCP()
+    //{
+    //    byte[] data = new byte[2048];
+    //    socketTCP.Connect(ipepTCP);
 
-        yield return new WaitForSeconds(0.3f);
+    //    yield return new WaitForSeconds(0.3f);
 
-        // ------------------------------------------------------------------ SEND
-        string clientUsername = UpdatedText.ClientUsernameString;
-        socketTCP.Send(Encoding.ASCII.GetBytes(clientUsername));
+    //    // ------------------------------------------------------------------ SEND
+    //    string clientUsername = UpdatedText.ClientUsernameString;
+    //    socketTCP.Send(Encoding.ASCII.GetBytes(clientUsername));
 
-        // ------------------------------------------------------------------ RECEIVE
-        Debug.Log("Socket conectado a IP: " +
-            socketTCP.RemoteEndPoint.ToString());
+    //    // ------------------------------------------------------------------ RECEIVE
+    //    Debug.Log("Socket conectado a IP: " +
+    //        socketTCP.RemoteEndPoint.ToString());
 
-        int bytesRec = socketTCP.Receive(data);
-        string hostMessage = Encoding.ASCII.GetString(data, 0, bytesRec);
+    //    int bytesRec = socketTCP.Receive(data);
+    //    string hostMessage = Encoding.ASCII.GetString(data, 0, bytesRec);
 
-        Debug.Log("SERVER NAME: " + hostMessage);
+    //    Debug.Log("SERVER NAME: " + hostMessage);
 
-        //socketTCP.Shutdown(SocketShutdown.Both);
-        //socketTCP.Close();
+    //    //socketTCP.Shutdown(SocketShutdown.Both);
+    //    //socketTCP.Close();
 
-    }
+    //}
     public Socket socketInfo()
     {
         return socketUDP;
@@ -131,7 +131,7 @@ public class ClientConnection : MonoBehaviour
 
             Debug.Log("You have connected to IP: " + Remote.ToString() + " SERVER NAME: " + Encoding.ASCII.GetString(data, 0, recv));
 
-            ClientDataSender cds = new ClientDataSender(socketUDP, ipepUDP);
+            ClientDataSender cds = new ClientDataSender();
             cds.SetInfo(socketUDP, ipepUDP);
             cds.SendInfo();
         }
