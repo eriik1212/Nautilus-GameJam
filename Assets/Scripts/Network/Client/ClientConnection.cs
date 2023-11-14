@@ -132,7 +132,7 @@ public class ClientConnection : MonoBehaviour
             Debug.Log("You have connected to IP: " + Remote.ToString() + " SERVER NAME: " + Encoding.ASCII.GetString(data, 0, recv));
 
             ClientDataSender cds = new ClientDataSender(socketUDP, ipepUDP);
-            cds.SetInfo(this);
+            cds.SetInfo(socketUDP, ipepUDP);
 
         }
         else
