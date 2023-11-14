@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class FindSerializerScript : MonoBehaviour
@@ -14,6 +15,6 @@ public class FindSerializerScript : MonoBehaviour
 
     public void SerializeObject()
     {
-        serScript.Serialize();
+        serScript.SerializeXML();
     }
 }
