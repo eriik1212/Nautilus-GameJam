@@ -136,6 +136,7 @@ public class ServerConnection : MonoBehaviour
             //Debug.Log("CLIENT USERNAME: " + Encoding.ASCII.GetString(dataX, 0, recvX));
             //Test
             Serializer sr = null;
+            Debug.Log("Data recibida en sevidor");
             sr.DeserializeXML(data);
         }
 

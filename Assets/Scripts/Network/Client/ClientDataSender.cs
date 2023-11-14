@@ -50,10 +50,11 @@ public class ClientDataSender : MonoBehaviour
         {
             // Connect to the server.
             socketUDP.Connect(ipepUDP);
-
+            Debug.Log(ipepUDP);
             // Check if the connection is successful.
             if (socketUDP.Connected)
             {
+                Debug.Log("Mandando data");
                 // Send the serialized data.
                 socketUDP.SendTo(data, data.Length, SocketFlags.None, ipepUDP);
                 return true;
