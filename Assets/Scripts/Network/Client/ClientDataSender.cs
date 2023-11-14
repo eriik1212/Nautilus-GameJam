@@ -29,12 +29,10 @@ public class ClientDataSender : MonoBehaviour
 
     }
 
-    public void SetInfo()
+    public void SetInfo(Socket socketUDP, EndPoint ipepUDP)
     {
-
-        ClientConnection clientConnection = new ClientConnection();
-        socketUDP =clientConnection.socketInfo();
-        ipepUDP = clientConnection.ipInfo();
+        this.socketUDP = socketUDP;
+        this.ipepUDP = ipepUDP;
     }
     private IEnumerator SendDataPeriodically(Serializer sr)
     {
