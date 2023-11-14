@@ -825,6 +825,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12aa79ca3761f1540a9b01ec19866ada, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializer: {fileID: 1233276353}
 --- !u!4 &555931374
 Transform:
   m_ObjectHideFlags: 0
