@@ -15,6 +15,6 @@ public class FindSerializerScript : MonoBehaviour
 
     public void SerializeObject()
     {
-        serScript.SerializeXML();
+        //serScript.SerializeXML();
     }
 }

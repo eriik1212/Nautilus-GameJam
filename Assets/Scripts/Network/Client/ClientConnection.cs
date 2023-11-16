@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.tvOS;
 using UnityEngine.UI;
 using UnityEngine.Windows;
 using static UnityEngine.InputSystem.InputRemoting;
@@ -19,6 +20,7 @@ public class ClientConnection : MonoBehaviour
     // --------------------- UDP
     Socket socketUDP;
     IPEndPoint ipepUDP;
+    EndPoint remote;
 
     // --------------------- BUTTONS
     private Button connectUDPButton;
@@ -125,6 +127,7 @@ public class ClientConnection : MonoBehaviour
               IPAddress.Parse(ipAdress), 9050);
 
         StartCoroutine(JoinRoom_UDP());
+
     }
 
     IEnumerator JoinRoom_UDP()
@@ -147,20 +150,39 @@ public class ClientConnection : MonoBehaviour
 
             // ------------------------------------------------------------------ RECEIVE
             IPEndPoint sender = new IPEndPoint(IPAddress.Any, 0);
-            EndPoint Remote = (EndPoint)sender;
+            remote  = (EndPoint)sender;
 
             data = new byte[1024];
-            int recv = socketUDP.ReceiveFrom(data, ref Remote);
+            int recv = socketUDP.ReceiveFrom(data, ref remote);
 
-            Debug.Log("You have connected to IP: " + Remote.ToString() + " SERVER NAME: " + Encoding.ASCII.GetString(data, 0, recv));
+            Debug.Log("You have connected to IP: " + remote.ToString() + " SERVER NAME: " + Encoding.ASCII.GetString(data, 0, recv));
 
 
             clientDataSend.SetInfo(socketUDP, ipepUDP);
             clientDataSend.SendInfo(seri);
+
+            Thread threadReceiveDataUDP = new Thread(ReceiveXMLData);
+            threadReceiveDataUDP.Start();
         }
         else
         {
             Debug.Log("Imposible to join.");
+        }
+    }
+
+    void ReceiveXMLData()
+    {
+        // DESEARIALIZE
+        while (true)
+        {
+            byte[] dataX = new byte[2048];
+            int recvX = socketUDP.ReceiveFrom(dataX, ref remote);
+            //Debug.Log("CLIENT USERNAME: " + Encoding.ASCII.GetString(dataX, 0, recvX));
+            //Test
+            Debug.Log("Data recibida en cliente");
+
+            if (seri != null)
+                seri.DeserializeHostDataXML(dataX);
         }
     }
 

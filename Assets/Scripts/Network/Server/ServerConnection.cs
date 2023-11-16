@@ -34,6 +34,8 @@ public class ServerConnection : MonoBehaviour
     //private Button createRoomButton;
 
     public Serializer serializer;
+    private ServerDataSender hostDataSend;
+
 
     private void Awake()
     {
@@ -143,6 +145,9 @@ public class ServerConnection : MonoBehaviour
         Debug.Log("CLIENT USERNAME: " + Encoding.ASCII.GetString(data, 0, recv));
         isClientConnected = true;
 
+        hostDataSend.SetInfo(newsockUDP, ipep);
+        hostDataSend.SendInfo(serializer);
+
         // ------------------------------------------------------------------ SEND
         string serverName = UpdatedText.roomNameString;
         data = Encoding.ASCII.GetBytes(serverName);
@@ -157,7 +162,7 @@ public class ServerConnection : MonoBehaviour
             Debug.Log("Data recibida en sevidor");
 
             if(serializer != null)
-                serializer.DeserializeXML(dataX);
+                serializer.DeserializeClientDataXML(dataX);
         }
 
     }
