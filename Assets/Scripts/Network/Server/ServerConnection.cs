@@ -74,6 +74,11 @@ public class ServerConnection : MonoBehaviour
                 serializer = serializerObject.GetComponent<Serializer>();
         }
 
+        if ((SceneManager.GetActiveScene().name == "WaitingRoom") && serializer != null)
+        {
+            CreateServerUDP();
+        }
+
         if ((SceneManager.GetActiveScene().name == "WaitingRoom") && hostDataSend == null)
         {
             GameObject hostDataObj = GameObject.Find("DataSender");
