@@ -125,7 +125,7 @@ public class ServerConnection : MonoBehaviour
 
             // DESERIALIZE IN BUCLE
             byte[] dataX = new byte[2048];
-            int recvX = newsockUDP.ReceiveFrom(dataX, ref remoteIpEndPoint);
+            int recvX = newsockUDP.ReceiveFrom(dataX, ref remote);
 
             serializer.PlayButtonDeserialize(dataX);
         }
