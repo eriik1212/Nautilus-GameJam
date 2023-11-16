@@ -9,8 +9,6 @@ public class BoyPosition : MonoBehaviour
     void Start()
     {
         
-        
-
         if (boyTransform == null)
         {
             Debug.LogError("No se encontró el objeto del jugador.");
@@ -20,7 +18,7 @@ public class BoyPosition : MonoBehaviour
     void Update()
     {
         // Obtener la posición del jugador
-        Vector3 posicionJugador = boyTransform.position;
+        Vector2 posicionJugador = boyTransform.position;
 
         // Puedes imprimir la posición en la consola
         Debug.Log("Posición del jugador: " + posicionJugador);

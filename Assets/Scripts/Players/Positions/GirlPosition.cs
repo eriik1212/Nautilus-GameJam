@@ -19,7 +19,7 @@ public class GirlPosition : MonoBehaviour
     void Update()
     {
         // Obtener la posición del jugador
-        Vector3 posicionJugadora = girlTransform.position;
+        Vector2 posicionJugadora = girlTransform.position;
 
         // Puedes imprimir la posición en la consola
         Debug.Log("Posición del jugador: " + posicionJugadora);
