@@ -88,6 +88,21 @@ public class ServerConnection : MonoBehaviour
             if (hostDataObj != null)
                 hostDataSend = hostDataObj.GetComponent<ServerDataSender>();
         }
+
+        if (isClientConnected)
+        {
+            // Obtener la dirección IP del cliente
+            //if (remote is IPEndPoint)
+            //{
+            //    remoteIpEndPoint = (IPEndPoint)remote;
+            //    clientIP = remoteIpEndPoint.Address.ToString();
+            //    Debug.Log("Client connected from IP: " + clientIP);
+            //}
+
+            hostDataSend.SetInfo(newsockUDP, ipep);
+            hostDataSend.SendInfo(serializer);
+        }
+
     }
 
     
@@ -103,14 +118,13 @@ public class ServerConnection : MonoBehaviour
 
         Debug.Log("Waiting for user...");
 
-        //Thread threadServerUDP = new Thread(ReceiveClientUDP);
-        //threadServerUDP.Start();
-        StartCoroutine(ReceiveClientUDP());
+        Thread threadServerUDP = new Thread(ReceiveClientUDP);
+        threadServerUDP.Start();
 
         isUDP = true;
     }
 
-    IEnumerator ReceiveClientUDP()
+    void ReceiveClientUDP()
     {
 
         // ------------------------------------------------------------------ RECEIVE
@@ -118,17 +132,6 @@ public class ServerConnection : MonoBehaviour
         int recv = newsockUDP.ReceiveFrom(data, ref remote);
         Debug.Log("CLIENT USERNAME: " + Encoding.ASCII.GetString(data, 0, recv));
         isClientConnected = true;
-
-        // Obtener la dirección IP del cliente
-        //if (remote is IPEndPoint)
-        //{
-        //    remoteIpEndPoint = (IPEndPoint)remote;
-        //    clientIP = remoteIpEndPoint.Address.ToString();
-        //    Debug.Log("Client connected from IP: " + clientIP);
-        //}
-
-        hostDataSend.SetInfo(newsockUDP, ipep);
-        hostDataSend.SendInfo(serializer);
 
         // ------------------------------------------------------------------ SEND
         string serverName = UpdatedText.roomNameString;
