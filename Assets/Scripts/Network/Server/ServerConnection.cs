@@ -14,9 +14,9 @@ using UnityEditor.PackageManager;
 
 public class ServerConnection : MonoBehaviour
 {
-
-    static public bool isClientConnected = false;
-
+    
+    public bool isClientConnected = false;
+   
     public Socket newsockTCP;
     public Socket con;
 

@@ -6,18 +6,17 @@ using UnityEngine.UI;
 
 public class WaitingRoomPlayButton : MonoBehaviour
 {
-    public GameObject playButton;
-
-    private void Start()
-    {
-        
-    }
-
     private void Update()
     {
-        if (ServerConnection.isClientConnected)
+        if (Input.GetButtonDown("Cancel"))
         {
-            playButton.SetActive(true);
+            GoToSceneFunct(2);
         }
     }
+    public void GoToSceneFunct(int numScene)
+    {
+        SceneManager.LoadScene(numScene);
+    }
 }
+
+//BUENA
