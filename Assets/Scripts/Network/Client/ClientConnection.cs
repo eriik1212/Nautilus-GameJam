@@ -27,6 +27,7 @@ public class ClientConnection : MonoBehaviour
     static public string ipAdress = "";
 
     private static ClientConnection instance;
+    private Serializer seri;
 
     private void Awake()
     {
@@ -47,6 +48,11 @@ public class ClientConnection : MonoBehaviour
 
         if (connectUDPButton != null)
             connectUDPButton.onClick.AddListener(ClientConnectionUDP);
+
+        GameObject serializerObj = GameObject.Find("NetworkManagerWaitingRoom");
+        if(serializerObj != null)
+            seri = serializerObj.GetComponent<Serializer>();
+
     }
 
 
@@ -133,7 +139,7 @@ public class ClientConnection : MonoBehaviour
 
             ClientDataSender cds = new ClientDataSender();
             cds.SetInfo(socketUDP, ipepUDP);
-            cds.SendInfo();
+            cds.SendInfo(seri);
         }
         else
         {
