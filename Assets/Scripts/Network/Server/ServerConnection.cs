@@ -38,6 +38,7 @@ public class ServerConnection : MonoBehaviour
 
     public Serializer serializer;
     private ServerDataSender hostDataSend;
+    private bool dataSended = false;
 
 
     private void Awake()
@@ -89,7 +90,7 @@ public class ServerConnection : MonoBehaviour
                 hostDataSend = hostDataObj.GetComponent<ServerDataSender>();
         }
 
-        if (isClientConnected)
+        if (isClientConnected && !dataSended)
         {
             // Obtener la dirección IP del cliente
             if (remote is IPEndPoint)
@@ -101,6 +102,8 @@ public class ServerConnection : MonoBehaviour
 
             hostDataSend.SetInfo(newsockUDP, remoteIpEndPoint);
             hostDataSend.SendInfo(serializer);
+
+            dataSended = true;
         }
 
     }
