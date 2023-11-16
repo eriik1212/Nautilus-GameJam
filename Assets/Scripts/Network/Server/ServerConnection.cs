@@ -63,6 +63,8 @@ public class ServerConnection : MonoBehaviour
         //if (createRoomButton != null)
         //    createRoomButton.onClick.AddListener(CreateServerUDP);
 
+        serverCreated = false;
+
     }
 
     private void Update()
@@ -74,9 +76,10 @@ public class ServerConnection : MonoBehaviour
                 serializer = serializerObject.GetComponent<Serializer>();
         }
 
-        if ((SceneManager.GetActiveScene().name == "WaitingRoom") && serializer != null)
+        if ((SceneManager.GetActiveScene().name == "WaitingRoom") && serializer != null && !serverCreated)
         {
             CreateServerUDP();
+            serverCreated = true;
         }
 
         if ((SceneManager.GetActiveScene().name == "WaitingRoom") && hostDataSend == null)
