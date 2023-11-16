@@ -30,20 +30,21 @@ public class Serializer : MonoBehaviour
         }
     }
 
-    public class testClass
+    public class UsefulData
     {
-        public int hp = 12;
-        public List<int> pos = new List<int> { 3, 3, 3 };
+        //public int hp = 12;
+        //public List<int> pos = new List<int> { 3, 3, 3 };
+
+        public string clientName;
     }
 
 
     ///Cambiar lo que mandas. quitar hp e introducir las dadas dentro de serializeXML()
     public byte[] SerializeXML()
     {
-        var t = new testClass();
-        t.hp = 40;
-        t.pos = new List<int> { 10, 3, 12 };
-        XmlSerializer serializer = new XmlSerializer(typeof(testClass));
+        var t = new UsefulData();
+        t.clientName = UpdatedText.ClientUsernameString;
+        XmlSerializer serializer = new XmlSerializer(typeof(UsefulData));
         stream = new MemoryStream();
         serializer.Serialize(stream, t);
         bytes = stream.ToArray();
@@ -52,13 +53,13 @@ public class Serializer : MonoBehaviour
     }
     public void DeserializeXML(byte[] bytes)
     {
-        XmlSerializer serializer = new XmlSerializer(typeof(testClass));
-        var t = new testClass();
+        XmlSerializer serializer = new XmlSerializer(typeof(UsefulData));
+        var t = new UsefulData();
         stream = new MemoryStream();
         stream.Write(bytes, 0, bytes.Length);
         stream.Seek(0, SeekOrigin.Begin);
-        t = (testClass)serializer.Deserialize(stream);
-        Debug.Log("Xml " + t.hp.ToString() + " " + t.pos.ToString());
+        t = (UsefulData)serializer.Deserialize(stream);
+        Debug.Log("Xml: " + t.clientName);
     }
     byte[] bytes;
 
