@@ -82,47 +82,7 @@ public class ServerConnection : MonoBehaviour
         }
     }
 
-    //public void CreateServerTCP()   
-    //{
-
-    //    newsockTCP = new
-    //       Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-
-    //    IPEndPoint ipep = new IPEndPoint(IPAddress.Any, 9050);
-
-    //    newsockTCP.Bind(ipep);
-    //    newsockTCP.Listen(10);
-
-    //    Debug.Log("Waiting for a client...");
-
-    //    Thread threadServerTCP = new Thread(ReceiveClientTCP);
-    //    threadServerTCP.Start();
-
-    //    isTCP = true;
-
-    //}
-
-    //void ReceiveClientTCP()
-    //{
-    //    con = newsockTCP.Accept();
-    //    Debug.Log("Connected!");
-
-    //    byte[] clientMessage = new byte[1024];
-    //    string clientUsername = "";
-    //    int arraySize = 0;
-
-    //    // ------------------------------------------------------------------ RECEIVE
-    //    arraySize = con.Receive(clientMessage, 0, clientMessage.Length, 0);
-    //    Array.Resize(ref clientMessage, arraySize);
-    //    clientUsername = Encoding.Default.GetString(clientMessage);
-
-    //    Debug.Log("CLIENT USERNAME: " + clientUsername);
-
-    //    // ------------------------------------------------------------------ SEND
-    //    byte[] data = new byte[1024];
-    //    data = Encoding.ASCII.GetBytes(UpdatedText.roomNameString);
-    //    con.Send(data);
-    //}
+    
 
     public void CreateServerUDP()
     {
