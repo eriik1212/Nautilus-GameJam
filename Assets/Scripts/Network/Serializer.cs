@@ -12,6 +12,9 @@ public class Serializer : MonoBehaviour
     static MemoryStream stream;
     bool a = true;
 
+    // STORE VARIABLES
+    static public string clientNameXML;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -49,7 +52,7 @@ public class Serializer : MonoBehaviour
         serializer.Serialize(stream, t);
         bytes = stream.ToArray();
         return bytes;
-        //Aqui conectar a un pointer de bytes en la clase data sender
+        
     }
     public void DeserializeXML(byte[] bytes)
     {
@@ -59,6 +62,8 @@ public class Serializer : MonoBehaviour
         stream.Write(bytes, 0, bytes.Length);
         stream.Seek(0, SeekOrigin.Begin);
         t = (UsefulData)serializer.Deserialize(stream);
+        clientNameXML = t.clientName;
+
         Debug.Log("Xml: " + t.clientName);
     }
     byte[] bytes;

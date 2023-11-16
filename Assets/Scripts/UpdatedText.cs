@@ -21,12 +21,17 @@ public class UpdatedText : MonoBehaviour
     {
         UpdateText();
     }
+
+    private void Update()
+    {
+        UpdateText();
+    }
     public void UpdateText()
     {
         roomNameText.text = roomNameString;
 
         HostUsernameText.text = HostUsernameString;
 
-        ClientUsernameText.text = ClientUsernameString; 
+        ClientUsernameText.text = Serializer.clientNameXML; 
     }
 }
