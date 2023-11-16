@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayManagement : MonoBehaviour
 {
+    static public bool playPres = false;
 
     // Update is called once per frame
     void Update()
@@ -13,5 +14,10 @@ public class PlayManagement : MonoBehaviour
         {
             SceneManager.LoadScene("LevelScene");
         }
+    }
+
+    public void SetPlay()
+    {
+        playPres = true;
     }
 }

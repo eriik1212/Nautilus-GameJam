@@ -33,7 +33,7 @@ public class Serializer : MonoBehaviour
     public byte[] PlayButtonSerialize()
     {
         var t = new WaitingRoomData();
-        t.playPressed = true;
+        t.playPressed = PlayManagement.playPres;
         XmlSerializer serializer = new XmlSerializer(typeof(WaitingRoomData));
         stream = new MemoryStream();
         serializer.Serialize(stream, t);
