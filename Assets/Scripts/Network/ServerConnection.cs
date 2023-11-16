@@ -31,7 +31,7 @@ public class ServerConnection : MonoBehaviour
     public bool serverCreated = false;
 
     // --------------- Buttons
-    private Button createRoomButton;
+    //private Button createRoomButton;
 
     public Serializer serializer;
 
@@ -50,30 +50,30 @@ public class ServerConnection : MonoBehaviour
 
     private void Start()
     {
-        GameObject buttonObject = GameObject.Find("UDPButtonServer");
-        if (buttonObject != null)
-            createRoomButton = buttonObject.GetComponent<Button>();
+        //GameObject buttonObject = GameObject.Find("UDPButtonServer");
+        //if (buttonObject != null)
+        //    createRoomButton = buttonObject.GetComponent<Button>();
 
 
-        if (createRoomButton != null)
-            createRoomButton.onClick.AddListener(CreateServerUDP);
+        //if (createRoomButton != null)
+        //    createRoomButton.onClick.AddListener(CreateServerUDP);
 
     }
 
     private void Update()
     {
-        //if ((SceneManager.GetActiveScene().name == "WaitingRoom") && serializer == null)
-        //{
-        //    GameObject serializerObject = GameObject.Find("NetworkManagerWaitingRoom");
-        //    if (serializerObject != null)
-        //        serializer = serializerObject.GetComponent<Serializer>();
-        //}
-        
-        //if(SceneManager.GetActiveScene().name == "WaitingRoom" && serializer != null && !serverCreated)
-        //{
-        //    CreateServerUDP();
-        //    serverCreated = true;
-        //}
+        if ((SceneManager.GetActiveScene().name == "WaitingRoom") && serializer == null)
+        {
+            GameObject serializerObject = GameObject.Find("NetworkManagerWaitingRoom");
+            if (serializerObject != null)
+                serializer = serializerObject.GetComponent<Serializer>();
+        }
+
+        if (SceneManager.GetActiveScene().name == "WaitingRoom" && serializer != null && !serverCreated)
+        {
+            CreateServerUDP();
+            serverCreated = true;
+        }
     }
 
     //public void CreateServerTCP()   
@@ -129,11 +129,12 @@ public class ServerConnection : MonoBehaviour
 
         Debug.Log("Waiting for user...");
 
-        StartCoroutine(ReceiveClientUDP());
+        Thread threadServerUDP = new Thread(ReceiveClientUDP);
+        threadServerUDP.Start();
         isUDP = true;
     }
 
-    IEnumerator ReceiveClientUDP()
+    void ReceiveClientUDP()
     {
 
         // ------------------------------------------------------------------ RECEIVE
@@ -155,8 +156,8 @@ public class ServerConnection : MonoBehaviour
             //Test
             Debug.Log("Data recibida en sevidor");
 
-            //if(serializer != null)
-                //serializer.DeserializeXML(dataX);
+            if(serializer != null)
+                serializer.DeserializeXML(dataX);
         }
 
     }
