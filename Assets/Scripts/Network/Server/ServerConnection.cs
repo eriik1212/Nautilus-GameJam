@@ -103,12 +103,14 @@ public class ServerConnection : MonoBehaviour
 
         Debug.Log("Waiting for user...");
 
-        Thread threadServerUDP = new Thread(ReceiveClientUDP);
-        threadServerUDP.Start();
+        //Thread threadServerUDP = new Thread(ReceiveClientUDP);
+        //threadServerUDP.Start();
+        StartCoroutine(ReceiveClientUDP());
+
         isUDP = true;
     }
 
-    void ReceiveClientUDP()
+    IEnumerator ReceiveClientUDP()
     {
 
         // ------------------------------------------------------------------ RECEIVE
