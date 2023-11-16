@@ -68,7 +68,8 @@ public class ServerConnection : MonoBehaviour
             if (serializerObject != null)
                 serializer = serializerObject.GetComponent<Serializer>();
         }
-        else if(serializer != null && !serverCreated)
+        
+        if(serializer != null && !serverCreated)
         {
             CreateServerUDP();
             serverCreated = true;
