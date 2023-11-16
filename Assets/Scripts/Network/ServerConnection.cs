@@ -111,17 +111,17 @@ public class ServerConnection : MonoBehaviour
 
         Debug.Log("Waiting for user...");
 
+        StartCoroutine(ReceiveClientUDP());
+        isUDP = true;
+    }
+
+    IEnumerator ReceiveClientUDP()
+    {
+
         GameObject serializerObject = GameObject.Find("NetworkManagerWaitingRoom");
         if (serializerObject != null)
             serializer = serializerObject.GetComponent<Serializer>();
 
-        Thread threadServerUDP = new Thread(ReceiveClientUDP);
-        threadServerUDP.Start();
-        isUDP = true;
-    }
-
-    void ReceiveClientUDP()
-    {
         // ------------------------------------------------------------------ RECEIVE
         byte[] data = new byte[2048];
         int recv = newsockUDP.ReceiveFrom(data, ref remote);
