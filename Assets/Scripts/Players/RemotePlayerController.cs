@@ -43,7 +43,7 @@ public class RemotePlayerController : MonoBehaviour
 
     public static bool cutsceneOn = false;
 
-    SerializedThings inputs;
+    RemoteInputs inputs;
 
     private void Start()
     {
@@ -59,7 +59,7 @@ public class RemotePlayerController : MonoBehaviour
 
         keyAttached = null;
 
-        inputs = OnlineManager.instance.remoteImputs;
+        inputs = NetManager.instance.remoteInputs;
     }
 
     void Update()

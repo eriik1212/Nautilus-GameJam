@@ -21,6 +21,7 @@ TagManager:
   - Level5
   - Level2.5
   - CutsceneTrigger
+  - Server
   layers:
   - Default
   - TransparentFX
