@@ -117,15 +117,19 @@ public class ServerConnection : MonoBehaviour
             dataSended = true;
         }
 
-        // SERIALIZE INFO IN BUCLE
-        hostDataSend.SendBucleInfoWaitingRoom(serializer);
+        if(hostDataSend != null && serializer != null) 
+        {
 
-        // DESERIALIZE IN BUCLE
-        byte[] dataX = new byte[2048];
-        int recvX = newsockUDP.ReceiveFrom(dataX, ref remote);
+            // SERIALIZE INFO IN BUCLE
+            hostDataSend.SendBucleInfoWaitingRoom(serializer);
 
-        if (serializer != null)
+            // DESERIALIZE IN BUCLE
+            byte[] dataX = new byte[2048];
+            int recvX = newsockUDP.ReceiveFrom(dataX, ref remote);
+
             serializer.PlayButtonDeserialize(dataX);
+        }
+        
 
     }
 

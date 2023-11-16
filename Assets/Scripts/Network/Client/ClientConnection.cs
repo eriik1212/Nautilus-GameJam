@@ -81,15 +81,19 @@ public class ClientConnection : MonoBehaviour
                 clientDataSend = clientDataObj.GetComponent<ClientDataSender>();
         }
 
-        // SERIALIZE INFO IN BUCLE
-        clientDataSend.SendBucleInfoWaitingRoom(seri);
+        if (clientDataSend != null && seri != null)
+        {
+            // SERIALIZE INFO IN BUCLE
+            clientDataSend.SendBucleInfoWaitingRoom(seri);
 
-        // DESERIALIZE IN BUCLE
-        byte[] dataX = new byte[2048];
-        int recvX = socketUDP.ReceiveFrom(dataX, ref remote);
+            // DESERIALIZE IN BUCLE
+            byte[] dataX = new byte[2048];
+            int recvX = socketUDP.ReceiveFrom(dataX, ref remote);
 
-        if (seri != null)
             seri.PlayButtonDeserialize(dataX);
+        }
+
+            
     }
 
     //public void ClientConnectionTCP()
