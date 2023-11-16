@@ -10,6 +10,8 @@ using System.Xml.Serialization;
 public class Serializer : MonoBehaviour
 {
     static MemoryStream stream;
+    static MemoryStream clientStream;
+    static MemoryStream hostStream;
     bool a = true;
 
     // STORE VARIABLES
@@ -45,9 +47,9 @@ public class Serializer : MonoBehaviour
         var t = new UsefulData();
         t.clientName = UpdatedText.ClientUsernameString;
         XmlSerializer serializer = new XmlSerializer(typeof(UsefulData));
-        stream = new MemoryStream();
-        serializer.Serialize(stream, t);
-        bytes = stream.ToArray();
+        clientStream = new MemoryStream();
+        serializer.Serialize(clientStream, t);
+        bytes = clientStream.ToArray();
         return bytes;
         
     }  
@@ -59,33 +61,33 @@ public class Serializer : MonoBehaviour
         t.hostName = UpdatedText.HostUsernameString;
         t.roomName = UpdatedText.roomNameString;
         XmlSerializer serializer = new XmlSerializer(typeof(UsefulData));
-        stream = new MemoryStream();
-        serializer.Serialize(stream, t);
-        bytes = stream.ToArray();
+        hostStream = new MemoryStream();
+        serializer.Serialize(hostStream, t);
+        bytes = hostStream.ToArray();
         return bytes;
         
-    }
-    public void DeserializeClientDataXML(byte[] bytes)
-    {
-        XmlSerializer serializer = new XmlSerializer(typeof(UsefulData));
-        var t = new UsefulData();
-        stream = new MemoryStream();
-        stream.Write(bytes, 0, bytes.Length);
-        stream.Seek(0, SeekOrigin.Begin);
-        t = (UsefulData)serializer.Deserialize(stream);
-        hostNameXML = t.hostName;
-        roomNameXML = t.roomName;
-
-        Debug.Log("Xml: " + t.hostName + t.roomName);
     }
     public void DeserializeHostDataXML(byte[] bytes)
     {
         XmlSerializer serializer = new XmlSerializer(typeof(UsefulData));
         var t = new UsefulData();
-        stream = new MemoryStream();
-        stream.Write(bytes, 0, bytes.Length);
-        stream.Seek(0, SeekOrigin.Begin);
-        t = (UsefulData)serializer.Deserialize(stream);
+        hostStream = new MemoryStream();
+        hostStream.Write(bytes, 0, bytes.Length);
+        hostStream.Seek(0, SeekOrigin.Begin);
+        t = (UsefulData)serializer.Deserialize(hostStream);
+        hostNameXML = t.hostName;
+        roomNameXML = t.roomName;
+
+        Debug.Log("Xml: " + t.hostName + t.roomName);
+    }
+    public void DeserializeClientDataXML(byte[] bytes)
+    {
+        XmlSerializer serializer = new XmlSerializer(typeof(UsefulData));
+        var t = new UsefulData();
+        clientStream = new MemoryStream();
+        clientStream.Write(bytes, 0, bytes.Length);
+        clientStream.Seek(0, SeekOrigin.Begin);
+        t = (UsefulData)serializer.Deserialize(clientStream);
         clientNameXML = t.clientName;
 
         Debug.Log("Xml: " + t.clientName);
