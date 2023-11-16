@@ -6,6 +6,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Windows;
 using static UnityEngine.InputSystem.InputRemoting;
@@ -52,6 +53,24 @@ public class ClientConnection : MonoBehaviour
 
     }
 
+    private void Update()
+    {
+        if ((SceneManager.GetActiveScene().name == "WaitingRoom") && seri == null)
+        {
+            GameObject serializerObject = GameObject.Find("NetworkManagerWaitingRoom");
+            if (serializerObject != null)
+                seri = serializerObject.GetComponent<Serializer>();
+        }
+
+        if ((SceneManager.GetActiveScene().name == "WaitingRoom") && clientDataSend == null)
+        {
+            GameObject clientDataObj = GameObject.Find("DataSender");
+            if (clientDataObj != null)
+                clientDataSend = clientDataObj.GetComponent<ClientDataSender>();
+        }
+
+        
+    }
 
     //public void ClientConnectionTCP()
     //{
@@ -61,7 +80,7 @@ public class ClientConnection : MonoBehaviour
     //    ipepTCP = new IPEndPoint(
     //                    IPAddress.Parse(ipAdress), 9050); //IP del servidor
 
-        
+
 
     //    StartCoroutine(JoinRoom_TCP());
     //}
@@ -118,14 +137,6 @@ public class ClientConnection : MonoBehaviour
         if (socketUDP.Connected)
         {
             Debug.Log("Room Joined!");
-
-            GameObject serializerObj = GameObject.Find("NetworkManagerWaitingRoom");
-            if (serializerObj != null)
-                seri = serializerObj.GetComponent<Serializer>();
-
-            GameObject clientDataObj = GameObject.Find("DataSender");
-            if (clientDataObj != null)
-                clientDataSend = clientDataObj.GetComponent<ClientDataSender>();
 
             // ------------------------------------------------------------------ SEND
             byte[] data = new byte[1024];

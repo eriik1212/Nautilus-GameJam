@@ -58,6 +58,16 @@ public class ServerConnection : MonoBehaviour
 
     }
 
+    private void Update()
+    {
+        if ((SceneManager.GetActiveScene().name == "WaitingRoom") && serializer == null)
+        {
+            GameObject serializerObject = GameObject.Find("NetworkManagerWaitingRoom");
+            if (serializerObject != null)
+                serializer = serializerObject.GetComponent<Serializer>();
+        }
+    }
+
     //public void CreateServerTCP()   
     //{
 
@@ -117,10 +127,6 @@ public class ServerConnection : MonoBehaviour
 
     IEnumerator ReceiveClientUDP()
     {
-
-        GameObject serializerObject = GameObject.Find("NetworkManagerWaitingRoom");
-        if (serializerObject != null)
-            serializer = serializerObject.GetComponent<Serializer>();
 
         // ------------------------------------------------------------------ RECEIVE
         byte[] data = new byte[2048];
