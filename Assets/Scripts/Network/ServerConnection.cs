@@ -56,9 +56,6 @@ public class ServerConnection : MonoBehaviour
         if (createRoomButton != null)
             createRoomButton.onClick.AddListener(CreateServerUDP);
 
-        GameObject serializerObject = GameObject.Find("NetworkManagerWaitingRoom");
-        if (serializerObject != null)
-            serializer = serializerObject.GetComponent<Serializer>();
     }
 
     //public void CreateServerTCP()   
@@ -127,13 +124,14 @@ public class ServerConnection : MonoBehaviour
         Debug.Log("CLIENT USERNAME: " + Encoding.ASCII.GetString(data, 0, recv));
         isClientConnected = true;
 
-
-
         // ------------------------------------------------------------------ SEND
         string serverName = UpdatedText.roomNameString;
         data = Encoding.ASCII.GetBytes(serverName);
         newsockUDP.SendTo(data, data.Length, SocketFlags.None, remote);
 
+        GameObject serializerObject = GameObject.Find("NetworkManagerWaitingRoom");
+        if (serializerObject != null)
+            serializer = serializerObject.GetComponent<Serializer>();
 
         while (true)
         {
