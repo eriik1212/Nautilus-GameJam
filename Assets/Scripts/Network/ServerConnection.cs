@@ -111,6 +111,10 @@ public class ServerConnection : MonoBehaviour
 
         Debug.Log("Waiting for user...");
 
+        GameObject serializerObject = GameObject.Find("NetworkManagerWaitingRoom");
+        if (serializerObject != null)
+            serializer = serializerObject.GetComponent<Serializer>();
+
         Thread threadServerUDP = new Thread(ReceiveClientUDP);
         threadServerUDP.Start();
         isUDP = true;
@@ -128,10 +132,6 @@ public class ServerConnection : MonoBehaviour
         string serverName = UpdatedText.roomNameString;
         data = Encoding.ASCII.GetBytes(serverName);
         newsockUDP.SendTo(data, data.Length, SocketFlags.None, remote);
-
-        GameObject serializerObject = GameObject.Find("NetworkManagerWaitingRoom");
-        if (serializerObject != null)
-            serializer = serializerObject.GetComponent<Serializer>();
 
         while (true)
         {
