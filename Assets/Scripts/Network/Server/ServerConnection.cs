@@ -10,6 +10,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine;
 using System.Threading;
 using System.Net.WebSockets;
+using UnityEditor.PackageManager;
 
 public class ServerConnection : MonoBehaviour
 {
@@ -21,6 +22,8 @@ public class ServerConnection : MonoBehaviour
 
     public Socket newsockUDP;
     public IPEndPoint ipep;
+    private string clientIP;
+    IPEndPoint remoteIpEndPoint;
     public EndPoint remote;
 
     private static ServerConnection instance;
@@ -145,7 +148,15 @@ public class ServerConnection : MonoBehaviour
         Debug.Log("CLIENT USERNAME: " + Encoding.ASCII.GetString(data, 0, recv));
         isClientConnected = true;
 
-        hostDataSend.SetInfo(newsockUDP, ipep);
+        // Obtener la dirección IP del cliente
+        if (remote is IPEndPoint)
+        {
+            remoteIpEndPoint = (IPEndPoint)remote;
+            clientIP = remoteIpEndPoint.Address.ToString();
+            Debug.Log("Client connected from IP: " + clientIP);
+        }
+
+        hostDataSend.SetInfo(newsockUDP, remoteIpEndPoint);
         hostDataSend.SendInfo(serializer);
 
         // ------------------------------------------------------------------ SEND
