@@ -18,12 +18,7 @@ public class Serializer : MonoBehaviour
     static public string clientNameXML;
     static public string hostNameXML;
     static public string roomNameXML;
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+    static public bool playButtonPressed;
 
     // ------------------------------------------------------------------------------------------ WAITING ROOM DATA
     public class WaitingRoomData
@@ -35,6 +30,28 @@ public class Serializer : MonoBehaviour
         public bool playPressed = false;
     }
 
+    public byte[] PlayButtonSerialize()
+    {
+        var t = new WaitingRoomData();
+        t.playPressed = true;
+        XmlSerializer serializer = new XmlSerializer(typeof(WaitingRoomData));
+        stream = new MemoryStream();
+        serializer.Serialize(stream, t);
+        bytes = stream.ToArray();
+        return bytes;
+    }
+    public void PlayButtonDeserialize(byte[] bytes)
+    {
+        XmlSerializer serializer = new XmlSerializer(typeof(WaitingRoomData));
+        var t = new WaitingRoomData();
+        stream = new MemoryStream();
+        stream.Write(bytes, 0, bytes.Length);
+        stream.Seek(0, SeekOrigin.Begin);
+        t = (WaitingRoomData)serializer.Deserialize(stream);
+        playButtonPressed = t.playPressed;
+
+        Debug.Log("Xml: " + t.playPressed);
+    }
 
     public byte[] SerializeClientDataXML()
     {

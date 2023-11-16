@@ -81,7 +81,15 @@ public class ClientConnection : MonoBehaviour
                 clientDataSend = clientDataObj.GetComponent<ClientDataSender>();
         }
 
-        
+        // SERIALIZE INFO IN BUCLE
+        clientDataSend.SendBucleInfoWaitingRoom(seri);
+
+        // DESERIALIZE IN BUCLE
+        byte[] dataX = new byte[2048];
+        int recvX = socketUDP.ReceiveFrom(dataX, ref remote);
+
+        if (seri != null)
+            seri.PlayButtonDeserialize(dataX);
     }
 
     //public void ClientConnectionTCP()
@@ -188,8 +196,6 @@ public class ClientConnection : MonoBehaviour
         {
             byte[] dataX = new byte[2048];
             int recvX = socketUDP.ReceiveFrom(dataX, ref remote);
-            //Debug.Log("CLIENT USERNAME: " + Encoding.ASCII.GetString(dataX, 0, recvX));
-            //Test
             Debug.Log("Data recibida en cliente");
 
             if (seri != null)

@@ -117,6 +117,16 @@ public class ServerConnection : MonoBehaviour
             dataSended = true;
         }
 
+        // SERIALIZE INFO IN BUCLE
+        hostDataSend.SendBucleInfoWaitingRoom(serializer);
+
+        // DESERIALIZE IN BUCLE
+        byte[] dataX = new byte[2048];
+        int recvX = newsockUDP.ReceiveFrom(dataX, ref remote);
+
+        if (serializer != null)
+            serializer.PlayButtonDeserialize(dataX);
+
     }
 
     

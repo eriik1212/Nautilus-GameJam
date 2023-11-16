@@ -31,6 +31,16 @@ public class ServerDataSender : MonoBehaviour
         SendSerializedData(data);
 
     }
+
+    public void SendBucleInfoWaitingRoom(Serializer ser)
+    {
+        //StartCoroutine(SendDataPeriodically(ser));
+
+        byte[] data = new byte[1024];
+        data = ser.PlayButtonSerialize();
+        SendSerializedData(data);
+    }
+
     private IEnumerator SendDataPeriodically(Serializer sr)
     {
         while (true)
