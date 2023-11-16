@@ -117,7 +117,7 @@ public class ServerConnection : MonoBehaviour
             dataSended = true;
         }
 
-        if(hostDataSend != null && serializer != null && isClientConnected) 
+        if (hostDataSend != null && serializer != null && isClientConnected) 
         {
 
             // SERIALIZE INFO IN BUCLE
@@ -129,8 +129,19 @@ public class ServerConnection : MonoBehaviour
 
             serializer.PlayButtonDeserialize(dataX);
         }
-        
 
+        if (SceneManager.GetActiveScene().name == "LevelScene")
+        {
+
+            // SERIALIZE INFO IN BUCLE
+            hostDataSend.SendBoyData(serializer);
+
+            // DESERIALIZE IN BUCLE
+            byte[] dataX = new byte[2048];
+            int recvX = newsockUDP.ReceiveFrom(dataX, ref remote);
+
+            serializer.DeserializeGirlDataXML(dataX);
+        }
     }
 
     

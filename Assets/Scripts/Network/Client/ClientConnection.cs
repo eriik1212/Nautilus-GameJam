@@ -93,6 +93,18 @@ public class ClientConnection : MonoBehaviour
             seri.PlayButtonDeserialize(dataX);
         }
 
+        if (SceneManager.GetActiveScene().name == "LevelScene")
+        {
+            // SERIALIZE INFO IN BUCLE
+            clientDataSend.SendGirlData(seri);
+
+            // DESERIALIZE IN BUCLE
+            byte[] dataX = new byte[2048];
+            int recvX = socketUDP.ReceiveFrom(dataX, ref remote);
+
+            seri.DeserializeBoyDataXML(dataX);
+        }
+
             
     }
 

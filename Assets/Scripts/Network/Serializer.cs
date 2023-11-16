@@ -12,6 +12,8 @@ public class Serializer : MonoBehaviour
     static MemoryStream stream;
     static MemoryStream clientStream;
     static MemoryStream hostStream;
+    static MemoryStream boyStream;
+    static MemoryStream girlStream;
     bool a = true;
 
     // STORE VARIABLES
@@ -19,6 +21,65 @@ public class Serializer : MonoBehaviour
     static public string hostNameXML;
     static public string roomNameXML;
     static public bool playButtonPressed;
+
+    // Boy
+    static public Vector2 boyPositionXML;
+    static public Vector2 girlPositionXML;
+
+    // ------------------------------------------------------------------------------------------ IN-GAME DATA
+    public class InGameData
+    {
+        public Vector2 boyPos;
+        public Vector2 girlPos;
+    }
+
+    public byte[] BoyDataSerialize()
+    {
+        var t = new InGameData();
+        t.boyPos = BoyPosition.boyPosition;
+        XmlSerializer serializer = new XmlSerializer(typeof(InGameData));
+        stream = new MemoryStream();
+        serializer.Serialize(stream, t);
+        bytes = stream.ToArray();
+        return bytes;
+    }
+
+    public void DeserializeBoyDataXML(byte[] bytes)
+    {
+        XmlSerializer serializer = new XmlSerializer(typeof(InGameData));
+        var t = new InGameData();
+        boyStream = new MemoryStream();
+        boyStream.Write(bytes, 0, bytes.Length);
+        boyStream.Seek(0, SeekOrigin.Begin);
+        t = (InGameData)serializer.Deserialize(boyStream);
+        boyPositionXML = t.boyPos;
+
+        Debug.Log("Xml POS BOY: " + t.boyPos);
+    }
+
+    public byte[] GirlDataSerialize()
+    {
+        var t = new InGameData();
+        t.girlPos = GirlPosition.girlPosition;
+        XmlSerializer serializer = new XmlSerializer(typeof(InGameData));
+        stream = new MemoryStream();
+        serializer.Serialize(stream, t);
+        bytes = stream.ToArray();
+        return bytes;
+    }
+
+    public void DeserializeGirlDataXML(byte[] bytes)
+    {
+        XmlSerializer serializer = new XmlSerializer(typeof(InGameData));
+        var t = new InGameData();
+        girlStream = new MemoryStream();
+        girlStream.Write(bytes, 0, bytes.Length);
+        girlStream.Seek(0, SeekOrigin.Begin);
+        t = (InGameData)serializer.Deserialize(girlStream);
+        girlPositionXML = t.girlPos;
+
+        Debug.Log("Xml POS GIRL: " + t.girlPos);
+    }
 
     // ------------------------------------------------------------------------------------------ WAITING ROOM DATA
     public class WaitingRoomData

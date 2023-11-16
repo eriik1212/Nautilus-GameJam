@@ -5,6 +5,7 @@ using UnityEngine;
 public class GirlPosition : MonoBehaviour
 {
     public Transform girlTransform;
+    static public Vector2 girlPosition;
 
     void Start()
     {
@@ -19,9 +20,9 @@ public class GirlPosition : MonoBehaviour
     void Update()
     {
         // Obtener la posición del jugador
-        Vector2 posicionJugadora = girlTransform.position;
+        girlPosition = girlTransform.position;
 
         // Puedes imprimir la posición en la consola
-        Debug.Log("Posición del jugador: " + posicionJugadora);
+        Debug.Log("Posición del jugador: " + girlPosition);
     }
 }

@@ -29,6 +29,14 @@ public class ClientDataSender : MonoBehaviour
         data = ser.SerializeClientDataXML();
         SendSerializedData(data);
     }
+    public void SendGirlData(Serializer ser)
+    {
+        //StartCoroutine(SendDataPeriodically(ser));
+
+        byte[] data = new byte[1024];
+        data = ser.GirlDataSerialize();
+        SendSerializedData(data);
+    }
     public void SendBucleInfoWaitingRoom(Serializer ser)
     {
         //StartCoroutine(SendDataPeriodically(ser));

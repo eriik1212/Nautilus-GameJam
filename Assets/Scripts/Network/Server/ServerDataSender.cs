@@ -40,6 +40,14 @@ public class ServerDataSender : MonoBehaviour
         data = ser.PlayButtonSerialize();
         SendSerializedData(data);
     }
+    public void SendBoyData(Serializer ser)
+    {
+        //StartCoroutine(SendDataPeriodically(ser));
+
+        byte[] data = new byte[1024];
+        data = ser.BoyDataSerialize();
+        SendSerializedData(data);
+    }
 
     private IEnumerator SendDataPeriodically(Serializer sr)
     {
