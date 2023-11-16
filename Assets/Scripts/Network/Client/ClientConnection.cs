@@ -28,6 +28,7 @@ public class ClientConnection : MonoBehaviour
 
     private static ClientConnection instance;
     private Serializer seri;
+    private ClientDataSender clientDataSend;
 
     private void Awake()
     {
@@ -122,6 +123,10 @@ public class ClientConnection : MonoBehaviour
             if (serializerObj != null)
                 seri = serializerObj.GetComponent<Serializer>();
 
+            GameObject clientDataObj = GameObject.Find("DataSender");
+            if (clientDataObj != null)
+                clientDataSend = clientDataObj.GetComponent<ClientDataSender>();
+
             // ------------------------------------------------------------------ SEND
             byte[] data = new byte[1024];
             string clientUsername = UpdatedText.ClientUsernameString;
@@ -138,9 +143,9 @@ public class ClientConnection : MonoBehaviour
 
             Debug.Log("You have connected to IP: " + Remote.ToString() + " SERVER NAME: " + Encoding.ASCII.GetString(data, 0, recv));
 
-            ClientDataSender cds = new ClientDataSender();
-            cds.SetInfo(socketUDP, ipepUDP);
-            cds.SendInfo(seri);
+
+            clientDataSend.SetInfo(socketUDP, ipepUDP);
+            clientDataSend.SendInfo(seri);
         }
         else
         {
