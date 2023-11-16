@@ -28,9 +28,9 @@ public class UpdatedText : MonoBehaviour
     }
     public void UpdateText()
     {
-        roomNameText.text = roomNameString;
+        roomNameText.text = Serializer.roomNameXML;
 
-        HostUsernameText.text = HostUsernameString;
+        HostUsernameText.text = Serializer.hostNameXML;
 
         ClientUsernameText.text = Serializer.clientNameXML; 
     }
