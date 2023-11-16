@@ -62,12 +62,12 @@ public class ServerConnection : MonoBehaviour
 
     private void Update()
     {
-        if ((SceneManager.GetActiveScene().name == "WaitingRoom") && serializer == null)
-        {
-            GameObject serializerObject = GameObject.Find("NetworkManagerWaitingRoom");
-            if (serializerObject != null)
-                serializer = serializerObject.GetComponent<Serializer>();
-        }
+        //if ((SceneManager.GetActiveScene().name == "WaitingRoom") && serializer == null)
+        //{
+        //    GameObject serializerObject = GameObject.Find("NetworkManagerWaitingRoom");
+        //    if (serializerObject != null)
+        //        serializer = serializerObject.GetComponent<Serializer>();
+        //}
         
         //if(SceneManager.GetActiveScene().name == "WaitingRoom" && serializer != null && !serverCreated)
         //{
