@@ -107,3 +107,21 @@ public class Serializer : MonoBehaviour
     byte[] bytes;
 
 }
+
+public class RemoteInputs
+{
+    public bool Apressed = false;
+    public bool Wpressed = false;
+    public bool Dpressed = false;
+    public bool spacePressed = false;
+    public bool shiftPressed = false;
+
+    public void Reset()
+    {
+        Apressed = false;
+        Wpressed = false;
+        Dpressed = false;
+        spacePressed = false;
+        shiftPressed = false;
+    }
+}
