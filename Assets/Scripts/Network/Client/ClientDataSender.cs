@@ -23,9 +23,14 @@ public class ClientDataSender : MonoBehaviour
 
     public void SendInfo(Serializer ser)
     {
-        StartCoroutine(SendDataPeriodically(ser));
+        //StartCoroutine(SendDataPeriodically(ser));
 
+        byte[] data = new byte[1024];
+        data = ser.SerializeClientDataXML();
+        SendSerializedData(data);
     }
+
+    // NOT FOR THE MOMENT (BUCLE)
     private IEnumerator SendDataPeriodically(Serializer sr)
     {
         while (true)

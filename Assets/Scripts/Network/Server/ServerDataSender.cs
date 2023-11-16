@@ -24,7 +24,11 @@ public class ServerDataSender : MonoBehaviour
 
     public void SendInfo(Serializer ser)
     {
-        StartCoroutine(SendDataPeriodically(ser));
+        //StartCoroutine(SendDataPeriodically(ser));
+
+        byte[] data = new byte[1024];
+        data = ser.SerializeHostDataXML();
+        SendSerializedData(data);
 
     }
     private IEnumerator SendDataPeriodically(Serializer sr)

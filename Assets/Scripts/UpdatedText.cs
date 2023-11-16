@@ -19,6 +19,7 @@ public class UpdatedText : MonoBehaviour
 
     private void OnEnable()
     {
+        ClientUsernameString = "Waiting for player 2...";
         UpdateText();
     }
 
