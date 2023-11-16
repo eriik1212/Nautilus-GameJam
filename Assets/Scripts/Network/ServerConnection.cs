@@ -28,8 +28,10 @@ public class ServerConnection : MonoBehaviour
     public bool isTCP = false;
     public bool isUDP = false;
 
+    public bool serverCreated = false;
+
     // --------------- Buttons
-    private Button createRoomButton;
+    //private Button createRoomButton;
 
     public Serializer serializer;
 
@@ -48,13 +50,13 @@ public class ServerConnection : MonoBehaviour
 
     private void Start()
     {
-        GameObject buttonObject = GameObject.Find("UDPButtonServer");
-        if (buttonObject != null)
-            createRoomButton=buttonObject.GetComponent<Button>();
+        //GameObject buttonObject = GameObject.Find("UDPButtonServer");
+        //if (buttonObject != null)
+        //    createRoomButton=buttonObject.GetComponent<Button>();
         
 
-        if (createRoomButton != null)
-            createRoomButton.onClick.AddListener(CreateServerUDP);
+        //if (createRoomButton != null)
+        //    createRoomButton.onClick.AddListener(CreateServerUDP);
 
     }
 
@@ -65,6 +67,11 @@ public class ServerConnection : MonoBehaviour
             GameObject serializerObject = GameObject.Find("NetworkManagerWaitingRoom");
             if (serializerObject != null)
                 serializer = serializerObject.GetComponent<Serializer>();
+        }
+        else if(serializer != null && !serverCreated)
+        {
+            CreateServerUDP();
+            serverCreated = true;
         }
     }
 
@@ -146,7 +153,9 @@ public class ServerConnection : MonoBehaviour
             //Debug.Log("CLIENT USERNAME: " + Encoding.ASCII.GetString(dataX, 0, recvX));
             //Test
             Debug.Log("Data recibida en sevidor");
-            serializer.DeserializeXML(dataX);
+
+            if(serializer != null)
+                serializer.DeserializeXML(dataX);
         }
 
     }
