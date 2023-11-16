@@ -19,8 +19,15 @@ public class GirlPosition : MonoBehaviour
 
     void Update()
     {
-        // Obtener la posición del jugador
-        girlPosition = girlTransform.position;
+        if (Serializer.boyPositionXML != null)
+        {
+            girlPosition = Serializer.boyPositionXML;
+        }
+        else
+        {
+            girlPosition = girlTransform.position;
+
+        }
 
         // Puedes imprimir la posición en la consola
         Debug.Log("Posición del jugador: " + girlPosition);

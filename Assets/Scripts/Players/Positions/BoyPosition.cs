@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class BoyPosition : MonoBehaviour
@@ -19,7 +20,14 @@ public class BoyPosition : MonoBehaviour
     void Update()
     {
         // Obtener la posición del jugador
-        boyPosition = boyTransform.position;
+        if(Serializer.boyPositionXML != null)
+        {
+            boyPosition = Serializer.boyPositionXML;
+        }
+        else{
+            boyPosition = boyTransform.position;
+
+        }
 
         // Puedes imprimir la posición en la consola
         Debug.Log("Posición del jugador: " + boyPosition);
