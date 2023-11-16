@@ -233,7 +233,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Waiting for players...
+  m_text: 'Players List:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 01b562a2d471292409a1e3935c25967b, type: 2}
   m_sharedMaterial: {fileID: -1420431670241018080, guid: 01b562a2d471292409a1e3935c25967b, type: 2}
@@ -266,7 +266,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 2
+  m_fontStyle: 6
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535

@@ -138,7 +138,7 @@ public class ServerConnection : MonoBehaviour
         data = Encoding.ASCII.GetBytes(serverName);
         newsockUDP.SendTo(data, data.Length, SocketFlags.None, remote);
 
-        while (true)
+        //while (true)
         {
             byte[] dataX = new byte[2048];
             int recvX = newsockUDP.ReceiveFrom(dataX, ref remote);

@@ -172,7 +172,7 @@ public class ClientConnection : MonoBehaviour
     void ReceiveXMLData()
     {
         // DESEARIALIZE
-        while (true)
+        //while (true)
         {
             byte[] dataX = new byte[2048];
             int recvX = socketUDP.ReceiveFrom(dataX, ref remote);
