@@ -75,6 +75,7 @@ public class ServerConnection : MonoBehaviour
         if ((SceneManager.GetActiveScene().name == "WaitingRoom") && playButton == null)
         {
             playButton = GameObject.Find("PlayButton");
+            playButton.SetActive(false);
         }
 
         if ((SceneManager.GetActiveScene().name == "WaitingRoom") && serializer == null)
@@ -100,7 +101,7 @@ public class ServerConnection : MonoBehaviour
         // PLAYER IS CONNECTED
         if (isClientConnected && !dataSended)
         {
-            playButton.SetActive(false);
+            playButton.SetActive(true);
 
             // Obtener la dirección IP del cliente
             if (remote is IPEndPoint)

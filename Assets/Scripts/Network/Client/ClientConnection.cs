@@ -62,6 +62,7 @@ public class ClientConnection : MonoBehaviour
         if ((SceneManager.GetActiveScene().name == "WaitingRoom") && playButton == null)
         {
             playButton = GameObject.Find("PlayButton");
+            playButton.SetActive(false);
         }
         
         // SERIALIZER
@@ -150,7 +151,7 @@ public class ClientConnection : MonoBehaviour
         {
             Debug.Log("Room Joined!");
 
-            playButton.SetActive(false);
+            playButton.SetActive(true);
 
             // ------------------------------------------------------------------ SEND
             byte[] data = new byte[1024];
