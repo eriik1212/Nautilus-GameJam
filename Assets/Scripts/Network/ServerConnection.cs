@@ -138,11 +138,11 @@ public class ServerConnection : MonoBehaviour
         while (true)
         {
             byte[] dataX = new byte[2048];
-            int recvX = newsockUDP.ReceiveFrom(data, ref remote);
+            int recvX = newsockUDP.ReceiveFrom(dataX, ref remote);
             //Debug.Log("CLIENT USERNAME: " + Encoding.ASCII.GetString(dataX, 0, recvX));
             //Test
             Debug.Log("Data recibida en sevidor");
-            serializer.DeserializeXML(data);
+            serializer.DeserializeXML(dataX);
         }
 
     }
