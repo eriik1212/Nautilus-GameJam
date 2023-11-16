@@ -35,6 +35,7 @@ public class ServerConnection : MonoBehaviour
 
     // --------------- Buttons
     //private Button createRoomButton;
+    private GameObject playButton;
 
     public Serializer serializer;
     private ServerDataSender hostDataSend;
@@ -70,6 +71,12 @@ public class ServerConnection : MonoBehaviour
 
     private void Update()
     {
+        // PLAY BUTTON
+        if ((SceneManager.GetActiveScene().name == "WaitingRoom") && playButton == null)
+        {
+            playButton = GameObject.Find("PlayButton");
+        }
+
         if ((SceneManager.GetActiveScene().name == "WaitingRoom") && serializer == null)
         {
             GameObject serializerObject = GameObject.Find("NetworkManagerWaitingRoom");
@@ -90,8 +97,11 @@ public class ServerConnection : MonoBehaviour
                 hostDataSend = hostDataObj.GetComponent<ServerDataSender>();
         }
 
+        // PLAYER IS CONNECTED
         if (isClientConnected && !dataSended)
         {
+            playButton.SetActive(true);
+
             // Obtener la dirección IP del cliente
             if (remote is IPEndPoint)
             {

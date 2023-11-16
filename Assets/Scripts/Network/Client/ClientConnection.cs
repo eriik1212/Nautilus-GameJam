@@ -24,6 +24,7 @@ public class ClientConnection : MonoBehaviour
 
     // --------------------- BUTTONS
     private Button connectUDPButton;
+    private GameObject playButton;
 
 
     // --------------------- IP
@@ -57,6 +58,13 @@ public class ClientConnection : MonoBehaviour
 
     private void Update()
     {
+        // PLAY BUTTON
+        if ((SceneManager.GetActiveScene().name == "WaitingRoom") && playButton == null)
+        {
+            playButton = GameObject.Find("PlayButton");
+        }
+        
+        // SERIALIZER
         if ((SceneManager.GetActiveScene().name == "WaitingRoom") && seri == null)
         {
             GameObject serializerObject = GameObject.Find("NetworkManagerWaitingRoom");
@@ -64,6 +72,7 @@ public class ClientConnection : MonoBehaviour
                 seri = serializerObject.GetComponent<Serializer>();
         }
 
+        // CLIENT DATA SENDER
         if ((SceneManager.GetActiveScene().name == "WaitingRoom") && clientDataSend == null)
         {
             GameObject clientDataObj = GameObject.Find("DataSender");
@@ -140,6 +149,8 @@ public class ClientConnection : MonoBehaviour
         if (socketUDP.Connected)
         {
             Debug.Log("Room Joined!");
+
+            playButton.SetActive(true);
 
             // ------------------------------------------------------------------ SEND
             byte[] data = new byte[1024];

@@ -22,31 +22,25 @@ public class Serializer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (a)
-        //{
-        //    //SerializeXML();
-        //    //DeserializeXML();
-        //    a = false;
-        //}
+
     }
 
-    public class UsefulData
+    // ------------------------------------------------------------------------------------------ WAITING ROOM DATA
+    public class WaitingRoomData
     {
-        //public int hp = 12;
-        //public List<int> pos = new List<int> { 3, 3, 3 };
-
         public string clientName;
         public string hostName;
         public string roomName;
+
+        public bool playPressed = false;
     }
 
 
-    ///Cambiar lo que mandas. quitar hp e introducir las dadas dentro de serializeXML()
     public byte[] SerializeClientDataXML()
     {
-        var t = new UsefulData();
+        var t = new WaitingRoomData();
         t.clientName = UpdatedText.ClientUsernameString;
-        XmlSerializer serializer = new XmlSerializer(typeof(UsefulData));
+        XmlSerializer serializer = new XmlSerializer(typeof(WaitingRoomData));
         clientStream = new MemoryStream();
         serializer.Serialize(clientStream, t);
         bytes = clientStream.ToArray();
@@ -54,13 +48,12 @@ public class Serializer : MonoBehaviour
         
     }  
     
-    ///Cambiar lo que mandas. quitar hp e introducir las dadas dentro de serializeXML()
     public byte[] SerializeHostDataXML()
     {
-        var t = new UsefulData();
+        var t = new WaitingRoomData();
         t.hostName = UpdatedText.HostUsernameString;
         t.roomName = UpdatedText.roomNameString;
-        XmlSerializer serializer = new XmlSerializer(typeof(UsefulData));
+        XmlSerializer serializer = new XmlSerializer(typeof(WaitingRoomData));
         hostStream = new MemoryStream();
         serializer.Serialize(hostStream, t);
         bytes = hostStream.ToArray();
@@ -69,12 +62,12 @@ public class Serializer : MonoBehaviour
     }
     public void DeserializeHostDataXML(byte[] bytes)
     {
-        XmlSerializer serializer = new XmlSerializer(typeof(UsefulData));
-        var t = new UsefulData();
+        XmlSerializer serializer = new XmlSerializer(typeof(WaitingRoomData));
+        var t = new WaitingRoomData();
         hostStream = new MemoryStream();
         hostStream.Write(bytes, 0, bytes.Length);
         hostStream.Seek(0, SeekOrigin.Begin);
-        t = (UsefulData)serializer.Deserialize(hostStream);
+        t = (WaitingRoomData)serializer.Deserialize(hostStream);
         hostNameXML = t.hostName;
         roomNameXML = t.roomName;
 
@@ -82,16 +75,18 @@ public class Serializer : MonoBehaviour
     }
     public void DeserializeClientDataXML(byte[] bytes)
     {
-        XmlSerializer serializer = new XmlSerializer(typeof(UsefulData));
-        var t = new UsefulData();
+        XmlSerializer serializer = new XmlSerializer(typeof(WaitingRoomData));
+        var t = new WaitingRoomData();
         clientStream = new MemoryStream();
         clientStream.Write(bytes, 0, bytes.Length);
         clientStream.Seek(0, SeekOrigin.Begin);
-        t = (UsefulData)serializer.Deserialize(clientStream);
+        t = (WaitingRoomData)serializer.Deserialize(clientStream);
         clientNameXML = t.clientName;
 
         Debug.Log("Xml: " + t.clientName);
     }
+
+
     byte[] bytes;
 
 }
