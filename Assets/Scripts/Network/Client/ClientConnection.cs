@@ -81,7 +81,7 @@ public class ClientConnection : MonoBehaviour
                 clientDataSend = clientDataObj.GetComponent<ClientDataSender>();
         }
 
-        if (clientDataSend != null && seri != null)
+        if (clientDataSend != null && seri != null && socketUDP.Connected)
         {
             // SERIALIZE INFO IN BUCLE
             clientDataSend.SendBucleInfoWaitingRoom(seri);

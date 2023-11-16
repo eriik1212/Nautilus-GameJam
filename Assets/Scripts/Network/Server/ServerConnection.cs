@@ -117,7 +117,7 @@ public class ServerConnection : MonoBehaviour
             dataSended = true;
         }
 
-        if(hostDataSend != null && serializer != null) 
+        if(hostDataSend != null && serializer != null && isClientConnected) 
         {
 
             // SERIALIZE INFO IN BUCLE
@@ -125,7 +125,7 @@ public class ServerConnection : MonoBehaviour
 
             // DESERIALIZE IN BUCLE
             byte[] dataX = new byte[2048];
-            int recvX = newsockUDP.ReceiveFrom(dataX, ref remote);
+            int recvX = newsockUDP.ReceiveFrom(dataX, ref remoteIpEndPoint);
 
             serializer.PlayButtonDeserialize(dataX);
         }
