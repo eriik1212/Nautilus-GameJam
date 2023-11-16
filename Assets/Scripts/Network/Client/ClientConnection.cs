@@ -157,7 +157,6 @@ public class ClientConnection : MonoBehaviour
 
             Debug.Log("You have connected to IP: " + remote.ToString() + " SERVER NAME: " + Encoding.ASCII.GetString(data, 0, recv));
 
-
             clientDataSend.SetInfo(socketUDP, ipepUDP);
             clientDataSend.SendInfo(seri);
 

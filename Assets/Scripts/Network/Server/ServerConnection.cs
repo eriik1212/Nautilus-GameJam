@@ -150,14 +150,14 @@ public class ServerConnection : MonoBehaviour
         isClientConnected = true;
 
         // Obtener la dirección IP del cliente
-        if (remote is IPEndPoint)
-        {
-            remoteIpEndPoint = (IPEndPoint)remote;
-            clientIP = remoteIpEndPoint.Address.ToString();
-            Debug.Log("Client connected from IP: " + clientIP);
-        }
+        //if (remote is IPEndPoint)
+        //{
+        //    remoteIpEndPoint = (IPEndPoint)remote;
+        //    clientIP = remoteIpEndPoint.Address.ToString();
+        //    Debug.Log("Client connected from IP: " + clientIP);
+        //}
 
-        hostDataSend.SetInfo(newsockUDP, remoteIpEndPoint);
+        hostDataSend.SetInfo(newsockUDP, ipep);
         hostDataSend.SendInfo(serializer);
 
         // ------------------------------------------------------------------ SEND
