@@ -49,10 +49,6 @@ public class ClientConnection : MonoBehaviour
         if (connectUDPButton != null)
             connectUDPButton.onClick.AddListener(ClientConnectionUDP);
 
-        GameObject serializerObj = GameObject.Find("NetworkManagerWaitingRoom");
-        if(serializerObj != null)
-            seri = serializerObj.GetComponent<Serializer>();
-
     }
 
 
@@ -113,6 +109,7 @@ public class ClientConnection : MonoBehaviour
 
     IEnumerator JoinRoom_UDP()
     {
+
         socketUDP.Connect(ipepUDP);
 
         yield return new WaitForSeconds(0.3f);
@@ -120,6 +117,10 @@ public class ClientConnection : MonoBehaviour
         if (socketUDP.Connected)
         {
             Debug.Log("Room Joined!");
+
+            GameObject serializerObj = GameObject.Find("NetworkManagerWaitingRoom");
+            if (serializerObj != null)
+                seri = serializerObj.GetComponent<Serializer>();
 
             // ------------------------------------------------------------------ SEND
             byte[] data = new byte[1024];
