@@ -69,7 +69,7 @@ public class ServerConnection : MonoBehaviour
                 serializer = serializerObject.GetComponent<Serializer>();
         }
         
-        if(serializer != null && !serverCreated)
+        if(SceneManager.GetActiveScene().name == "WaitingRoom" && serializer != null && !serverCreated)
         {
             CreateServerUDP();
             serverCreated = true;
