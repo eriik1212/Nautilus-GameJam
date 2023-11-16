@@ -155,8 +155,8 @@ public class ServerConnection : MonoBehaviour
             //Test
             Debug.Log("Data recibida en sevidor");
 
-            if(serializer != null)
-                serializer.DeserializeXML(dataX);
+            //if(serializer != null)
+                //serializer.DeserializeXML(dataX);
         }
 
     }
