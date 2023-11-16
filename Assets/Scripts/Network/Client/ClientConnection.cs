@@ -150,7 +150,7 @@ public class ClientConnection : MonoBehaviour
         {
             Debug.Log("Room Joined!");
 
-            playButton.SetActive(true);
+            playButton.SetActive(false);
 
             // ------------------------------------------------------------------ SEND
             byte[] data = new byte[1024];

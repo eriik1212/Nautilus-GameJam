@@ -100,7 +100,7 @@ public class ServerConnection : MonoBehaviour
         // PLAYER IS CONNECTED
         if (isClientConnected && !dataSended)
         {
-            playButton.SetActive(true);
+            playButton.SetActive(false);
 
             // Obtener la dirección IP del cliente
             if (remote is IPEndPoint)
