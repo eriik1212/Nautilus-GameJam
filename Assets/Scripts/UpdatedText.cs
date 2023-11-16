@@ -28,10 +28,20 @@ public class UpdatedText : MonoBehaviour
     }
     public void UpdateText()
     {
-        roomNameText.text = Serializer.roomNameXML;
+        if (Serializer.roomNameXML != null)
+            roomNameText.text = Serializer.roomNameXML;
+        else 
+            roomNameText.text = roomNameString;
 
-        HostUsernameText.text = Serializer.hostNameXML;
+        if (Serializer.hostNameXML != null)
+            HostUsernameText.text = Serializer.hostNameXML;
+        else
+            HostUsernameText.text = HostUsernameString;
 
-        ClientUsernameText.text = Serializer.clientNameXML; 
+        if (Serializer.clientNameXML != null)
+            ClientUsernameText.text = Serializer.clientNameXML;
+        else
+            ClientUsernameText.text = ClientUsernameString;
+
     }
 }
