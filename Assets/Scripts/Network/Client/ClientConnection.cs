@@ -7,7 +7,6 @@ using System.Text;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.tvOS;
 using UnityEngine.UI;
 using UnityEngine.Windows;
 using static UnityEngine.InputSystem.InputRemoting;

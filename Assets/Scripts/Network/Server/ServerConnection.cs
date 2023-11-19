@@ -10,7 +10,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine;
 using System.Threading;
 using System.Net.WebSockets;
-using UnityEditor.PackageManager;
+//using UnityEditor.PackageManager;
 
 public class ServerConnection : MonoBehaviour
 {
