@@ -22,6 +22,7 @@ public class GirlPosition : MonoBehaviour
         if (Serializer.boyPositionXML != null)
         {
             girlPosition = Serializer.boyPositionXML;
+            girlTransform.position = new Vector3(girlPosition.x, girlPosition.y, girlTransform.position.z);
         }
         else
         {

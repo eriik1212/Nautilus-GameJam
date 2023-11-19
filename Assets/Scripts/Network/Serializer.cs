@@ -24,7 +24,12 @@ public class Serializer : MonoBehaviour
 
     // Boy
     static public Vector2 boyPositionXML;
+    static public int boyRotationDirection = 0; // no rotation --> 0, right --> 1, left --> 2
+    static public int boyRotationAngle;
+
+    // Girl
     static public Vector2 girlPositionXML;
+
 
     // ------------------------------------------------------------------------------------------ IN-GAME DATA
     public class InGameData
