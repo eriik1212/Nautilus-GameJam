@@ -10,7 +10,7 @@ public class BoyPosition : MonoBehaviour
     
     void Start()
     {
-        
+        boyPosition =new Vector2(2.622f, 1.901f);
         if (boyTransform == null)
         {
             Debug.LogError("No se encontró el objeto del jugador.");
@@ -23,14 +23,20 @@ public class BoyPosition : MonoBehaviour
         if(Serializer.boyPositionXML != null)
         {
             boyPosition = Serializer.boyPositionXML;
-            boyTransform.position = new Vector3(boyPosition.x, boyPosition.y, boyTransform.position.z);
+            /*if (boyPosition.x != boyTransform.position.x)
+            {
+                boyTransform.position = new Vector3(boyPosition.x, boyPosition.y, boyTransform.position.z);
+                Debug.Log("Posicion modificada boy player");
+            }*/
         }
-        else{
+        else
+        {
+
             boyPosition = boyTransform.position;
 
         }
 
         // Puedes imprimir la posición en la consola
-        Debug.Log("Posición del jugador: " + boyPosition);
+        Debug.Log("Posición del jugador boy: " + boyPosition);
     }
 }

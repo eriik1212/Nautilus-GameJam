@@ -4106,6 +4106,7 @@ GameObject:
   - component: {fileID: 727759194}
   - component: {fileID: 727759193}
   - component: {fileID: 727759192}
+  - component: {fileID: 727759195}
   m_Layer: 0
   m_Name: PositionsHandler
   m_TagString: Untagged
@@ -4154,6 +4155,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &727759195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 727759191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 760f6b2eb38f6e04cb5c466a5314d09b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boyTransform: {fileID: 1572755291018136863}
 --- !u!1 &745969574 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5314107808902396162, guid: e3bd9a0c15ef4704e93d87d6c89fe9d5, type: 3}

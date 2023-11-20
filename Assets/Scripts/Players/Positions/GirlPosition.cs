@@ -9,7 +9,8 @@ public class GirlPosition : MonoBehaviour
 
     void Start()
     {
-       
+
+        girlPosition = new Vector2(2.622f, 1.901f);
 
         if (girlTransform == null)
         {
@@ -22,7 +23,10 @@ public class GirlPosition : MonoBehaviour
         if (Serializer.boyPositionXML != null)
         {
             girlPosition = Serializer.boyPositionXML;
-            girlTransform.position = new Vector3(girlPosition.x, girlPosition.y, girlTransform.position.z);
+            /*if (girlPosition.x != girlTransform.position.x)
+            {
+                girlTransform.position = new Vector3(girlPosition.x, girlPosition.y, girlTransform.position.z);
+            }*/
         }
         else
         {
@@ -31,6 +35,6 @@ public class GirlPosition : MonoBehaviour
         }
 
         // Puedes imprimir la posición en la consola
-        Debug.Log("Posición del jugador: " + girlPosition);
+        Debug.LogError("Posición del jugador girl: " + girlPosition);
     }
 }

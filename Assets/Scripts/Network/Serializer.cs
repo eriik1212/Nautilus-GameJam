@@ -26,6 +26,7 @@ public class Serializer : MonoBehaviour
     static public Vector2 boyPositionXML;
     static public int boyRotationDirection = 0; // no rotation --> 0, right --> 1, left --> 2
     static public int boyRotationAngle;
+    public Transform boyTransform;
 
     // Girl
     static public Vector2 girlPositionXML;
@@ -37,15 +38,19 @@ public class Serializer : MonoBehaviour
         public Vector2 boyPos;
         public Vector2 girlPos;
     }
-
+    private void Update()
+    {
+        Debug.LogError("Boy position!!!!!!!!!!! " + boyPositionXML);
+    }
     public byte[] BoyDataSerialize()
     {
         var t = new InGameData();
-        t.boyPos = BoyPosition.boyPosition;
+        t.boyPos= BoyPosition.boyPosition;
         XmlSerializer serializer = new XmlSerializer(typeof(InGameData));
         stream = new MemoryStream();
         serializer.Serialize(stream, t);
         bytes = stream.ToArray();
+        Debug.LogError("PositionData to serialize" + t.boyPos);
         return bytes;
     }
 
@@ -59,7 +64,7 @@ public class Serializer : MonoBehaviour
         t = (InGameData)serializer.Deserialize(boyStream);
         boyPositionXML = t.boyPos;
 
-        Debug.Log("Xml POS BOY: " + t.boyPos);
+        Debug.LogError("Xml POS BOY: " + t.boyPos);
     }
 
     public byte[] GirlDataSerialize()
@@ -83,7 +88,7 @@ public class Serializer : MonoBehaviour
         t = (InGameData)serializer.Deserialize(girlStream);
         girlPositionXML = t.girlPos;
 
-        Debug.Log("Xml POS GIRL: " + t.girlPos);
+        Debug.LogError("Xml POS GIRL: " + t.girlPos);
     }
 
     // ------------------------------------------------------------------------------------------ WAITING ROOM DATA
