@@ -98,6 +98,14 @@ public class ServerConnection : MonoBehaviour
                 hostDataSend = hostDataObj.GetComponent<ServerDataSender>();
         }
 
+        // LEVEL SCENE
+        if ((SceneManager.GetActiveScene().name == "LevelScene") && serializer == null)
+        {
+            GameObject serializerObject = GameObject.Find("PositionsHandler");
+            if (serializerObject != null)
+                serializer = serializerObject.GetComponent<Serializer>();
+        }
+
         // PLAYER IS CONNECTED
         if (isClientConnected && !dataSended)
         {

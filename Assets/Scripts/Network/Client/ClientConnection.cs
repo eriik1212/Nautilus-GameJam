@@ -80,6 +80,14 @@ public class ClientConnection : MonoBehaviour
                 clientDataSend = clientDataObj.GetComponent<ClientDataSender>();
         }
 
+        // LEVEL SCENE
+        if ((SceneManager.GetActiveScene().name == "LevelScene") && seri == null)
+        {
+            GameObject serializerObject = GameObject.Find("PositionsHandler");
+            if (serializerObject != null)
+                seri = serializerObject.GetComponent<Serializer>();
+        }
+
         if (clientDataSend != null && seri != null && socketUDP.Connected && remote != null)
         {
             // SERIALIZE INFO IN BUCLE

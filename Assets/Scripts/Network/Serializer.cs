@@ -26,7 +26,7 @@ public class Serializer : MonoBehaviour
     static public Vector2 boyPositionXML;
     static public int boyRotationDirection = 0; // no rotation --> 0, right --> 1, left --> 2
     static public int boyRotationAngle;
-    public Transform boyTransform;
+    //public Transform boyTransform;
 
     // Girl
     static public Vector2 girlPositionXML;
@@ -40,7 +40,7 @@ public class Serializer : MonoBehaviour
     }
     private void Update()
     {
-        Debug.LogError("Boy position!!!!!!!!!!! " + boyPositionXML);
+        //Debug.LogError("Boy position!!!!!!!!!!! " + boyPositionXML);
     }
     public byte[] BoyDataSerialize()
     {
@@ -64,7 +64,7 @@ public class Serializer : MonoBehaviour
         t = (InGameData)serializer.Deserialize(boyStream);
         boyPositionXML = t.boyPos;
 
-        Debug.LogError("Xml POS BOY: " + t.boyPos);
+        //Debug.LogError("Xml POS BOY: " + t.boyPos);
     }
 
     public byte[] GirlDataSerialize()
