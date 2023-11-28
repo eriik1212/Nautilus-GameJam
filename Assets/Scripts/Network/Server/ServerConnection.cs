@@ -137,7 +137,7 @@ public class ServerConnection : MonoBehaviour
 
             serializer.PlayButtonDeserialize(dataX);
 
-            newsockUDP.Close();
+            //newsockUDP.Close();
         }
 
         if (SceneManager.GetActiveScene().name == "LevelScene")
@@ -199,7 +199,7 @@ public class ServerConnection : MonoBehaviour
             if(serializer != null)
                 serializer.DeserializeClientDataXML(dataX);
         }
-        newsockUDP.Close();
+        //newsockUDP.Close();
 
     }
 
