@@ -270,10 +270,11 @@ public class PauseMenu : MonoBehaviour
 
     public void ExitGame()
     {
-        Application.Quit();
-
         serverCon.CloseSocket();
         clientCon.CloseSocket();
+
+        Application.Quit();
+
     }
 
     IEnumerator ErrorCoroutine()
