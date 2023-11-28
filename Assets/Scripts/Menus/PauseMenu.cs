@@ -45,6 +45,10 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] AudioSource accept;
     [SerializeField] AudioSource error;
 
+    // network
+    private ServerConnection serverCon;
+    private ClientConnection clientCon;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -71,6 +75,9 @@ public class PauseMenu : MonoBehaviour
         if (fxVolume == -100) audioMixer.GetFloat("FxVolume", out fxVolume);
         fxSlider.value = fxVolume / 10.0f;
         gameObject.SetActive(false);
+
+        serverCon = GameObject.Find("NetworkManagerServer").GetComponent<ServerConnection>();
+        clientCon = GameObject.Find("NetworkManagerClient").GetComponent<ClientConnection>();
     }
 
     // Update is called once per frame
@@ -264,6 +271,9 @@ public class PauseMenu : MonoBehaviour
     public void ExitGame()
     {
         Application.Quit();
+
+        serverCon.CloseSocket();
+        clientCon.CloseSocket();
     }
 
     IEnumerator ErrorCoroutine()

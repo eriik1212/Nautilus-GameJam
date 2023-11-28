@@ -230,4 +230,8 @@ public class ClientConnection : MonoBehaviour
 
     }
 
+    public void CloseSocket()
+    {
+        socketUDP.Close();
+    }
 }

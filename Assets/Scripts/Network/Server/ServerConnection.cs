@@ -203,6 +203,9 @@ public class ServerConnection : MonoBehaviour
 
     }
 
-
+    public void CloseSocket()
+    {
+        newsockUDP.Close();
+    }
 
 }

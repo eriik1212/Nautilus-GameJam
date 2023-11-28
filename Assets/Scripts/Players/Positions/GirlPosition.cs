@@ -24,23 +24,11 @@ public class GirlPosition : MonoBehaviour
         {
             girlPosition = Serializer.girlPositionXML;
             girlTransform.position = girlPosition;
-
-            Debug.LogError("POSICION GIRL SERIALIZADA: " + girlPosition);
-
-            /*if (girlPosition.x != girlTransform.position.x)
-            {
-                girlTransform.position = new Vector3(girlPosition.x, girlPosition.y, girlTransform.position.z);
-            }*/
         }
         else
         {
             girlPosition = girlTransform.position;
 
-            Debug.LogError("POSICION GIRL TRANSFORM: " + girlPosition);
-
         }
-
-        // Puedes imprimir la posición en la consola
-        //Debug.LogError("Posición del jugador girl: " + girlPosition);
     }
 }

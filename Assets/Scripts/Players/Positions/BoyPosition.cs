@@ -26,24 +26,10 @@ public class BoyPosition : MonoBehaviour
 
             boyPosition = Serializer.boyPositionXML;
             boyTransform.position = boyPosition;
-
-            Debug.LogError("POSICION BOY SERIALIZADA: " + boyPosition);
-
-            /*if (boyPosition.x != boyTransform.position.x)
-            {
-                boyTransform.position = new Vector3(boyPosition.x, boyPosition.y, boyTransform.position.z);
-                Debug.Log("Posicion modificada boy player");
-            }*/
         }
         else
         {
             boyPosition = boyTransform.position;
-
-            Debug.LogError("POSICION BOY TRANSFORM: " + boyPosition);
-
         }
-
-        // Puedes imprimir la posición en la consola
-        //Debug.Log("Posición del jugador boy: " + boyPosition);
     }
 }
