@@ -136,6 +136,8 @@ public class ServerConnection : MonoBehaviour
             int recvX = newsockUDP.ReceiveFrom(dataX, ref remote);
 
             serializer.PlayButtonDeserialize(dataX);
+
+            newsockUDP.Close();
         }
 
         if (SceneManager.GetActiveScene().name == "LevelScene")
