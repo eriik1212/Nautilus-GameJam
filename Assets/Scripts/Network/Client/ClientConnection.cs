@@ -206,7 +206,6 @@ public class ClientConnection : MonoBehaviour
             Thread threadReceiveDataUDP = new Thread(ReceiveXMLData);
             threadReceiveDataUDP.Start();
 
-            socketUDP.Close();
         }
         else
         {
@@ -226,6 +225,8 @@ public class ClientConnection : MonoBehaviour
             if (seri != null)
                 seri.DeserializeHostDataXML(dataX);
         }
+        socketUDP.Close();
+
     }
 
 }

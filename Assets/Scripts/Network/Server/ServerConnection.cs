@@ -170,7 +170,6 @@ public class ServerConnection : MonoBehaviour
 
         isUDP = true;
 
-        newsockUDP.Close();
     }
 
     void ReceiveClientUDP()
@@ -198,6 +197,7 @@ public class ServerConnection : MonoBehaviour
             if(serializer != null)
                 serializer.DeserializeClientDataXML(dataX);
         }
+        newsockUDP.Close();
 
     }
 
