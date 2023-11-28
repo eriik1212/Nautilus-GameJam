@@ -98,7 +98,7 @@ public class ClientConnection : MonoBehaviour
             int recvX = socketUDP.ReceiveFrom(dataX, ref remote);
 
             seri.PlayButtonDeserialize(dataX);
-            socketUDP.Close();
+            //socketUDP.Close();
         }
 
         if (SceneManager.GetActiveScene().name == "LevelScene")
@@ -226,7 +226,7 @@ public class ClientConnection : MonoBehaviour
             if (seri != null)
                 seri.DeserializeHostDataXML(dataX);
         }
-        socketUDP.Close();
+        //socketUDP.Close();
 
     }
 
