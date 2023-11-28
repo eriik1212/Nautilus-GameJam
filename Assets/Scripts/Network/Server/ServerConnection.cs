@@ -169,6 +169,8 @@ public class ServerConnection : MonoBehaviour
         threadServerUDP.Start();
 
         isUDP = true;
+
+        newsockUDP.Close();
     }
 
     void ReceiveClientUDP()

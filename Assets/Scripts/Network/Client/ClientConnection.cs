@@ -205,6 +205,8 @@ public class ClientConnection : MonoBehaviour
 
             Thread threadReceiveDataUDP = new Thread(ReceiveXMLData);
             threadReceiveDataUDP.Start();
+
+            socketUDP.Close();
         }
         else
         {
