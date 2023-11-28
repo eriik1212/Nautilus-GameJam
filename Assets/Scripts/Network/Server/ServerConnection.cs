@@ -99,7 +99,7 @@ public class ServerConnection : MonoBehaviour
         }
 
         // LEVEL SCENE
-        if ((SceneManager.GetActiveScene().name == "LevelScene") && serializer == null)
+        if ((SceneManager.GetActiveScene().name == "LevelScene") && serializer == null && isClientConnected)
         {
             GameObject serializerObject = GameObject.Find("PositionsHandler");
             if (serializerObject != null)
@@ -140,7 +140,7 @@ public class ServerConnection : MonoBehaviour
             //newsockUDP.Close();
         }
 
-        if (SceneManager.GetActiveScene().name == "LevelScene")
+        if (SceneManager.GetActiveScene().name == "LevelScene" && isClientConnected)
         {
 
             // SERIALIZE INFO IN BUCLE

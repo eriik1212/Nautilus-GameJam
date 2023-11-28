@@ -12,6 +12,8 @@ using UnityEngine.Windows;
 using static UnityEngine.InputSystem.InputRemoting;
 public class ClientConnection : MonoBehaviour
 {
+    public bool connectionAlive = true;
+
     // --------------------- TCP
     Socket socketTCP;
     IPEndPoint ipepTCP;
@@ -101,7 +103,7 @@ public class ClientConnection : MonoBehaviour
             //socketUDP.Close();
         }
 
-        if (SceneManager.GetActiveScene().name == "LevelScene")
+        if (SceneManager.GetActiveScene().name == "LevelScene" && connectionAlive)
         {
             // SERIALIZE INFO IN BUCLE
             clientDataSend.SendGirlData(seri);

@@ -270,6 +270,9 @@ public class PauseMenu : MonoBehaviour
 
     public void ExitGame()
     {
+        serverCon.isClientConnected = false;
+        clientCon.connectionAlive = false;
+
         serverCon.CloseSocket();
         clientCon.CloseSocket();
 
