@@ -24,12 +24,12 @@ public class Serializer : MonoBehaviour
 
     // Boy
     static public Vector2 boyPositionXML;
-    static public int boyRotationDirection = 0; // no rotation --> 0, right --> 1, left --> 2
-    static public int boyRotationAngle;
+    static public bool boyAttackXML;
     //public Transform boyTransform;
 
     // Girl
     static public Vector2 girlPositionXML;
+    static public bool girlAttackXML;
 
 
     // ------------------------------------------------------------------------------------------ IN-GAME DATA
@@ -37,20 +37,20 @@ public class Serializer : MonoBehaviour
     {
         public Vector2 boyPos;
         public Vector2 girlPos;
-    }
-    private void Update()
-    {
-        //Debug.LogError("Boy position!!!!!!!!!!! " + boyPositionXML);
+
+        public bool boyAttackData;
+        public bool girlAttackData;
     }
     public byte[] BoyDataSerialize()
     {
         var t = new InGameData();
-        t.boyPos= BoyPosition.boyPosition;
+        t.boyPos = BoyData.boyPosition;
+        t.boyAttackData = BoyData.boyAttack;
         XmlSerializer serializer = new XmlSerializer(typeof(InGameData));
         stream = new MemoryStream();
         serializer.Serialize(stream, t);
         bytes = stream.ToArray();
-        Debug.LogError("PositionData to serialize" + t.boyPos);
+        Debug.Log("--BOY-- Data to serialize: POS: " + t.boyPos + " ATTACK: " + t.boyAttackData);
         return bytes;
     }
 
@@ -63,18 +63,19 @@ public class Serializer : MonoBehaviour
         boyStream.Seek(0, SeekOrigin.Begin);
         t = (InGameData)serializer.Deserialize(boyStream);
         boyPositionXML = t.boyPos;
-
-        //Debug.LogError("Xml POS BOY: " + t.boyPos);
+        boyAttackXML = t.boyAttackData;
     }
 
     public byte[] GirlDataSerialize()
     {
         var t = new InGameData();
-        t.girlPos = GirlPosition.girlPosition;
+        t.girlPos = GirlData.girlPosition;
+        t.girlAttackData = GirlData.girlAttack;
         XmlSerializer serializer = new XmlSerializer(typeof(InGameData));
         stream = new MemoryStream();
         serializer.Serialize(stream, t);
         bytes = stream.ToArray();
+        Debug.Log("--GIRL-- Data to serialize: POS: " + t.girlPos + " ATTACK: " + t.girlAttackData);
         return bytes;
     }
 
@@ -87,8 +88,7 @@ public class Serializer : MonoBehaviour
         girlStream.Seek(0, SeekOrigin.Begin);
         t = (InGameData)serializer.Deserialize(girlStream);
         girlPositionXML = t.girlPos;
-
-        Debug.LogError("Xml POS GIRL: " + t.girlPos);
+        girlAttackXML = t.girlAttackData;
     }
 
     // ------------------------------------------------------------------------------------------ WAITING ROOM DATA

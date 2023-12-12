@@ -40,7 +40,7 @@ public class ProjectileEchoAttack : MonoBehaviour
     {
         if (ManagePause.instance.paused) return;
 
-        if (echoInput && echoReady)
+        if ((echoInput && echoReady) || GirlData.girlAttack)
         {
 
             Invoke("PlayScream", 0.2f);
@@ -59,6 +59,7 @@ public class ProjectileEchoAttack : MonoBehaviour
                 animator.SetTrigger("Attack_Front");
             }
             echoReady = false;
+            GirlData.girlAttack = false;
             if (upgraded) Invoke("EchoReadyAgain", upgradeCooldown);
             else Invoke("EchoReadyAgain", cooldown);
         }
@@ -67,6 +68,8 @@ public class ProjectileEchoAttack : MonoBehaviour
     public void OnEcho(InputAction.CallbackContext context)
     {
         echoInput = context.action.triggered;
+
+        GirlData.girlAttack = true;
     }
 
     public void OnAimUp(InputAction.CallbackContext context)
