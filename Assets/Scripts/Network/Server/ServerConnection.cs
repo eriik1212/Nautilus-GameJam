@@ -16,15 +16,12 @@ public class ServerConnection : MonoBehaviour
 {
     
     public bool isClientConnected = false;
-   
-    public Socket newsockTCP;
-    public Socket con;
-
     public Socket newsockUDP;
     public IPEndPoint ipep;
     private string clientIP;
-    IPEndPoint remoteIpEndPoint;
-    public EndPoint remote;
+
+    private List<Socket> connectedClients = new List<Socket>();
+    private List<Thread> clientThreads = new List<Thread>();
 
     private static ServerConnection instance;
 
@@ -47,6 +44,13 @@ public class ServerConnection : MonoBehaviour
 
     Thread threadServerUDP;
 
+
+    // Testing del Boces que igual se borra
+    IPEndPoint remoteIpEndPoint;
+    public EndPoint remote;
+
+
+
     private void Awake()
     {
         if (instance == null)
@@ -62,14 +66,6 @@ public class ServerConnection : MonoBehaviour
 
     private void Start()
     {
-        //GameObject buttonObject = GameObject.Find("UDPButtonServer");
-        //if (buttonObject != null)
-        //    createRoomButton = buttonObject.GetComponent<Button>();
-
-
-        //if (createRoomButton != null)
-        //    createRoomButton.onClick.AddListener(CreateServerUDP);
-
         serverCreated = false;
 
     }
