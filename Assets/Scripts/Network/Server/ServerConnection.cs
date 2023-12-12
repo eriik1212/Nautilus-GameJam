@@ -158,14 +158,16 @@ public class ServerConnection : MonoBehaviour
 
         if (serverCreated)
         {
+            Debug.Log(threadServerUDP.IsAlive);
 
-
-             if (!threadServerUDP.IsAlive && isClientConnected)
+             /*if (!threadServerUDP.IsAlive && isClientConnected)
              {
                  newsockUDP.Close();
                  threadServerUDP.Abort();
-             }
+             }*/
         }
+
+
     }
 
     
