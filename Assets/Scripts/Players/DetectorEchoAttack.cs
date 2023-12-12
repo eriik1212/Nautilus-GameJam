@@ -13,7 +13,6 @@ public class DetectorEchoAttack : MonoBehaviour
 
     public bool echoInput;
     public bool echoReady;
-    public bool echoAttack;
 
     [NonEditable][SerializeField] bool upgraded;
     [SerializeField] float cooldown = 2.0f;
@@ -39,13 +38,13 @@ public class DetectorEchoAttack : MonoBehaviour
     {
         if (ManagePause.instance.paused) return;
 
-        if ((echoInput && echoReady) || echoAttack)
+        if ((echoInput && echoReady) || BoyData.boyAttack)
         {
             Invoke("PlayAccord", 0.3f);
 
             animator.SetTrigger("Attack");
             echoReady = false;
-            echoAttack = false;
+            BoyData.boyAttack = false;
             if (upgraded) Invoke("EchoReadyAgain", upgradeCooldown);
             else Invoke("EchoReadyAgain", cooldown);
         }
@@ -54,7 +53,7 @@ public class DetectorEchoAttack : MonoBehaviour
     public void OnEcho(InputAction.CallbackContext context)
     {
         echoInput = context.action.triggered;
-        echoAttack = true;
+        BoyData.boyAttack = true;
     }
 
     void EchoReadyAgain()

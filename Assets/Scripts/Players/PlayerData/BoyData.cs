@@ -8,8 +8,6 @@ public class BoyData : MonoBehaviour
     public Transform boyTransform;
     static public Vector2 boyPosition;
     static public bool boyAttack;
-
-    public DetectorEchoAttack echoScript;
     
     void Start()
     {
@@ -37,6 +35,5 @@ public class BoyData : MonoBehaviour
         }
 
         boyAttack = Serializer.boyAttackXML;
-        echoScript.echoAttack = boyAttack;
     }
 }
