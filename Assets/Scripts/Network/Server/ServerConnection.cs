@@ -156,11 +156,11 @@ public class ServerConnection : MonoBehaviour
             serializer.DeserializeGirlDataXML(dataX);
         }
 
-        if (!threadServerUDP.IsAlive && isClientConnected)
+       /* if (!threadServerUDP.IsAlive && isClientConnected)
         {
             newsockUDP.Close();
             threadServerUDP.Abort();
-        }
+        }*/
     }
 
     
