@@ -41,6 +41,9 @@ public class ServerConnection : MonoBehaviour
     private ServerDataSender hostDataSend;
     private bool dataSended = false;
 
+    private float lastReceiveTime;
+
+    Thread threadServerUDP;
 
     private void Awake()
     {
@@ -152,6 +155,12 @@ public class ServerConnection : MonoBehaviour
 
             serializer.DeserializeGirlDataXML(dataX);
         }
+
+        if (!threadServerUDP.IsAlive)
+        {
+            newsockUDP.Close();
+            threadServerUDP.Abort();
+        }
     }
 
     
@@ -167,7 +176,7 @@ public class ServerConnection : MonoBehaviour
 
         Debug.Log("Waiting for user...");
 
-        Thread threadServerUDP = new Thread(ReceiveClientUDP);
+        threadServerUDP = new Thread(ReceiveClientUDP);
         threadServerUDP.Start();
 
         isUDP = true;
