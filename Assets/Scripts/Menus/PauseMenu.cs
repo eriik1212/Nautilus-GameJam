@@ -76,8 +76,8 @@ public class PauseMenu : MonoBehaviour
         fxSlider.value = fxVolume / 10.0f;
         gameObject.SetActive(false);
 
-        serverCon = GameObject.Find("NetworkManagerServer").GetComponent<ServerConnection>();
-        clientCon = GameObject.Find("NetworkManagerClient").GetComponent<ClientConnection>();
+        //serverCon = GameObject.Find("NetworkManagerServer").GetComponent<ServerConnection>();
+        //clientCon = GameObject.Find("NetworkManagerClient").GetComponent<ClientConnection>();
     }
 
     // Update is called once per frame
@@ -270,8 +270,8 @@ public class PauseMenu : MonoBehaviour
 
     public void ExitGame()
     {
-        serverCon.isClientConnected = false;
-        clientCon.connectionAlive = false;
+        //serverCon.isClientConnected = false;
+        //clientCon.connectionAlive = false;
 
         serverCon.CloseSocket();
         clientCon.CloseSocket();

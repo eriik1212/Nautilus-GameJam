@@ -1428,6 +1428,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 296533991}
   m_CullTransparentMesh: 1
+--- !u!114 &331682472 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6843130103917848840, guid: 3ac5c8d865adca44c826c32972863740, type: 3}
+  m_PrefabInstance: {fileID: 1943483821}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1943483822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74f09b0594ef8be4aaf6e89b135f1347, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &340662008
 GameObject:
   m_ObjectHideFlags: 0
@@ -1688,6 +1699,17 @@ MonoBehaviour:
   blendDistance: 0
   weight: 0
   sharedProfile: {fileID: 11400000, guid: 87a52de71a0b6a544b592ecaa347456b, type: 2}
+--- !u!114 &418637520 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1572755291974121532, guid: cd15258bd5a61b14dbd35e27fbdffb78, type: 3}
+  m_PrefabInstance: {fileID: 1572755291018136861}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1572755291018136862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 862e5f4cc3a75b84b9eeda43c8de1223, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &439662604
 GameObject:
   m_ObjectHideFlags: 0
@@ -4108,7 +4130,7 @@ GameObject:
   - component: {fileID: 727759192}
   - component: {fileID: 727759195}
   m_Layer: 0
-  m_Name: PositionsHandler
+  m_Name: DataHandler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4127,6 +4149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   girlTransform: {fileID: 1943483824}
+  echoScript: {fileID: 331682472}
 --- !u!114 &727759193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4140,6 +4163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boyTransform: {fileID: 1572755291018136863}
+  echoScript: {fileID: 418637520}
 --- !u!4 &727759194
 Transform:
   m_ObjectHideFlags: 0
@@ -4167,7 +4191,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 760f6b2eb38f6e04cb5c466a5314d09b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boyTransform: {fileID: 1572755291018136863}
 --- !u!1 &745969574 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5314107808902396162, guid: e3bd9a0c15ef4704e93d87d6c89fe9d5, type: 3}
