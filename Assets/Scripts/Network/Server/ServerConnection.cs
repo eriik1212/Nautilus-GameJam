@@ -42,7 +42,7 @@ public class ServerConnection : MonoBehaviour
     private bool dataSended = false;
 
     private float lastReceiveTime;
-    private float timeoutDuration=0.5f;
+    private float timeoutDuration=2.5f;
 
     Thread threadServerUDP;
 
@@ -164,7 +164,7 @@ public class ServerConnection : MonoBehaviour
 
         }
 
-        if (isClientConnected && Time.time - lastReceiveTime > timeoutDuration)
+        if (isClientConnected && SceneManager.GetActiveScene().name!= "WaitingRoom" && Time.time - lastReceiveTime > timeoutDuration)
         {
             Debug.Log("Cliente desconectado");
             isClientConnected = false;
