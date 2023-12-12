@@ -42,7 +42,7 @@ public class ServerConnection : MonoBehaviour
     private bool dataSended = false;
 
     private float lastReceiveTime;
-    private float timeoutDuration=2.5f;
+    private float timeoutDuration=15.5f;
     private float timeHandler;
 
     Thread threadServerUDP;
