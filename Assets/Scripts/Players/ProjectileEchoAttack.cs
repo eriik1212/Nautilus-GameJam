@@ -13,6 +13,7 @@ public class ProjectileEchoAttack : MonoBehaviour
 
     bool echoInput;
     public bool echoReady;
+    public bool echoAttack;
     bool aimingUp;
 
     Vector3 direction;
@@ -40,7 +41,7 @@ public class ProjectileEchoAttack : MonoBehaviour
     {
         if (ManagePause.instance.paused) return;
 
-        if ((echoInput && echoReady) || GirlData.girlAttack)
+        if (echoInput && echoReady && echoAttack)
         {
 
             Invoke("PlayScream", 0.2f);
@@ -59,7 +60,7 @@ public class ProjectileEchoAttack : MonoBehaviour
                 animator.SetTrigger("Attack_Front");
             }
             echoReady = false;
-            GirlData.girlAttack = false;
+            echoAttack = false;
             if (upgraded) Invoke("EchoReadyAgain", upgradeCooldown);
             else Invoke("EchoReadyAgain", cooldown);
         }
@@ -69,7 +70,7 @@ public class ProjectileEchoAttack : MonoBehaviour
     {
         echoInput = context.action.triggered;
 
-        GirlData.girlAttack = true;
+        echoAttack = true;
     }
 
     public void OnAimUp(InputAction.CallbackContext context)

@@ -8,6 +8,7 @@ public class GirlData : MonoBehaviour
     static public Vector2 girlPosition;
     static public bool girlAttack;
 
+    ProjectileEchoAttack echoScript;
     void Start()
     {
 
@@ -33,5 +34,6 @@ public class GirlData : MonoBehaviour
         }
 
         girlAttack = Serializer.girlAttackXML;
+        echoScript.echoAttack = girlAttack;
     }
 }
