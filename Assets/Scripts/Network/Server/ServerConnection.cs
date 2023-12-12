@@ -42,6 +42,7 @@ public class ServerConnection : MonoBehaviour
     private bool dataSended = false;
 
     private float lastReceiveTime;
+    private float timeoutDuration=0.5f;
 
     Thread threadServerUDP;
 
@@ -158,15 +159,18 @@ public class ServerConnection : MonoBehaviour
 
         if (serverCreated)
         {
-            Debug.Log(threadServerUDP.IsAlive);
+            
 
-             /*if (!threadServerUDP.IsAlive && isClientConnected)
-             {
-                 newsockUDP.Close();
-                 threadServerUDP.Abort();
-             }*/
+
         }
 
+        if (isClientConnected && Time.time - lastReceiveTime > timeoutDuration)
+        {
+            Debug.Log("Cliente desconectado");
+            isClientConnected = false;
+            // Aquí puedes agregar la lógica para manejar la desconexión del cliente
+            CloseSocket();// Cierra el socket cuando el cliente se desconecta
+        }
 
     }
 
@@ -204,6 +208,8 @@ public class ServerConnection : MonoBehaviour
         data = Encoding.ASCII.GetBytes(serverName);
         newsockUDP.SendTo(data, data.Length, SocketFlags.None, remote);
 
+        lastReceiveTime = Time.time;
+
         //while (true)
         {
             byte[] dataX = new byte[2048];
@@ -214,6 +220,8 @@ public class ServerConnection : MonoBehaviour
 
             if(serializer != null)
                 serializer.DeserializeClientDataXML(dataX);
+
+            lastReceiveTime = Time.time;
         }
         //newsockUDP.Close();
 
