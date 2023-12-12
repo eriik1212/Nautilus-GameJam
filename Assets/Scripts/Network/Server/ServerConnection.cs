@@ -43,6 +43,7 @@ public class ServerConnection : MonoBehaviour
 
     private float lastReceiveTime;
     private float timeoutDuration=2.5f;
+    private float timeHandler;
 
     Thread threadServerUDP;
 
@@ -75,6 +76,7 @@ public class ServerConnection : MonoBehaviour
 
     private void Update()
     {
+        timeHandler = Time.time;
         // PLAY BUTTON
         if ((SceneManager.GetActiveScene().name == "WaitingRoom") && playButton == null)
         {
@@ -208,7 +210,7 @@ public class ServerConnection : MonoBehaviour
         data = Encoding.ASCII.GetBytes(serverName);
         newsockUDP.SendTo(data, data.Length, SocketFlags.None, remote);
 
-        lastReceiveTime = Time.time;
+        lastReceiveTime = timeHandler;
 
         //while (true)
         {
@@ -221,7 +223,7 @@ public class ServerConnection : MonoBehaviour
             if(serializer != null)
                 serializer.DeserializeClientDataXML(dataX);
 
-            lastReceiveTime = Time.time;
+            lastReceiveTime = timeHandler;
         }
         //newsockUDP.Close();
 
