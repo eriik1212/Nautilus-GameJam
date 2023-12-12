@@ -8,7 +8,7 @@ public class GirlData : MonoBehaviour
     static public Vector2 girlPosition;
     static public bool girlAttack;
 
-    ProjectileEchoAttack echoScript;
+    public ProjectileEchoAttack echoScript;
     void Start()
     {
 

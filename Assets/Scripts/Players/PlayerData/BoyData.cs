@@ -9,7 +9,7 @@ public class BoyData : MonoBehaviour
     static public Vector2 boyPosition;
     static public bool boyAttack;
 
-    DetectorEchoAttack echoScript;
+    public DetectorEchoAttack echoScript;
     
     void Start()
     {
