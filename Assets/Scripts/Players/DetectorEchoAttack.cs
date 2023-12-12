@@ -38,7 +38,7 @@ public class DetectorEchoAttack : MonoBehaviour
     {
         if (ManagePause.instance.paused) return;
 
-        if (echoInput && echoReady)
+        if ((echoInput && echoReady) || BoyData.boyAttack)
         {
             Invoke("PlayAccord", 0.3f);
 
@@ -52,6 +52,7 @@ public class DetectorEchoAttack : MonoBehaviour
     public void OnEcho(InputAction.CallbackContext context)
     {
         echoInput = context.action.triggered;
+        BoyData.boyAttack = true;
     }
 
     void EchoReadyAgain()

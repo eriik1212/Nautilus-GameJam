@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GirlPosition : MonoBehaviour
+public class GirlData : MonoBehaviour
 {
     public Transform girlTransform;
     static public Vector2 girlPosition;

@@ -3,14 +3,16 @@ using System.Collections.Generic;
 //using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
-public class BoyPosition : MonoBehaviour
+public class BoyData : MonoBehaviour
 {
     public Transform boyTransform;
     static public Vector2 boyPosition;
+    static public bool boyAttack;
     
     void Start()
     {
-        boyPosition = new Vector2(2.622f, 1.901f);
+        boyPosition = new Vector2(2.622f, 1.901f); // RESPAWN
+        boyAttack = false;
 
         if (boyTransform == null)
         {
@@ -31,5 +33,7 @@ public class BoyPosition : MonoBehaviour
         {
             boyPosition = boyTransform.position;
         }
+
+        boyAttack = Serializer.boyAttackXML;
     }
 }
