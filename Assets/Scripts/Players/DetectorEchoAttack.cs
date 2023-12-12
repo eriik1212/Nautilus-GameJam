@@ -44,6 +44,7 @@ public class DetectorEchoAttack : MonoBehaviour
 
             animator.SetTrigger("Attack");
             echoReady = false;
+            BoyData.boyAttack = false;
             if (upgraded) Invoke("EchoReadyAgain", upgradeCooldown);
             else Invoke("EchoReadyAgain", cooldown);
         }

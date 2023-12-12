@@ -6,6 +6,7 @@ public class GirlData : MonoBehaviour
 {
     public Transform girlTransform;
     static public Vector2 girlPosition;
+    static public bool girlAttack;
 
     void Start()
     {
@@ -30,5 +31,7 @@ public class GirlData : MonoBehaviour
             girlPosition = girlTransform.position;
 
         }
+
+        girlAttack = Serializer.girlAttackXML;
     }
 }
