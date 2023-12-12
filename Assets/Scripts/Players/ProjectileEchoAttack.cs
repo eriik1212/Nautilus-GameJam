@@ -41,7 +41,7 @@ public class ProjectileEchoAttack : MonoBehaviour
     {
         if (ManagePause.instance.paused) return;
 
-        if (echoInput && echoReady && echoAttack)
+        if ((echoInput && echoReady) || echoAttack)
         {
 
             Invoke("PlayScream", 0.2f);

@@ -39,7 +39,7 @@ public class DetectorEchoAttack : MonoBehaviour
     {
         if (ManagePause.instance.paused) return;
 
-        if (echoInput && echoReady && echoAttack)
+        if ((echoInput && echoReady) || echoAttack)
         {
             Invoke("PlayAccord", 0.3f);
 
