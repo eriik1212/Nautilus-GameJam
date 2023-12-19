@@ -26,11 +26,13 @@ public class Serializer : MonoBehaviour
     static public Vector2 boyPositionXML;
     static public bool boyAttackXML;
     static public bool boyJumpingXML;
+    static public int boyOrientationXML;
 
     // Girl
     static public Vector2 girlPositionXML;
     static public bool girlAttackXML;
     static public bool girlJumpingXML;
+    static public int girlOrientationXML;
 
 
     // ------------------------------------------------------------------------------------------ IN-GAME DATA
@@ -44,6 +46,9 @@ public class Serializer : MonoBehaviour
 
         public bool boyJumpingData;
         public bool girlJumpingData;
+
+        public int boyOrientationData;
+        public int girlOrientationData;
     }
     public byte[] BoyDataSerialize()
     {
@@ -51,6 +56,7 @@ public class Serializer : MonoBehaviour
         t.boyPos = BoyData.boyPosition;
         t.boyAttackData = BoyData.boyAttack;
         t.boyJumpingData = BoyData.isBoyJumping;
+        t.boyOrientationData = BoyData.boyOrientation;
         XmlSerializer serializer = new XmlSerializer(typeof(InGameData));
         stream = new MemoryStream();
         serializer.Serialize(stream, t);
@@ -70,6 +76,7 @@ public class Serializer : MonoBehaviour
         boyPositionXML = t.boyPos;
         boyAttackXML = t.boyAttackData;
         boyJumpingXML = t.boyJumpingData;
+        boyOrientationXML = t.boyOrientationData;
     }
 
     public byte[] GirlDataSerialize()
@@ -78,6 +85,7 @@ public class Serializer : MonoBehaviour
         t.girlPos = GirlData.girlPosition;
         t.girlAttackData = GirlData.girlAttack;
         t.girlJumpingData = GirlData.isGirlJumping;
+        t.girlOrientationData = GirlData.girlOrientation;
         XmlSerializer serializer = new XmlSerializer(typeof(InGameData));
         stream = new MemoryStream();
         serializer.Serialize(stream, t);
@@ -97,6 +105,7 @@ public class Serializer : MonoBehaviour
         girlPositionXML = t.girlPos;
         girlAttackXML = t.girlAttackData;
         girlJumpingXML = t.girlJumpingData;
+        girlOrientationXML = t.girlOrientationData;
     }
 
     // ------------------------------------------------------------------------------------------ WAITING ROOM DATA

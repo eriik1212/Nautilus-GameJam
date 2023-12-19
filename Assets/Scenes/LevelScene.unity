@@ -6307,6 +6307,11 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!54 &1266457204 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 5554976085328493762, guid: cd15258bd5a61b14dbd35e27fbdffb78, type: 3}
+  m_PrefabInstance: {fileID: 1572755291018136861}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1280994767
 GameObject:
   m_ObjectHideFlags: 0
@@ -9441,6 +9446,14 @@ PrefabInstance:
       value: 88
       objectReference: {fileID: 0}
     - target: {fileID: 6843130103917848839, guid: 3ac5c8d865adca44c826c32972863740, type: 3}
+      propertyPath: boyRB
+      value: 
+      objectReference: {fileID: 1266457204}
+    - target: {fileID: 6843130103917848839, guid: 3ac5c8d865adca44c826c32972863740, type: 3}
+      propertyPath: girlRB
+      value: 
+      objectReference: {fileID: 1972608568}
+    - target: {fileID: 6843130103917848839, guid: 3ac5c8d865adca44c826c32972863740, type: 3}
       propertyPath: boyData
       value: 
       objectReference: {fileID: 727759193}
@@ -9953,6 +9966,11 @@ Animator:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4677673843213810382, guid: d1bda34dca823e04c9cd5a57e9b5e4d8, type: 3}
   m_PrefabInstance: {fileID: 4677673842735258003}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &1972608568 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 6843130103917848838, guid: 3ac5c8d865adca44c826c32972863740, type: 3}
+  m_PrefabInstance: {fileID: 1943483821}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1981425738
 GameObject:
@@ -10890,6 +10908,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5554976085328493763, guid: cd15258bd5a61b14dbd35e27fbdffb78, type: 3}
+      propertyPath: boyRB
+      value: 
+      objectReference: {fileID: 1266457204}
+    - target: {fileID: 5554976085328493763, guid: cd15258bd5a61b14dbd35e27fbdffb78, type: 3}
+      propertyPath: girlRB
+      value: 
+      objectReference: {fileID: 1972608568}
     - target: {fileID: 5554976085328493763, guid: cd15258bd5a61b14dbd35e27fbdffb78, type: 3}
       propertyPath: boyData
       value: 

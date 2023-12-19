@@ -16,6 +16,7 @@ public class ProjectileEchoAttack : MonoBehaviour
     bool aimingUp;
 
     Vector3 direction;
+    Vector3 girlDirection;
 
     [NonEditable][SerializeField] bool upgraded;
     [SerializeField] float cooldown = 2.0f;
@@ -85,6 +86,12 @@ public class ProjectileEchoAttack : MonoBehaviour
     public void SpawnProjectile()
     {
         Instantiate(echoPrefab, spawn.position, Quaternion.Euler(direction));
+
+        if(gameObject.name == "PlayerGirl")
+        {
+            Instantiate(echoPrefab, spawn.position, Quaternion.Euler(girlDirection));
+
+        }
     }
 
     public void Upgrade()

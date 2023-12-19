@@ -10,10 +10,18 @@ public class GirlData : MonoBehaviour
     static public bool isGirlJumping;
     public Animator girlAnimator;
 
+    static public bool isGirlMoving = false;
+
+    static public int girlOrientation = 0; // no rotation --> 0, right --> 1, left --> 2
+
     void Start()
     {
 
         girlPosition = new Vector2(2.622f, 1.901f);
+
+        girlOrientation = 0;
+
+        isGirlMoving = false;
 
         if (girlTransform == null)
         {
@@ -38,5 +46,6 @@ public class GirlData : MonoBehaviour
 
         isGirlJumping = Serializer.girlJumpingXML;
 
+        girlOrientation = Serializer.girlOrientationXML;
     }
 }

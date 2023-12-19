@@ -10,11 +10,16 @@ public class BoyData : MonoBehaviour
     static public bool boyAttack;
     static public bool isBoyJumping;
     public Animator boyAnimator;
-    
+
+    static public bool isBoyMoving = false;
+
+    static public int boyOrientation = 0; // no rotation --> 0, right --> 1, left --> 2
+
     void Start()
     {
         boyPosition = new Vector2(2.622f, 1.901f); // RESPAWN
         boyAttack = false;
+        isBoyMoving = false;
 
         if (boyTransform == null)
         {
@@ -40,5 +45,6 @@ public class BoyData : MonoBehaviour
 
         isBoyJumping = Serializer.boyJumpingXML;
 
+        boyOrientation = Serializer.boyOrientationXML;
     }
 }

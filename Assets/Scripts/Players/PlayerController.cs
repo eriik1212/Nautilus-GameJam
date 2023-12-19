@@ -36,10 +36,15 @@ public class PlayerController : MonoBehaviour
     [Header("Rotation")]
     public float rotationSpeed = 100.0f;
     public bool lookingRight;
+    public bool lookingRightBoy;
+    public bool lookingRightGirl;
     [HideInInspector] public int rotationDirection; // no rotation --> 0, right --> 1, left --> 2
     [HideInInspector] public float rotationAngle;
 
     Rigidbody rb;
+    public Rigidbody boyRB;
+    public Rigidbody girlRB;
+
     [SerializeField] Animator animator;
 
     [Header("KeyAttached")]
@@ -96,6 +101,8 @@ public class PlayerController : MonoBehaviour
                 }
 
                 animator.SetBool("IsRotating", rotationDirection != 0);
+                boyData.boyAnimator.SetBool("IsRotating", BoyData.boyOrientation != 0);
+                girlData.girlAnimator.SetBool("IsRotating", GirlData.girlOrientation != 0);
 
                 // movement
                 rb.velocity = new Vector3(movementInput * speed, rb.velocity.y, 0);
@@ -155,6 +162,15 @@ public class PlayerController : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         movementInput = context.ReadValue<float>();
+
+        if (gameObject.name == "PlayerBoy")
+        {
+            BoyData.isBoyMoving = true;
+        }
+        else if (gameObject.name == "PlayerGirl")
+        {
+            GirlData.isGirlMoving = true;
+        }
     }
 
     public void OnJump(InputAction.CallbackContext context)
@@ -185,28 +201,70 @@ public class PlayerController : MonoBehaviour
     {
         lookingRight = true;
         rotationDirection = 1;
+
+        if (gameObject.name == "PlayerBoy" && BoyData.isBoyMoving) BoyData.boyOrientation = 1;
+        else if (gameObject.name == "PlayerGirl" && GirlData.isGirlMoving) GirlData.girlOrientation = 1;
+
         while (rotationAngle > 0.0f)
         {
             rotationAngle -= rotationSpeed * Time.deltaTime;
             rb.rotation = Quaternion.Euler(0, rotationAngle, 0);
+
+            if (gameObject.name == "PlayerBoy" && BoyData.isBoyMoving) boyRB.rotation = Quaternion.Euler(0, rotationAngle, 0);
+            else if (gameObject.name == "PlayerGirl" && GirlData.isGirlMoving) girlRB.rotation = Quaternion.Euler(0, rotationAngle, 0);
+
             yield return null;
         }
         rotationDirection = 0;
         rb.rotation = Quaternion.Euler(0, 0.0f, 0);
+
+        if (gameObject.name == "PlayerBoy" && BoyData.isBoyMoving)
+        {
+            BoyData.boyOrientation = 0;
+            boyRB.rotation = Quaternion.Euler(0, 0.0f, 0);
+            BoyData.isBoyMoving = false;
+        }
+        else if (gameObject.name == "PlayerGirl" && GirlData.isGirlMoving)
+        {
+            GirlData.girlOrientation = 0;
+            girlRB.rotation = Quaternion.Euler(0, 0.0f, 0);
+            GirlData.isGirlMoving = false;
+        }
     }
 
     IEnumerator RotateToLeft()
     {
         lookingRight = false;
         rotationDirection = -1;
+
+        if (gameObject.name == "PlayerBoy" && BoyData.isBoyMoving) BoyData.boyOrientation = -1;
+        else if (gameObject.name == "PlayerGirl" && GirlData.isGirlMoving) GirlData.girlOrientation = -1;
+            
         while (rotationAngle < 180.0f)
         {
             rotationAngle += rotationSpeed * Time.deltaTime;
             rb.rotation = Quaternion.Euler(0, rotationAngle, 0);
+
+            if (gameObject.name == "PlayerBoy" && BoyData.isBoyMoving) boyRB.rotation = Quaternion.Euler(0, rotationAngle, 0);
+            else if (gameObject.name == "PlayerGirl" && GirlData.isGirlMoving) girlRB.rotation = Quaternion.Euler(0, rotationAngle, 0);
+
             yield return null;
         }
         rotationDirection = 0;
         rb.rotation = Quaternion.Euler(0, 180.0f, 0);
+
+        if (gameObject.name == "PlayerBoy" && BoyData.isBoyMoving)
+        {
+            BoyData.boyOrientation = 0;
+            boyRB.rotation = Quaternion.Euler(0, 180.0f, 0);
+            BoyData.isBoyMoving = false;
+        }
+        else if (gameObject.name == "PlayerGirl" && GirlData.isGirlMoving)
+        {
+            GirlData.girlOrientation = 0;
+            girlRB.rotation = Quaternion.Euler(0, 180.0f, 0);
+            GirlData.isGirlMoving = false;
+        }
     }
 
     void JumpDone()
