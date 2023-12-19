@@ -92,16 +92,32 @@ public class PlayerController : MonoBehaviour
                 rb.velocity = new Vector3(movementInput * speed, rb.velocity.y, 0);
 
                 // jump
-                if ((jumpInput && !jumping) || BoyData.isBoyJumping || GirlData.isGirlJumping)
+                if (gameObject.name == "PlayerBoy")
                 {
-                    rb.velocity = new Vector3(rb.velocity.x * speed, 0, 0);
-                    rb.AddForce(new Vector3(0, jumpForce, 0));
-                    jumping = true;
-                    BoyData.isBoyJumping = false;
-                    GirlData.isGirlJumping = false;
-                    animator.SetTrigger("Jump");
-                    Invoke("JumpDone", 0.1f);
+                    if ((jumpInput && !jumping) || BoyData.isBoyJumping)
+                    {
+                        rb.velocity = new Vector3(rb.velocity.x * speed, 0, 0);
+                        rb.AddForce(new Vector3(0, jumpForce, 0));
+                        jumping = true;
+                        BoyData.isBoyJumping = false;
+                        animator.SetTrigger("Jump");
+                        Invoke("JumpDone", 0.1f);
+                    }
                 }
+                else if (gameObject.name == "PlayerGirl")
+                {
+                    if ((jumpInput && !jumping) || GirlData.isGirlJumping)
+                    {
+                        rb.velocity = new Vector3(rb.velocity.x * speed, 0, 0);
+                        rb.AddForce(new Vector3(0, jumpForce, 0));
+                        jumping = true;
+                        GirlData.isGirlJumping = false;
+                        animator.SetTrigger("Jump");
+                        Invoke("JumpDone", 0.1f);
+                    }
+                }
+                    
+
             }
             else
             {
