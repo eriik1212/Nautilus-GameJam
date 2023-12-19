@@ -122,142 +122,140 @@ public class PlayerController : MonoBehaviour
                     boyData.boyAnimator.SetTrigger("Jump");
                     Invoke("JumpDone", 0.1f);
                 }
+
             }
-            
+            else
+            {
+                rb.velocity = new Vector3(movementInput * speed * airMovementSpeed, rb.velocity.y, 0);
+            }
 
+            animator.SetFloat("Speed", rb.velocity.x);
+            animator.SetFloat("Vertical_Speed", rb.velocity.y);
+
+            onGroundLastFrame = onGround;
         }
-        else
-        {
-            rb.velocity = new Vector3(movementInput * speed * airMovementSpeed, rb.velocity.y, 0);
-        }
-
-        animator.SetFloat("Speed", rb.velocity.x);
-        animator.SetFloat("Vertical_Speed", rb.velocity.y);
-
-        onGroundLastFrame = onGround;
-    }
         else
         {
             // movement
             rb.velocity = new Vector3(0, 0, 0);
 
-    animator.SetTrigger("Cutscene");
+            animator.SetTrigger("Cutscene");
         }
         
     }
 
     private void OnCollisionEnter(Collision collision)
-{
-    if (keyAttached != null && collision.gameObject.CompareTag("KeyDoor"))
     {
-        keyAttached.UseKey(collision.gameObject);
+        if (keyAttached != null && collision.gameObject.CompareTag("KeyDoor"))
+        {
+            keyAttached.UseKey(collision.gameObject);
+        }
     }
-}
 
-public void OnMove(InputAction.CallbackContext context)
-{
-    movementInput = context.ReadValue<float>();
-}
-
-public void OnJump(InputAction.CallbackContext context)
-{
-    jumpInput = context.action.triggered;
-
-    if (gameObject.name == "PlayerBoy")
+    public void OnMove(InputAction.CallbackContext context)
     {
-        BoyData.isBoyJumping = true;
+        movementInput = context.ReadValue<float>();
     }
-    else if (gameObject.name == "PlayerGirl")
-    {
-        GirlData.isGirlJumping = true;
-    }
-}
-public void JumpForce()
-{
-    if (onGround) rb.AddForce(new Vector3(0, jumpForce, 0));
-}
 
-public void OnTriggerEnter(Collider other)
-{
-    if (other.CompareTag("CutsceneTrigger"))
-        cutsceneOn = true;
-}
-
-IEnumerator RotateToRight()
-{
-    lookingRight = true;
-    rotationDirection = 1;
-    while (rotationAngle > 0.0f)
+    public void OnJump(InputAction.CallbackContext context)
     {
-        rotationAngle -= rotationSpeed * Time.deltaTime;
-        rb.rotation = Quaternion.Euler(0, rotationAngle, 0);
-        yield return null;
-    }
-    rotationDirection = 0;
-    rb.rotation = Quaternion.Euler(0, 0.0f, 0);
-}
+        jumpInput = context.action.triggered;
 
-IEnumerator RotateToLeft()
-{
-    lookingRight = false;
-    rotationDirection = -1;
-    while (rotationAngle < 180.0f)
-    {
-        rotationAngle += rotationSpeed * Time.deltaTime;
-        rb.rotation = Quaternion.Euler(0, rotationAngle, 0);
-        yield return null;
+        if(gameObject.name == "PlayerBoy")
+        {
+            BoyData.isBoyJumping = true;
+        }
+        else if (gameObject.name == "PlayerGirl")
+        {
+            GirlData.isGirlJumping = true;
+        }
     }
-    rotationDirection = 0;
-    rb.rotation = Quaternion.Euler(0, 180.0f, 0);
-}
+    public void JumpForce()
+    {
+        if (onGround) rb.AddForce(new Vector3(0, jumpForce, 0));
+    }
 
-void JumpDone()
-{
-    jumping = false;
-}
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("CutsceneTrigger"))
+            cutsceneOn = true;
+    }
 
-public void PlayLandingSound()
-{
-    movement_audiosource.clip = landing;
-    movement_audiosource.Play();
-}
+    IEnumerator RotateToRight()
+    {
+        lookingRight = true;
+        rotationDirection = 1;
+        while (rotationAngle > 0.0f)
+        {
+            rotationAngle -= rotationSpeed * Time.deltaTime;
+            rb.rotation = Quaternion.Euler(0, rotationAngle, 0);
+            yield return null;
+        }
+        rotationDirection = 0;
+        rb.rotation = Quaternion.Euler(0, 0.0f, 0);
+    }
 
-public void RecalculateController()
-{
-    // controller
-    if (player1)
+    IEnumerator RotateToLeft()
     {
-        int playerIndex = GetComponent<PlayerInput>().playerIndex;
-        int controllerType1 = SettingsManager.instance.controllerType1;
-        if (controllerType1 == 0) PlayerInput.all[playerIndex].SwitchCurrentControlScheme("KeyboardWASD", Keyboard.current);
-        else PlayerInput.all[playerIndex].SwitchCurrentControlScheme("KeyboardARROWS", Keyboard.current);
+        lookingRight = false;
+        rotationDirection = -1;
+        while (rotationAngle < 180.0f)
+        {
+            rotationAngle += rotationSpeed * Time.deltaTime;
+            rb.rotation = Quaternion.Euler(0, rotationAngle, 0);
+            yield return null;
+        }
+        rotationDirection = 0;
+        rb.rotation = Quaternion.Euler(0, 180.0f, 0);
     }
-    else
-    {
-        int playerIndex = GetComponent<PlayerInput>().playerIndex;
-        int controllerType2 = SettingsManager.instance.controllerType2;
-        if (controllerType2 == 0 && SettingsManager.instance.controllerType1 == 1) PlayerInput.all[playerIndex].SwitchCurrentControlScheme("KeyboardWASD", Keyboard.current);
-        else PlayerInput.all[playerIndex].SwitchCurrentControlScheme("KeyboardARROWS", Keyboard.current);
-    }
-}
 
-void OnDrawGizmos()
-{
-    RaycastHit hit;
-    bool isHit = Physics.BoxCast(transform.position, groundBoxSize / 2, -transform.up, out hit, Quaternion.identity, groundBoxDistance, groundLayerMask);
-    if (isHit)
+    void JumpDone()
     {
-        Gizmos.color = Color.green;
-        Gizmos.DrawRay(transform.position, -transform.up * groundBoxDistance);
-        Gizmos.DrawWireCube(transform.position - transform.up * groundBoxDistance, groundBoxSize);
+        jumping = false;
     }
-    else
+
+    public void PlayLandingSound()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawRay(transform.position, -transform.up * groundBoxDistance);
-        Gizmos.DrawWireCube(transform.position - transform.up * groundBoxDistance, groundBoxSize);
+        movement_audiosource.clip = landing;
+        movement_audiosource.Play();
     }
-}
+
+    public void RecalculateController()
+    {
+        // controller
+        if (player1)
+        {
+            int playerIndex = GetComponent<PlayerInput>().playerIndex;
+            int controllerType1 = SettingsManager.instance.controllerType1;
+            if (controllerType1 == 0) PlayerInput.all[playerIndex].SwitchCurrentControlScheme("KeyboardWASD", Keyboard.current);
+            else PlayerInput.all[playerIndex].SwitchCurrentControlScheme("KeyboardARROWS", Keyboard.current);
+        }
+        else
+        {
+            int playerIndex = GetComponent<PlayerInput>().playerIndex;
+            int controllerType2 = SettingsManager.instance.controllerType2;
+            if (controllerType2 == 0 && SettingsManager.instance.controllerType1 == 1) PlayerInput.all[playerIndex].SwitchCurrentControlScheme("KeyboardWASD", Keyboard.current);
+            else PlayerInput.all[playerIndex].SwitchCurrentControlScheme("KeyboardARROWS", Keyboard.current);
+        }
+    }
+
+    void OnDrawGizmos()
+    {
+        RaycastHit hit;
+        bool isHit = Physics.BoxCast(transform.position, groundBoxSize / 2, -transform.up, out hit, Quaternion.identity, groundBoxDistance, groundLayerMask);
+        if (isHit)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawRay(transform.position, -transform.up * groundBoxDistance);
+            Gizmos.DrawWireCube(transform.position - transform.up * groundBoxDistance, groundBoxSize);
+        }
+        else
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawRay(transform.position, -transform.up * groundBoxDistance);
+            Gizmos.DrawWireCube(transform.position - transform.up * groundBoxDistance, groundBoxSize);
+        }
+    }
 
     
 }
