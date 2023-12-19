@@ -9441,9 +9441,17 @@ PrefabInstance:
       value: 88
       objectReference: {fileID: 0}
     - target: {fileID: 6843130103917848839, guid: 3ac5c8d865adca44c826c32972863740, type: 3}
+      propertyPath: boyData
+      value: 
+      objectReference: {fileID: 727759193}
+    - target: {fileID: 6843130103917848839, guid: 3ac5c8d865adca44c826c32972863740, type: 3}
       propertyPath: landing
       value: 
       objectReference: {fileID: 8300000, guid: 0c91483df22a5d64d9fd91d9ae16fca2, type: 3}
+    - target: {fileID: 6843130103917848839, guid: 3ac5c8d865adca44c826c32972863740, type: 3}
+      propertyPath: girlData
+      value: 
+      objectReference: {fileID: 727759192}
     - target: {fileID: 6843130103917848839, guid: 3ac5c8d865adca44c826c32972863740, type: 3}
       propertyPath: movement_audiosource
       value: 
@@ -10883,9 +10891,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5554976085328493763, guid: cd15258bd5a61b14dbd35e27fbdffb78, type: 3}
+      propertyPath: boyData
+      value: 
+      objectReference: {fileID: 727759193}
+    - target: {fileID: 5554976085328493763, guid: cd15258bd5a61b14dbd35e27fbdffb78, type: 3}
       propertyPath: landing
       value: 
       objectReference: {fileID: 8300000, guid: 106f7b62a3f38754d9cb28748a86f1ab, type: 3}
+    - target: {fileID: 5554976085328493763, guid: cd15258bd5a61b14dbd35e27fbdffb78, type: 3}
+      propertyPath: girlData
+      value: 
+      objectReference: {fileID: 727759192}
     - target: {fileID: 5554976085328493763, guid: cd15258bd5a61b14dbd35e27fbdffb78, type: 3}
       propertyPath: movement_audiosource
       value: 

@@ -8,8 +8,8 @@ using UnityEngine.UIElements;
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerController : MonoBehaviour
 {
-    BoyData boyData;
-    GirlData girlData;
+    public BoyData boyData;
+    public GirlData girlData;
 
     [SerializeField] AudioSource movement_audiosource;
     [SerializeField] AudioClip walk;
