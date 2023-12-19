@@ -77,6 +77,12 @@ public class PlayerController : MonoBehaviour
                 if (!onGroundLastFrame) animator.SetTrigger("OnGround");
                 else animator.ResetTrigger("OnGround");
 
+                if (gameObject.name == "PlayerGirl" && !onGroundLastFrame)  girlData.girlAnimator.SetTrigger("OnGround");
+                else girlData.girlAnimator.SetTrigger("OnGround");
+
+                if (gameObject.name == "PlayerBoy" && !onGroundLastFrame) boyData.boyAnimator.SetTrigger("OnGround");
+                else boyData.boyAnimator.SetTrigger("OnGround");
+
                 // rotation
                 if (lookingRight && movementInput < 0 && rotationDirection != -1)
                 {
