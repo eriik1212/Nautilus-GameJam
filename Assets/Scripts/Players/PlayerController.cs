@@ -97,6 +97,8 @@ public class PlayerController : MonoBehaviour
                     rb.velocity = new Vector3(rb.velocity.x * speed, 0, 0);
                     rb.AddForce(new Vector3(0, jumpForce, 0));
                     jumping = true;
+                    BoyData.isBoyJumping = false;
+                    GirlData.isGirlJumping = false;
                     animator.SetTrigger("Jump");
                     Invoke("JumpDone", 0.1f);
                 }
@@ -137,6 +139,15 @@ public class PlayerController : MonoBehaviour
     public void OnJump(InputAction.CallbackContext context)
     {
         jumpInput = context.action.triggered;
+
+        if(gameObject.name == "PlayerBoy")
+        {
+            BoyData.isBoyJumping = true;
+        }
+        else if (gameObject.name == "PlayerGirl")
+        {
+            GirlData.isGirlJumping = true;
+        }
     }
     public void JumpForce()
     {
