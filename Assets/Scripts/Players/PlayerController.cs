@@ -104,13 +104,13 @@ public class PlayerController : MonoBehaviour
                     Invoke("JumpDone", 0.1f);
                 }
                 
-                if (gameObject.name == "PlayerBoy" && GirlData.isGirlJumping)
+                if (gameObject.name == "PlayerGirl" && GirlData.isGirlJumping)
                 {
                     GirlData.isGirlJumping = false;
                     girlData.girlAnimator.SetTrigger("Jump");
                     Invoke("JumpDone", 0.1f);
                 }
-                else if (gameObject.name == "PlayerGirl" && BoyData.isBoyJumping)
+                else if (gameObject.name == "PlayerBoy" && BoyData.isBoyJumping)
                 {
                     BoyData.isBoyJumping = false;
                     boyData.boyAnimator.SetTrigger("Jump");
