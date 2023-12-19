@@ -103,18 +103,15 @@ public class PlayerController : MonoBehaviour
                     animator.SetTrigger("Jump");
                     Invoke("JumpDone", 0.1f);
                 }
-                else if (GirlData.isGirlJumping)
+                
+                if (gameObject.name == "PlayerBoy" && GirlData.isGirlJumping)
                 {
-                    rb.velocity = new Vector3(rb.velocity.x * speed, 0, 0);
-                    rb.AddForce(new Vector3(0, jumpForce, 0));
                     GirlData.isGirlJumping = false;
                     girlData.girlAnimator.SetTrigger("Jump");
                     Invoke("JumpDone", 0.1f);
                 }
-                else if (BoyData.isBoyJumping)
+                else if (gameObject.name == "PlayerGirl" && BoyData.isBoyJumping)
                 {
-                    rb.velocity = new Vector3(rb.velocity.x * speed, 0, 0);
-                    rb.AddForce(new Vector3(0, jumpForce, 0));
                     BoyData.isBoyJumping = false;
                     boyData.boyAnimator.SetTrigger("Jump");
                     Invoke("JumpDone", 0.1f);
