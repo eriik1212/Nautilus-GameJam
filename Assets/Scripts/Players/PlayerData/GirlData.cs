@@ -8,6 +8,7 @@ public class GirlData : MonoBehaviour
     static public Vector2 girlPosition;
     static public bool girlAttack;
     static public bool isGirlJumping;
+    public Animator girlAnimator;
 
     void Start()
     {

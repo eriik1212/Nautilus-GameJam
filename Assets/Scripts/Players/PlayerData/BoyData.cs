@@ -9,6 +9,7 @@ public class BoyData : MonoBehaviour
     static public Vector2 boyPosition;
     static public bool boyAttack;
     static public bool isBoyJumping;
+    public Animator boyAnimator;
     
     void Start()
     {

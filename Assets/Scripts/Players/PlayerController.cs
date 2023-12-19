@@ -8,6 +8,9 @@ using UnityEngine.UIElements;
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerController : MonoBehaviour
 {
+    BoyData boyData;
+    GirlData girlData;
+
     [SerializeField] AudioSource movement_audiosource;
     [SerializeField] AudioClip walk;
     [SerializeField] AudioClip landing;
@@ -92,165 +95,169 @@ public class PlayerController : MonoBehaviour
                 rb.velocity = new Vector3(movementInput * speed, rb.velocity.y, 0);
 
                 // jump
-                if (gameObject.name == "PlayerBoy")
+                if ((jumpInput && !jumping))
                 {
-                    if ((jumpInput && !jumping) || BoyData.isBoyJumping)
-                    {
-                        rb.velocity = new Vector3(rb.velocity.x * speed, 0, 0);
-                        rb.AddForce(new Vector3(0, jumpForce, 0));
-                        jumping = true;
-                        BoyData.isBoyJumping = false;
-                        animator.SetTrigger("Jump");
-                        Invoke("JumpDone", 0.1f);
-                    }
+                    rb.velocity = new Vector3(rb.velocity.x * speed, 0, 0);
+                    rb.AddForce(new Vector3(0, jumpForce, 0));
+                    jumping = true;
+                    BoyData.isBoyJumping = false;
+                    animator.SetTrigger("Jump");
+                    Invoke("JumpDone", 0.1f);
                 }
-                else if (gameObject.name == "PlayerGirl")
+                if (GirlData.isGirlJumping)
                 {
-                    if ((jumpInput && !jumping) || GirlData.isGirlJumping)
-                    {
-                        rb.velocity = new Vector3(rb.velocity.x * speed, 0, 0);
-                        rb.AddForce(new Vector3(0, jumpForce, 0));
-                        jumping = true;
-                        GirlData.isGirlJumping = false;
-                        animator.SetTrigger("Jump");
-                        Invoke("JumpDone", 0.1f);
-                    }
+                    rb.velocity = new Vector3(rb.velocity.x * speed, 0, 0);
+                    rb.AddForce(new Vector3(0, jumpForce, 0));
+                    jumping = true;
+                    GirlData.isGirlJumping = false;
+                    girlData.girlAnimator.SetTrigger("Jump");
+                    Invoke("JumpDone", 0.1f);
                 }
-                    
-
+                if (BoyData.isBoyJumping)
+                {
+                    rb.velocity = new Vector3(rb.velocity.x * speed, 0, 0);
+                    rb.AddForce(new Vector3(0, jumpForce, 0));
+                    jumping = true;
+                    GirlData.isGirlJumping = false;
+                    boyData.boyAnimator.SetTrigger("Jump");
+                    Invoke("JumpDone", 0.1f);
+                }
             }
-            else
-            {
-                rb.velocity = new Vector3(movementInput * speed * airMovementSpeed, rb.velocity.y, 0);
-            }
+            
 
-            animator.SetFloat("Speed", rb.velocity.x);
-            animator.SetFloat("Vertical_Speed", rb.velocity.y);
-
-            onGroundLastFrame = onGround;
         }
+        else
+        {
+            rb.velocity = new Vector3(movementInput * speed * airMovementSpeed, rb.velocity.y, 0);
+        }
+
+        animator.SetFloat("Speed", rb.velocity.x);
+        animator.SetFloat("Vertical_Speed", rb.velocity.y);
+
+        onGroundLastFrame = onGround;
+    }
         else
         {
             // movement
             rb.velocity = new Vector3(0, 0, 0);
 
-            animator.SetTrigger("Cutscene");
+    animator.SetTrigger("Cutscene");
         }
         
     }
 
     private void OnCollisionEnter(Collision collision)
+{
+    if (keyAttached != null && collision.gameObject.CompareTag("KeyDoor"))
     {
-        if (keyAttached != null && collision.gameObject.CompareTag("KeyDoor"))
-        {
-            keyAttached.UseKey(collision.gameObject);
-        }
+        keyAttached.UseKey(collision.gameObject);
     }
+}
 
-    public void OnMove(InputAction.CallbackContext context)
-    {
-        movementInput = context.ReadValue<float>();
-    }
+public void OnMove(InputAction.CallbackContext context)
+{
+    movementInput = context.ReadValue<float>();
+}
 
-    public void OnJump(InputAction.CallbackContext context)
-    {
-        jumpInput = context.action.triggered;
+public void OnJump(InputAction.CallbackContext context)
+{
+    jumpInput = context.action.triggered;
 
-        if(gameObject.name == "PlayerBoy")
-        {
-            BoyData.isBoyJumping = true;
-        }
-        else if (gameObject.name == "PlayerGirl")
-        {
-            GirlData.isGirlJumping = true;
-        }
-    }
-    public void JumpForce()
+    if (gameObject.name == "PlayerBoy")
     {
-        if (onGround) rb.AddForce(new Vector3(0, jumpForce, 0));
+        BoyData.isBoyJumping = true;
     }
+    else if (gameObject.name == "PlayerGirl")
+    {
+        GirlData.isGirlJumping = true;
+    }
+}
+public void JumpForce()
+{
+    if (onGround) rb.AddForce(new Vector3(0, jumpForce, 0));
+}
 
-    public void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("CutsceneTrigger"))
-            cutsceneOn = true;
-    }
+public void OnTriggerEnter(Collider other)
+{
+    if (other.CompareTag("CutsceneTrigger"))
+        cutsceneOn = true;
+}
 
-    IEnumerator RotateToRight()
+IEnumerator RotateToRight()
+{
+    lookingRight = true;
+    rotationDirection = 1;
+    while (rotationAngle > 0.0f)
     {
-        lookingRight = true;
-        rotationDirection = 1;
-        while (rotationAngle > 0.0f)
-        {
-            rotationAngle -= rotationSpeed * Time.deltaTime;
-            rb.rotation = Quaternion.Euler(0, rotationAngle, 0);
-            yield return null;
-        }
-        rotationDirection = 0;
-        rb.rotation = Quaternion.Euler(0, 0.0f, 0);
+        rotationAngle -= rotationSpeed * Time.deltaTime;
+        rb.rotation = Quaternion.Euler(0, rotationAngle, 0);
+        yield return null;
     }
+    rotationDirection = 0;
+    rb.rotation = Quaternion.Euler(0, 0.0f, 0);
+}
 
-    IEnumerator RotateToLeft()
+IEnumerator RotateToLeft()
+{
+    lookingRight = false;
+    rotationDirection = -1;
+    while (rotationAngle < 180.0f)
     {
-        lookingRight = false;
-        rotationDirection = -1;
-        while (rotationAngle < 180.0f)
-        {
-            rotationAngle += rotationSpeed * Time.deltaTime;
-            rb.rotation = Quaternion.Euler(0, rotationAngle, 0);
-            yield return null;
-        }
-        rotationDirection = 0;
-        rb.rotation = Quaternion.Euler(0, 180.0f, 0);
+        rotationAngle += rotationSpeed * Time.deltaTime;
+        rb.rotation = Quaternion.Euler(0, rotationAngle, 0);
+        yield return null;
     }
+    rotationDirection = 0;
+    rb.rotation = Quaternion.Euler(0, 180.0f, 0);
+}
 
-    void JumpDone()
-    {
-        jumping = false;
-    }
+void JumpDone()
+{
+    jumping = false;
+}
 
-    public void PlayLandingSound()
-    {
-        movement_audiosource.clip = landing;
-        movement_audiosource.Play();
-    }
+public void PlayLandingSound()
+{
+    movement_audiosource.clip = landing;
+    movement_audiosource.Play();
+}
 
-    public void RecalculateController()
+public void RecalculateController()
+{
+    // controller
+    if (player1)
     {
-        // controller
-        if (player1)
-        {
-            int playerIndex = GetComponent<PlayerInput>().playerIndex;
-            int controllerType1 = SettingsManager.instance.controllerType1;
-            if (controllerType1 == 0) PlayerInput.all[playerIndex].SwitchCurrentControlScheme("KeyboardWASD", Keyboard.current);
-            else PlayerInput.all[playerIndex].SwitchCurrentControlScheme("KeyboardARROWS", Keyboard.current);
-        }
-        else
-        {
-            int playerIndex = GetComponent<PlayerInput>().playerIndex;
-            int controllerType2 = SettingsManager.instance.controllerType2;
-            if (controllerType2 == 0 && SettingsManager.instance.controllerType1 == 1) PlayerInput.all[playerIndex].SwitchCurrentControlScheme("KeyboardWASD", Keyboard.current);
-            else PlayerInput.all[playerIndex].SwitchCurrentControlScheme("KeyboardARROWS", Keyboard.current);
-        }
+        int playerIndex = GetComponent<PlayerInput>().playerIndex;
+        int controllerType1 = SettingsManager.instance.controllerType1;
+        if (controllerType1 == 0) PlayerInput.all[playerIndex].SwitchCurrentControlScheme("KeyboardWASD", Keyboard.current);
+        else PlayerInput.all[playerIndex].SwitchCurrentControlScheme("KeyboardARROWS", Keyboard.current);
     }
+    else
+    {
+        int playerIndex = GetComponent<PlayerInput>().playerIndex;
+        int controllerType2 = SettingsManager.instance.controllerType2;
+        if (controllerType2 == 0 && SettingsManager.instance.controllerType1 == 1) PlayerInput.all[playerIndex].SwitchCurrentControlScheme("KeyboardWASD", Keyboard.current);
+        else PlayerInput.all[playerIndex].SwitchCurrentControlScheme("KeyboardARROWS", Keyboard.current);
+    }
+}
 
-    void OnDrawGizmos()
+void OnDrawGizmos()
+{
+    RaycastHit hit;
+    bool isHit = Physics.BoxCast(transform.position, groundBoxSize / 2, -transform.up, out hit, Quaternion.identity, groundBoxDistance, groundLayerMask);
+    if (isHit)
     {
-        RaycastHit hit;
-        bool isHit = Physics.BoxCast(transform.position, groundBoxSize / 2, -transform.up, out hit, Quaternion.identity, groundBoxDistance, groundLayerMask);
-        if (isHit)
-        {
-            Gizmos.color = Color.green;
-            Gizmos.DrawRay(transform.position, -transform.up * groundBoxDistance);
-            Gizmos.DrawWireCube(transform.position - transform.up * groundBoxDistance, groundBoxSize);
-        }
-        else
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawRay(transform.position, -transform.up * groundBoxDistance);
-            Gizmos.DrawWireCube(transform.position - transform.up * groundBoxDistance, groundBoxSize);
-        }
+        Gizmos.color = Color.green;
+        Gizmos.DrawRay(transform.position, -transform.up * groundBoxDistance);
+        Gizmos.DrawWireCube(transform.position - transform.up * groundBoxDistance, groundBoxSize);
     }
+    else
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay(transform.position, -transform.up * groundBoxDistance);
+        Gizmos.DrawWireCube(transform.position - transform.up * groundBoxDistance, groundBoxSize);
+    }
+}
 
     
 }
