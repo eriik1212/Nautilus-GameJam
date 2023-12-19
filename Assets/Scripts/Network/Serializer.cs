@@ -25,11 +25,12 @@ public class Serializer : MonoBehaviour
     // Boy
     static public Vector2 boyPositionXML;
     static public bool boyAttackXML;
-    //public Transform boyTransform;
+    static public bool boyJumpingXML;
 
     // Girl
     static public Vector2 girlPositionXML;
     static public bool girlAttackXML;
+    static public bool girlJumpingXML;
 
 
     // ------------------------------------------------------------------------------------------ IN-GAME DATA
@@ -40,12 +41,16 @@ public class Serializer : MonoBehaviour
 
         public bool boyAttackData;
         public bool girlAttackData;
+
+        public bool boyJumpingData;
+        public bool girlJumpingData;
     }
     public byte[] BoyDataSerialize()
     {
         var t = new InGameData();
         t.boyPos = BoyData.boyPosition;
         t.boyAttackData = BoyData.boyAttack;
+        t.boyJumpingData = BoyData.isBoyJumping;
         XmlSerializer serializer = new XmlSerializer(typeof(InGameData));
         stream = new MemoryStream();
         serializer.Serialize(stream, t);
@@ -64,6 +69,7 @@ public class Serializer : MonoBehaviour
         t = (InGameData)serializer.Deserialize(boyStream);
         boyPositionXML = t.boyPos;
         boyAttackXML = t.boyAttackData;
+        boyJumpingXML = t.boyJumpingData;
     }
 
     public byte[] GirlDataSerialize()
@@ -71,6 +77,7 @@ public class Serializer : MonoBehaviour
         var t = new InGameData();
         t.girlPos = GirlData.girlPosition;
         t.girlAttackData = GirlData.girlAttack;
+        t.girlJumpingData = GirlData.isGirlJumping;
         XmlSerializer serializer = new XmlSerializer(typeof(InGameData));
         stream = new MemoryStream();
         serializer.Serialize(stream, t);
@@ -89,6 +96,7 @@ public class Serializer : MonoBehaviour
         t = (InGameData)serializer.Deserialize(girlStream);
         girlPositionXML = t.girlPos;
         girlAttackXML = t.girlAttackData;
+        girlJumpingXML = t.girlAttackData;
     }
 
     // ------------------------------------------------------------------------------------------ WAITING ROOM DATA

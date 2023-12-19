@@ -162,13 +162,13 @@ public class ServerConnection : MonoBehaviour
 
         }
 
-        if (isClientConnected && SceneManager.GetActiveScene().name!= "WaitingRoom" && Time.time - lastReceiveTime > timeoutDuration)
-        {
-            Debug.Log("Cliente desconectado");
-            isClientConnected = false;
-            // Aquí puedes agregar la lógica para manejar la desconexión del cliente
-            CloseSocket();// Cierra el socket cuando el cliente se desconecta
-        }
+        //if (isClientConnected && SceneManager.GetActiveScene().name!= "WaitingRoom" && Time.time - lastReceiveTime > timeoutDuration)
+        //{
+        //    Debug.Log("Cliente desconectado");
+        //    isClientConnected = false;
+        //    // Aquí puedes agregar la lógica para manejar la desconexión del cliente
+        //    CloseSocket();// Cierra el socket cuando el cliente se desconecta
+        //}
 
     }
 

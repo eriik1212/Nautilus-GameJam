@@ -8,6 +8,7 @@ public class BoyData : MonoBehaviour
     public Transform boyTransform;
     static public Vector2 boyPosition;
     static public bool boyAttack;
+    static public bool isBoyJumping;
     
     void Start()
     {
@@ -35,5 +36,8 @@ public class BoyData : MonoBehaviour
         }
 
         boyAttack = Serializer.boyAttackXML;
+
+        isBoyJumping = Serializer.boyJumpingXML;
+
     }
 }

@@ -92,7 +92,7 @@ public class PlayerController : MonoBehaviour
                 rb.velocity = new Vector3(movementInput * speed, rb.velocity.y, 0);
 
                 // jump
-                if (jumpInput && !jumping)
+                if ((jumpInput && !jumping) || BoyData.isBoyJumping || GirlData.isGirlJumping)
                 {
                     rb.velocity = new Vector3(rb.velocity.x * speed, 0, 0);
                     rb.AddForce(new Vector3(0, jumpForce, 0));
