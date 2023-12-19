@@ -96,7 +96,7 @@ public class Serializer : MonoBehaviour
         t = (InGameData)serializer.Deserialize(girlStream);
         girlPositionXML = t.girlPos;
         girlAttackXML = t.girlAttackData;
-        girlJumpingXML = t.girlAttackData;
+        girlJumpingXML = t.girlJumpingData;
     }
 
     // ------------------------------------------------------------------------------------------ WAITING ROOM DATA

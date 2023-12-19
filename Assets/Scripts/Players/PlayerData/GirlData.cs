@@ -35,5 +35,8 @@ public class GirlData : MonoBehaviour
         }
 
         girlAttack = Serializer.girlAttackXML;
+
+        isGirlJumping = Serializer.girlJumpingXML;
+
     }
 }
